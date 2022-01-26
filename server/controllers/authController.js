@@ -35,7 +35,7 @@ module.exports.register = async function(data, res) {
         } catch(err) {
             res.status(400).json(err);
         }
-        res.status(201).json({ data});
+        res.status(201).json({"message": `User ${data.username} has been created`});
     } else {
         if (Object.keys(data).length === 0) {
             res.status(400).json("Request body is empty");

@@ -12,6 +12,10 @@ const userSchema = new Schema({
         unique: true
     },
     "full_name": String,
+    "role": {
+        type: String,
+        default: "user"
+    },
     "collections": [{
         "collection_name": String,
         "collection_description": String,
