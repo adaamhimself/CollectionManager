@@ -1,7 +1,7 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-var userSchema = new Schema({
+const userSchema = new Schema({
     "username": {
         type: String,
         unique: true
@@ -27,6 +27,7 @@ var userSchema = new Schema({
             "item_title": String,
             "item_description": String,
             "template_object_id": String,
+            "template_name": String,
             "condition": String,
             "condition_note": String,
             "storage_object_id": String,

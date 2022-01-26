@@ -1,7 +1,7 @@
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-var storageSchema = ({
+const storageSchema = ({
     "storage_name": String,
     "storage_code": String,
     "storage_type": String,
