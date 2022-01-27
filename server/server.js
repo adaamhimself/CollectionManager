@@ -12,6 +12,9 @@ app.use(express.json());
 const authRouter = require('./routes/authRoutes');
 app.use('/api/auth', authRouter);
 
+const devRouter = require('./routes/devRoutes');
+app.use('/api/dev', devRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database
