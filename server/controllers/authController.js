@@ -26,35 +26,49 @@ var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 app.use(passport.initialize());
 passport.use(strategy);
 
-module.exports.register = async function(data, res) {
+module.exports.register = async function(data) {
     if (data.password && data.username && data.email) {
         data.password = await bcrypt.hash(data.password, 10);
+        // ensure all accounts are created in lowercase to avoid issues
+        data.username = String(data.username).toLowerCase();
         const newUser = new User(data);
         try {
             await newUser.save(); 
-        } catch(err) {
-            res.status(400).json(err);
+        } catch(error) {
+            if (error.code == 11000) {
+                return {code: 400, message: "Error: duplicate user"};
+            }
+            else return {code: 400, message: `Database error: ${error.code}`};
         }
-        res.status(201).json({"message": `User ${data.username} has been created`});
+        return {code: 201, message: `User ${data.username} has been created`};
     } else {
         if (Object.keys(data).length === 0) {
-            res.status(400).json("Request body is empty");
+            return {code: 400, message: "Request body is empty"};
         } else {
-            res.status(400).json({"Error": `Cannot create user ${data.username}. Registration requests must include username, password, and email.`});
+            return {code: 400, message: `Cannot create user ${data.username}. Registration requests must include username, password, and email`};
         }
     }
 }
 
-module.exports.login = async function(data, res) {
-    var found = await User.findOne({username : data.username});
-    if (await bcrypt.compare(data.password, found.password)) {
-        var payload = {
-            _id: found._id,
-            username: found.username
+module.exports.login = async function(data) {
+    if (data.username && data.password) {
+        data.username = String(data.username).toLowerCase();
+        var found = await User.findOne({username : data.username});
+        if (await bcrypt.compare(data.password, found.password)) {
+            var payload = {
+                _id: found._id,
+                username: found.username
+            }
+            var token = jwt.sign(payload, jwtOptions.secretOrKey);
+            return {code: 201, message: {token: token}};
+        } else {
+            return {code: 201, message: `Login for ${data.username} unsuccessful`}
         }
-        var token = jwt.sign(payload, jwtOptions.secretOrKey);
-        res.status(201).json({token: token});
     } else {
-        res.status(400).json({"Error": `Login for ${data.username} unsuccessful`});
+        if (Object.keys(data).length === 0) {
+            return {code: 400, message: "Request body is empty"};
+        } else {
+            return {code: 400, message: `Cannot login user ${data.username}. Login requests must include username and password`};
+        }
     }
 }
