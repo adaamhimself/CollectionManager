@@ -9,6 +9,11 @@ Team Members:
 
 
 # Updates    
+
+**January 30, 2022**    
+Added login/register components, added user/registeruser classes, added logo images, updated package.json dependencies to support material/cards, updated modules to support new login/register component routing    
+
+
 **January 27, 2022**    
 New permissions and routes added. Accounts with "administrator" or "developer" permissions can delete accounts and retrieve a list of all accounts in the system. Permissions are checked when doing so, and administrator or developer accounts cannot by deleted by this method. Routes are /api/dev/removeUser and /api/dev/getListOfUsers. For remove user, use a post request with the email in the body.   
 -AK    
