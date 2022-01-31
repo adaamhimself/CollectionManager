@@ -20,7 +20,7 @@ Team Members:
 
 # Updates    
 
-**January 31, 2022**
+**January 31, 2022**  
 Login is working and correctly stores the token in local storage. Password verification is working but could be improved. -AK
 
 **January 31, 2022**  
