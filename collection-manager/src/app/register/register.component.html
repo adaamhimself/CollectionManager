@@ -6,16 +6,11 @@
             <mat-error> {{warning}}</mat-error><br />
             
             <mat-form-field class="full-width-input">
-                <input matInput placeholder="First Name" name="firstname" required autofocus 
-                [(ngModel)]="registerUser.firstName">
+                <input matInput placeholder="Username" name="username" required autofocus 
+                [(ngModel)]="registerUser.username">
                 <mat-error>First name cannot be empty.</mat-error>
             </mat-form-field><br />
 
-            <mat-form-field class="full-width-input">
-                <input matInput placeholder="Last Name" name="lastname" required autofocus 
-                [(ngModel)]="registerUser.lastName">
-                <mat-error>Last name cannot be empty.</mat-error>
-            </mat-form-field><br />
 
             <mat-form-field class="full-width-input">
                 <input matInput placeholder="Email" name="email" required autofocus 
@@ -29,11 +24,6 @@
                 <mat-error>Please provide a valid password</mat-error>
             </mat-form-field><br />
             
-            <mat-form-field class="full-width-input">
-                <input matInput type="password" placeholder="Verify Password" name="password2" required 
-                [(ngModel)]="registerUser.password2">
-                <mat-error>Password does not match.</mat-error>
-            </mat-form-field>
 
             
             <input type="checkbox" id="termsCheck" name="termsconditions" value="terms" required>
@@ -47,7 +37,7 @@
             <button mat-raised-button color="primary" type="submit" [disabled]="loading === true">
                 <mat-icon>account_box</mat-icon>
                 <!--If request is loading send processing, if not load #register template-->
-                <span *ngIf="loading; else register">
+                <span *ngIf="loading else register">
                           Processing Request
                 </span>
                 <ng-template #register>
@@ -58,7 +48,7 @@
         </form>
     </mat-card-content>
 
-    <div class="success" *ngIf="success === true">Registration Successful. Proceed to<br /><br /> 
+    <div class="success" *ngIf="success==true">Registration Successful. Proceed to<br /><br /> 
         <a mat-raised-button color="accent" [routerLink]="['/login']">
             <mat-icon>login</mat-icon>&nbsp;&nbsp;&nbsp;Login
         </a> 

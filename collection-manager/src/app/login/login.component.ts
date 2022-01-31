@@ -12,7 +12,8 @@ export class LoginComponent implements OnInit {
   public user: User = {
     userName: "",
     password: "",
-    _id: null
+    _id: null,
+    role: ""
   }
 
   public warning: string;
