@@ -20,6 +20,9 @@ Team Members:
 
 # Updates    
 
+**January 31, 2022**
+Login is working and correctly stores the token in local storage. Password verification is working but could be improved. -AK
+
 **January 31, 2022**  
 The application has been updated to include an auth service. The registration component has also been updated to connect it to the database, so new accounts can be created. We need password verification done before this component is ready to be pushed to main. -AK
 
