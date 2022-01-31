@@ -29,19 +29,21 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.loginSub = this.auth.login(this.user).subscribe(
       response => {
-        this.loading = false;
         this.auth.setToken(response.token);
+        // sets the timeout before redirect
+        setTimeout(() => {
+          this.routing.navigate(["/home"]);
+        }, 1000);
       }, error => {
         this.warning = error.error;
         this.loading = false;
-        console.log(error.error);
       }
     )
     //this.routing.navigate(["/home"]);
   }
 
   ngOnDestroy(): void {
-    //this.loginSub.unsubscribe();
+    this.loginSub.unsubscribe();
   }
 
 }

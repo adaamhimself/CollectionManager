@@ -48,4 +48,8 @@ export class AuthService {
     return this.http.post<any>(environment.apiBaseUrl+"auth/registerUser", registerUser)
   }
 
+  clearToken(): void {
+    localStorage.clear();
+  }
+
 }
