@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
     password: "",
   }
 
+  public password2: string;
   public warning: string;
   public loading: boolean = false;
   public success: boolean = false;
@@ -31,18 +32,23 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     // // register services that comunicate with the database will be called here
     if (this. registerUser.username != "") {
-      this.loading = true;
-      this.registerSub = this.auth.register(this.registerUser).subscribe(
-        response => {
-          this.success = true;
-          this.warning = null;
-        },
-        error => {
-          this.success = false;
-          this.warning = error.error;
-          this.loading = false;
-        }
-      );
+      if (this.registerUser.password == this.password2) {
+        this.loading = true;
+        this.registerSub = this.auth.register(this.registerUser).subscribe(
+          response => {
+            this.success = true;
+            this.warning = null;
+          },
+          error => {
+            this.success = false;
+            this.warning = error.error;
+            this.loading = false;
+          }
+        );
+      } else {
+        this.warning = "Passwords don't match";
+      }
+
     }
   }
 

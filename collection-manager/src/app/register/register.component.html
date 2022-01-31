@@ -24,7 +24,11 @@
                 <mat-error>Please provide a valid password</mat-error>
             </mat-form-field><br />
             
-
+            <mat-form-field class="full-width-input">
+                <input matInput type="password" placeholder="Verify Password" name="password2" required 
+                [(ngModel)]="password2">
+                <mat-error>Password does not match.</mat-error>
+            </mat-form-field>
             
             <input type="checkbox" id="termsCheck" name="termsconditions" value="terms" required>
             <label for="termsCheck">&nbsp; I agree to the <a href="">Terms and Conditions.</a></label><br>
