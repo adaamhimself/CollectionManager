@@ -20,7 +20,7 @@ Team Members:
 
 # Updates    
 
-**January 31, 2022**
+**January 31, 2022**  
 The application has been updated to include an auth service. The registration component has also been updated to connect it to the database, so new accounts can be created. -AK
 
 **January 30, 2022**    
