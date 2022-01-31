@@ -20,6 +20,9 @@ Team Members:
 
 # Updates    
 
+**January 31, 2022**  
+The application has been updated to include an auth service. The registration component has also been updated to connect it to the database, so new accounts can be created. We need password verification done before this component is ready to be pushed to main. -AK
+
 **January 30, 2022**    
 Added login/register components, added user/registeruser classes, added logo images, updated package.json dependencies to support material/cards, updated modules to support new login/register component routing    
 -Connor    
