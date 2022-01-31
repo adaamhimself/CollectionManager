@@ -7,6 +7,16 @@ Team Members:
 - Mohammad Reza 
 - Samrudh Suryanarayan
 
+# Routes    
+
+/api/auth/registerUser  
+
+/api/auth/login
+
+/api/dev/removeUser
+
+/api/dev/getListOfUsers
+
 
 # Updates    
 
