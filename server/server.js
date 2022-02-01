@@ -15,6 +15,9 @@ app.use('/api/auth', authRouter);
 const devRouter = require('./routes/devRoutes');
 app.use('/api/dev', devRouter);
 
+const collectionRouter = require('./routes/collectionRoutes');
+app.use('/api/collection', collectionRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database

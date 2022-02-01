@@ -1,3 +1,5 @@
+// This contoller holds the logic that works on account authorization requests
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const User = require('../models/userModel');
