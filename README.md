@@ -17,7 +17,7 @@ Team Members:
 /api/dev/removeUser  
 /api/dev/getListOfUsers
   
-**Collection routes**
+**Collection routes**  
 /api/collection/createCollection  
 /api/collection/getCollectionById  
 /api/collection/getCollections  
