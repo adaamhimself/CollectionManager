@@ -23,7 +23,7 @@ Team Members:
 /api/collection/getCollections  
 /api/collection/editCollection  
 
-**Item routes**
+**Item routes**  
 /api/item/getItemById  
 /api/item/getAllItemsByCollectionId  
 /api/item/createItem  
