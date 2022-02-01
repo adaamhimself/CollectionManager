@@ -10,11 +10,11 @@ Team Members:
 # Routes    
 
 **User authentication routes**  
-/api/auth/registerUser
+/api/auth/registerUser  
 /api/auth/login
   
 **Developer routes**  
-/api/dev/removeUser
+/api/dev/removeUser  
 /api/dev/getListOfUsers
   
 **Collection routes**
