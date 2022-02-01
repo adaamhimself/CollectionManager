@@ -12,7 +12,6 @@ Team Members:
 User authentication routes  
 
 /api/auth/registerUser
-
 /api/auth/login
   
 Developer routes  
