@@ -21,6 +21,13 @@ Team Members:
 /api/collection/createCollection  
 /api/collection/getCollectionById  
 /api/collection/getCollections  
+/api/collection/editCollection  
+
+**Item routes**
+/api/item/getItemById  
+/api/item/getAllItemsByCollectionId  
+/api/item/createItem  
+/api/item/editItem
 
 # Updates    
 
