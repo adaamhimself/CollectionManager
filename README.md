@@ -20,6 +20,7 @@ Team Members:
 **Collection routes**  
 /api/collection/createCollection  
 /api/collection/getCollectionById  
+/api/collection/getCollectionsByUserId  
 /api/collection/getCollections  
 /api/collection/editCollection  
 
