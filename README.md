@@ -1,4 +1,4 @@
-# CollectionManager
+# Collection Manager
 
 # About
 Collection manager will assist with storing and managing collections of items for both individuals and businesses. It will help keep track of information and allows for easy organization, decreasing retrieval time. Stored items can be sorted in different ways as well as assigned names, descriptions, images, and tags to help with searching.
