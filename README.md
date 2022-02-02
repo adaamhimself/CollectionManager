@@ -33,7 +33,11 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 /api/item/getItemById  
 /api/item/getAllItemsByCollectionId  
 /api/item/createItem  
-/api/item/editItem
+/api/item/editItem  
+
+# How to make requests to the web service
+
+
 
 # Updates    
 
