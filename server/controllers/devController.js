@@ -60,6 +60,8 @@ module.exports.getListOfUSers = async function(requesterId) {
             finalList.push({username, id, email, role})
         });
         // return the refined array
-        return {code: 400, message: finalList};
+        return {code: 200, message: finalList};
+    } else {
+        return {code: 400, message: `Not authorized for this function`};
     }
 }

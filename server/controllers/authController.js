@@ -62,9 +62,9 @@ module.exports.login = async function(data) {
                 username: found.username
             }
             var token = jwt.sign(payload, jwtOptions.secretOrKey);
-            return {code: 201, message: {token: token}};
+            return {code: 200, message: {token: token}};
         } else {
-            return {code: 201, message: `Login for ${data.username} unsuccessful`}
+            return {code: 400, message: `Login for ${data.username} unsuccessful`}
         }
     } else {
         if (Object.keys(data).length === 0) {
