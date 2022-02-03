@@ -4,7 +4,7 @@ const passport = require('passport');
 const collection = require('../controllers/collectionController');
 
 router.get('/getCollectionById', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await collection.getCollectionById(req.body.collectionId);
+    let response = await collection.getCollectionById(req.body.collection_id);
     res.status(response.code).json(response.message);
 });
 

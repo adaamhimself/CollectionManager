@@ -9,9 +9,9 @@ const app = express();
 const jwt = require('jsonwebtoken');
 
 
-module.exports.getCollectionById = async function(collectionId) {
+module.exports.getCollectionById = async function(collection_id) {
     try {
-        let result = await Collection.find({_id: collectionId});
+        let result = await Collection.find({_id: collectio_id});
         return {code: 200, message: result};
     } catch(error) {
         if (error.name == "CastError") return {code: 404, message: `Cannot find ${collectionId}`};
