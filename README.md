@@ -52,7 +52,7 @@ Note: the ability to upload images isn’t available yet.
 /api/collection/getCollectionById  
 Request format:  provide the Id of the collection to be retrieved  
 {  
-    “collection_id”: “example”  
+&emsp;“collection_id”: “example”  
 }  
 
 **Get an array of Collection objects by providing the User’s Id**  
@@ -64,16 +64,16 @@ Request format: none, just send json web token
 Request format: the request format must include the collection’s ID as the first field in the object. Every field after that can be a field you want to modify along with the string which will replace that field’s original value.  
 Example:  
 {  
-    "collection_id": "61f9ac5aa4eeda0e3763cbd7",  
-    "collection_name": "testing name change",  
-    "collection_description": "testing change of description"  
+&emsp;"collection_id": "61f9ac5aa4eeda0e3763cbd7",  
+&emsp;"collection_name": "testing name change",  
+&emsp;"collection_description": "testing change of description"  
 }    
 
 **Delete a collection from the database**  
 /api/collection/removeCollection  
 Request format: provide the Id of the collection to be removed  
 {  
-    "collection_id": "example"  
+&emsp;"collection_id": "example"  
 }  
 
 
