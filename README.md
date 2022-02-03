@@ -36,7 +36,7 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 /api/item/editItem  
 
 # How to make requests to the web service
-Note: json web token must be sent with all of these requests.  
+Note: json web token must be sent with all requests except for registration and login. 
 
 **Create a new collection**  
 /api/collection/createCollection  
