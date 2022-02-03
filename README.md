@@ -38,42 +38,42 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 # How to make requests to the web service
 Note: json web token must be sent with all of these requests.  
 
-**Create a new collection**
-/api/collection/createCollection
-Request format: 
-{
-    “collection_name” : “example”,
-   “collection_description” : “example”,
-    “collection_user_id”: “example”
-}
+**Create a new collection**  
+/api/collection/createCollection  
+Request format:   
+{  
+    “collection_name” : “example”,  
+   “collection_description” : “example”,  
+    “collection_user_id”: “example”  
+}  
 Note: the ability to upload images isn’t available yet.  
 
-**Get a Collection object by providing that collection’s Id**
-/api/collection/getCollectionById
-Request format:  provide the Id of the collection to be retrieved
-{
-    “collection_id”: “example”
+**Get a Collection object by providing that collection’s Id**  
+/api/collection/getCollectionById  
+Request format:  provide the Id of the collection to be retrieved  
+{  
+    “collection_id”: “example”  
 }  
 
-**Get an array of Collection objects by providing the User’s Id**
-/api/collection/getCollectionsByUserId
+**Get an array of Collection objects by providing the User’s Id**  
+/api/collection/getCollectionsByUserId  
 Request format: none, just send json web token  
 
-**Edit a Collection object’s fields**
-/api/collection/editCollection
-Request format: the request format must include the collection’s ID as the first field in the object. Every field after that can be a field you want to modify along with the string which will replace that field’s original value.
-Example:
-{
-    "collection_id": "61f9ac5aa4eeda0e3763cbd7",
-    "collection_name": "testing name change",
-    "collection_description": "testing change of description"
-}  
+**Edit a Collection object’s fields**  
+/api/collection/editCollection  
+Request format: the request format must include the collection’s ID as the first field in the object. Every field after that can be a field you want to modify along with the string which will replace that field’s original value.  
+Example:  
+{  
+    "collection_id": "61f9ac5aa4eeda0e3763cbd7",  
+    "collection_name": "testing name change",  
+    "collection_description": "testing change of description"  
+}    
 
-**Delete a collection from the database**
-/api/collection/removeCollection
-Request format: provide the Id of the collection to be removed
-{
-    "collection_id": "example"
+**Delete a collection from the database**  
+/api/collection/removeCollection  
+Request format: provide the Id of the collection to be removed  
+{  
+    "collection_id": "example"  
 }  
 
 
