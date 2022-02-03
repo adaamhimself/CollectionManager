@@ -1,6 +1,11 @@
-# CollectionManager
+# Collection Manager
 
-Team Members: 
+# About
+Collection manager will assist with storing and managing collections of items for both individuals and businesses. It will help keep track of information and allows for easy organization, decreasing retrieval time. Stored items can be sorted in different ways as well as assigned names, descriptions, images, and tags to help with searching.
+This intuitive, reliable, and secure collection manager will cause you to never worry about losing data and memories ever again.
+
+
+# Team
 - Adam Keeling 
 - Julian Buchholz 
 - Connor Papas 
@@ -9,15 +14,74 @@ Team Members:
 
 # Routes    
 
+**User authentication routes**  
 /api/auth/registerUser  
-
 /api/auth/login
-
-/api/dev/removeUser
-
+  
+**Developer routes**  
+/api/dev/removeUser  
 /api/dev/getListOfUsers
+  
+**Collection routes**  
+/api/collection/createCollection  
+/api/collection/getCollectionById  
+/api/collection/getCollectionsByUserId  
+/api/collection/editCollection  
+/api/collection/removeCollection
+
+**Item routes**  
+/api/item/getItemById  
+/api/item/getAllItemsByCollectionId  
+/api/item/createItem  
+/api/item/editItem  
+
+# How to make requests to the web service
+Note: json web token must be sent with all requests except for registration and login. 
+
+**Create a new collection**  
+/api/collection/createCollection  
+Request format:   
+{  
+&emsp;“collection_name” : “example”,  
+&emsp;“collection_description” : “example”,  
+&emsp;“collection_user_id”: “example”  
+}  
+Note: the ability to upload images isn’t available yet.  
+
+**Get a Collection object by providing that collection’s Id**  
+/api/collection/getCollectionById  
+Request format:  provide the Id of the collection to be retrieved  
+{  
+&emsp;“collection_id”: “example”  
+}  
+
+**Get an array of Collection objects by providing the User’s Id**  
+/api/collection/getCollectionsByUserId  
+Request format: none, just send json web token  
+
+**Edit a Collection object’s fields**  
+/api/collection/editCollection  
+Request format: the request format must include the collection’s ID as the first field in the object. Every field after that can be a field you want to modify along with the string which will replace that field’s original value.  
+Example:  
+{  
+&emsp;"collection_id": "61f9ac5aa4eeda0e3763cbd7",  
+&emsp;"collection_name": "testing name change",  
+&emsp;"collection_description": "testing change of description"  
+}    
+
+**Delete a collection from the database**  
+/api/collection/removeCollection  
+Request format: provide the Id of the collection to be removed  
+{  
+&emsp;"collection_id": "example"  
+}  
+
+
 
 # Updates    
+
+**February 3, 2022**  
+Server routes to work with collections are completed and available. -AK
 
 **January 31, 2022**  
 Login is working and correctly stores the token in local storage. Password verification is working but could be improved. -AK
@@ -34,4 +98,5 @@ New permissions and routes added. Accounts with "administrator" or "developer" p
 -AK    
 
 **January 26, 2021:**   
-Login and Registration features are done. You can run the server locally and try it for yourself. Send a post request to /api/auth/registerUser with a request body containing a username, password, and email. You will receive a token in return. All new users are assigned the "user" role. Next step here is to add higher level permissions for administrators. -AK
+Login and Registration features are done. You can run the server locally and try it for yourself. Send a post request to /api/auth/registerUser with a request body containing a username, password, and email. You will receive a token in return. All new users are assigned the "user" role. Next step here is to add higher level permissions for administrators. -AK  
+
