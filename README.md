@@ -80,6 +80,9 @@ Request format: provide the Id of the collection to be removed
 
 # Updates    
 
+**February 3, 2022**  
+Server routes to work with collections are completed and available. -AK
+
 **January 31, 2022**  
 Login is working and correctly stores the token in local storage. Password verification is working but could be improved. -AK
 
