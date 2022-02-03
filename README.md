@@ -42,9 +42,9 @@ Note: json web token must be sent with all requests except for registration and 
 /api/collection/createCollection  
 Request format:   
 {  
-    “collection_name” : “example”,  
-   “collection_description” : “example”,  
-    “collection_user_id”: “example”  
+&emsp;“collection_name” : “example”,  
+&emsp;“collection_description” : “example”,  
+&emsp;“collection_user_id”: “example”  
 }  
 Note: the ability to upload images isn’t available yet.  
 
