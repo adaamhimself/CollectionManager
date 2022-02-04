@@ -44,7 +44,7 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 "collection_name": String  
 "collection_description": String  
 "collection_user_id": String  
-"collection_image": 
+"collection_image":  
 {    
 &emsp;"collection_image_path": String  
 &emsp;"collection_image_alt_text": String  
