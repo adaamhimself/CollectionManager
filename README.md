@@ -27,7 +27,9 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 /api/collection/getCollectionById  
 /api/collection/getCollectionsByUserId  
 /api/collection/editCollection  
-/api/collection/removeCollection
+/api/collection/removeCollection  
+/api/collection/addImageToCollection  
+/api/collection/deleteImageFromCollection  
 
 **Item routes**  
 /api/item/getItemById  
