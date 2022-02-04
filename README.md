@@ -39,8 +39,15 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 
 # Database Model  
   
-**Collection**  
+**User**  
+"username": String
+"password": String
+"email": String
+"full_name": String
+"role": String
+"collections": [String]  
   
+**Collection**  
 "collection_name": String  
 "collection_description": String  
 "collection_user_id": String  
