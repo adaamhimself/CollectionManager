@@ -37,6 +37,19 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 /api/item/createItem  
 /api/item/editItem  
 
+# Database Model  
+  
+**Collection**  
+  
+"collection_name": String  
+"collection_description": String  
+"collection_user_id": String  
+"collection_image": 
+{    
+&emsp;"collection_image_path": String,
+&emsp;"collection_image_alt_text": String
+}  
+
 # How to make requests to the web service
 Note: json web token must be sent with all requests except for registration and login. 
 
