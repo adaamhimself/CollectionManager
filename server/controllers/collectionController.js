@@ -7,6 +7,8 @@ const Collection = require('../models/collectionModel');
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
+const { collection } = require('../models/userModel');
+const fs = require("fs");
 
 
 module.exports.getCollectionById = async function(collection_id) {
@@ -20,13 +22,23 @@ module.exports.getCollectionById = async function(collection_id) {
 }
 
 module.exports.getCollectionsByUserId = async function(userId) {
-    let collections = [];
     try {
-        collections = await Collection.find({collection_user_id: userId});
-        return {code: 200, message: collections};
+        let result = await User.findById(userId);
     } catch(error) {
         return {code: 400, message: error};
+    }    
+    if (result.role === "administrator" || result.role === "developer") {
+        let collections = [];
+        try {
+            collections = await Collection.find({collection_user_id: userId});
+            return {code: 200, message: collections};
+        } catch(error) {
+            return {code: 400, message: error};
+        }
+    } else {
+        return {code: 401, message: "You are not authorized to view this content"};
     }
+
 }
 
 module.exports.createCollection = async function(requesterId, data) {
@@ -74,7 +86,7 @@ module.exports.editCollection = async function(userId, editRequest) {
         }
         return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
     } else {
-        return {code: 400, message: "Not authorized to update this collection"};
+        return {code: 401, message: "Not authorized to update this collection"};
     }
 }
 
@@ -88,6 +100,63 @@ module.exports.removeCollection = async function(userId, collectionId) {
         }
         return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
     } else {
-        return {code: 400, message: "Not authorized to remove this collection"};
+        return {code: 401, message: "Not authorized to remove this collection"};
+    }
+}
+
+module.exports.addImageToCollection = async function(data, filename) {   
+    var filePath = "../public/photos/" + filename;
+    let collectionId = { _id: data.collection_id};
+    // Delete existing photo to avoid duplicate images 
+    let result = {};
+    try {
+        result = await Collection.findById(collectionId);
+        console.log(result.collection_image.collection_image_path);
+        // make sure that there is an image to delete
+        if (result.collection_image.collection_image_path != "") {
+            fs.unlinkSync(result.collection_image.collection_image_path);
+        }
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+    // update image path and alt text in database
+    try {
+        await Collection.updateOne(collectionId, 
+            { 
+                $set: {
+                    'collection_image.collection_image_path': filePath,
+                    'collection_image.collection_image_alt_text': filename
+                }
+            }
+        );
+        return {code: 200, message: `Image ${filename} has been uploaded`}    
+    } catch(error) {
+        return {code: 400, message: "Error saving image: " + error};
+    }
+}
+
+module.exports.deleteImageFromCollection = async function(userId, data) {
+    try {
+        let result = await Collection.findById(data);
+        if (result.collection_user_id === userId) {
+            if (result.collection_image.collection_image_path) {
+                fs.unlinkSync(result.collection_image.collection_image_path);
+                let response = await Collection.update({collection_id: data}, 
+                    { 
+                        $set: {
+                            'collection_image.collection_image_path': '',
+                            'collection_image.collection_image_alt_text': ''
+                        }
+                    }
+                );
+                return {code: 200, message: `Collection ${result._id} image has been deleted`};
+            } else {
+                return {code: 400, message: `Collection ${result._id} does not have an image uploaded`};
+            }
+        } else {
+            return {code: 401, message: "You are not authorized to delete this image"};
+        }
+    } catch(error) {
+        return {code: 400, message: "Error deleting image: " + error};
     }
 }

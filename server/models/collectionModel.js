@@ -7,7 +7,6 @@ const collectionSchema = new Schema({
     "collection_user_id": String,
     "collection_image": {
         "collection_image_path": String,
-        "collection_image_text": String,
         "collection_image_alt_text": String
     },
     "items": [{
