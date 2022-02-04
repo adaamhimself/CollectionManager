@@ -81,7 +81,7 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 &emsp;"item_image_alt_text": String  
 }]  
   
-**Conversations**
+**Conversations**  
 "participant_id": [String]  
 "messages":  
 [{  
