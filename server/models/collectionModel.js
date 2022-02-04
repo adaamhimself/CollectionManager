@@ -29,13 +29,13 @@ const collectionSchema = new Schema({
             "item_image_path": String,
             "item_image_text": String,
             "item_image_alt_text": String
-        }],
-        "conversations": [{
-            "participant_id": [String],
-            "messages": [{
-                "message_time": String,
-                "message_content": String
-            }]
+        }]
+    }],
+    "conversations": [{
+        "participant_id": [String],
+        "messages": [{
+            "message_time": String,
+            "message_content": String
         }]
     }]
 });
