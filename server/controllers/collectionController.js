@@ -111,7 +111,6 @@ module.exports.addImageToCollection = async function(data, filename) {
     let result = {};
     try {
         result = await Collection.findById(collectionId);
-        console.log(result.collection_image.collection_image_path);
         // make sure that there is an image to delete
         if (result.collection_image.collection_image_path != "") {
             fs.unlinkSync(result.collection_image.collection_image_path);
