@@ -40,12 +40,12 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 # Database Model  
   
 **User**  
-"username": String  
-"password": String  
-"email": String  
-"full_name": String  
-"role": String  
-"collections": [String]  
+&emsp;"username": String  
+&emsp;"password": String  
+&emsp;"email": String  
+&emsp;"full_name": String  
+&emsp;"role": String  
+&emsp;"collections": [String]  
   
 **Collection**  
 "collection_name": String  
