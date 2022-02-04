@@ -40,11 +40,11 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 # Database Model  
   
 **User**  
-"username": String
-"password": String
-"email": String
-"full_name": String
-"role": String
+"username": String  
+"password": String  
+"email": String  
+"full_name": String  
+"role": String  
 "collections": [String]  
   
 **Collection**  
