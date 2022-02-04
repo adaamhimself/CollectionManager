@@ -81,8 +81,8 @@ Request format: provide the Id of the collection to be removed
 **Add an image to the collection**  
 /api/collection/addImageToCollection  
 Request format: provide the Id of the collection to which you want to add an image  
-{
-&emsp;"collection_id": "example"
+{  
+&emsp;"collection_id": "example"  
 }  
 
 # Updates    
