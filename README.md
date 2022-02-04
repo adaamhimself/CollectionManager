@@ -80,7 +80,7 @@ Request format: provide the Id of the collection to be removed
 
 **Add an image to the collection**  
 /api/collection/addImageToCollection  
-Request format: provide the Id of the collection to which you want to add an image  
+Request format: provide the Id of the collection to which you want to add an image. Send the photo as form data.  
 {  
 &emsp;"collection_id": "example"  
 }  
