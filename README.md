@@ -48,46 +48,46 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 &emsp;"collections": [String]  
   
 **Collection**  
-"collection_name": String  
-"collection_description": String  
-"collection_user_id": String  
-"collection_image":  
-{    
-&emsp;"collection_image_path": String  
-&emsp;"collection_image_alt_text": String  
-}  
+&emsp;"collection_name": String  
+&emsp;"collection_description": String  
+&emsp;"collection_user_id": String  
+&emsp;"collection_image":  
+&emsp;{    
+&emsp;&emsp;"collection_image_path": String  
+&emsp;&emsp;"collection_image_alt_text": String  
+&emsp;}  
   
 **Item**  
-"item_title": String  
-"item_description": String  
-"template_object_id": String  
-"template_name": String  
-"condition": String  
-"condition_note": String  
-"storage_object_id": String  
-"storage_note": String  
-"reference_number": String  
-"date_created": String  
-"date_last_updated": String  
-"custom_fields":  
-[{  
-&emsp;"key": Number  
-&emsp;"value": String  
-}]  
-"item_images":  
-[{  
-&emsp;"item_image_path": String  
-&emsp;"item_image_text": String  
-&emsp;"item_image_alt_text": String  
-}]  
+&emsp;"item_title": String  
+&emsp;"item_description": String  
+&emsp;"template_object_id": String  
+&emsp;"template_name": String  
+&emsp;"condition": String  
+&emsp;"condition_note": String  
+&emsp;"storage_object_id": String  
+&emsp;"storage_note": String  
+&emsp;"reference_number": String  
+&emsp;"date_created": String  
+&emsp;"date_last_updated": String  
+&emsp;"custom_fields":  
+&emsp;[{  
+&emsp;&emsp;"key": Number  
+&emsp;&emsp;"value": String  
+&emsp;}]  
+&emsp;"item_images":  
+&emsp;[{  
+&emsp;&emsp;"item_image_path": String  
+&emsp;&emsp;"item_image_text": String  
+&emsp;&emsp;"item_image_alt_text": String  
+&emsp;}]  
   
 **Conversations**  
-"participant_id": [String]  
-"messages":  
-[{  
-&emsp;"message_time": String  
-&emsp;"message_content": String  
-}]  
+&emsp;"participant_id": [String]  
+&emsp;"messages":  
+&emsp;[{  
+&emsp;&emsp;"message_time": String  
+&emsp;&emsp;"message_content": String  
+&emsp;}]  
   
 # How to make requests to the web service
 Note: json web token must be sent with all requests except for registration and login. 
