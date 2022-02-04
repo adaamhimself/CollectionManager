@@ -80,7 +80,15 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 &emsp;"item_image_text": String  
 &emsp;"item_image_alt_text": String  
 }]  
-
+  
+**Conversations**
+"participant_id": [String]  
+"messages":  
+[{  
+&emsp;"message_time": String  
+&emsp;"message_content": String  
+}]  
+  
 # How to make requests to the web service
 Note: json web token must be sent with all requests except for registration and login. 
 
