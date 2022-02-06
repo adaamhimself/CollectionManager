@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { MarketComponent } from './market/market.component';
+import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
+import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 
 //import modules
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
+<<<<<<< Updated upstream
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptTokenService } from './intercept-token.service';
 
@@ -68,5 +71,57 @@ import { InterceptTokenService } from './intercept-token.service';
         multi: true
     }],
     bootstrap: [AppComponent]
+=======
+import { MatSliderModule } from '@angular/material/slider';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
+import { InterceptTokenService } from './intercept-token.service';
+
+@NgModule({
+  //components (pages)
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NotFoundComponent,
+    CollectionsComponent,
+    MarketComponent,
+    LoginComponent,
+    RegisterComponent,
+    ManageCollectionsComponent,
+    EditCollectionComponent,
+  ],
+  //included modules
+  imports: [
+    BrowserModule,
+    MatIconModule,
+    AppRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatInputModule,
+    FlexLayoutModule,
+    FormsModule,
+    MatSidenavModule,
+    MatProgressBarModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatChipsModule,
+    NoopAnimationsModule,
+    HttpClientModule,
+    MatSliderModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptTokenService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
+>>>>>>> Stashed changes
 })
 export class AppModule { }
