@@ -1,6 +1,7 @@
 // Holds collection objects
 
 export class Collection {
+    "_id": string;
     "collection_name": string;
     "collection_description": string;
     "collection_user_id": String;
