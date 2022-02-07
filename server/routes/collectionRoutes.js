@@ -37,8 +37,8 @@ router.put('/editCollection', passport.authenticate('jwt', {session: false}), as
     res.status(response.code).json(response.message);
 });
 
-router.delete('/removeCollection', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await collection.removeCollection(req.user._id, req.body);
+router.delete('/removeCollection/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await collection.removeCollection(req.user._id, req.params.id);
     res.status(response.code).json(response.message);
 })
 

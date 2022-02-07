@@ -21,16 +21,15 @@ export class CollectionService {
     return this.http.get<Collection[]>(`${environment.apiBaseUrl}collection/getCollectionsByUserId/`);
   }
 
-  // createCollection(): Observable<any> { 
-  //   return this.http.post<any>(`${environment.apiBaseUrl}/collection/createCollection`, {});
-  // }
+  createCollection(newCollection: Collection): Observable<any> { 
+    return this.http.post<any>(`${environment.apiBaseUrl}/collection/createCollection`, newCollection);
+  }
   
   editCollection(editedCollection: Collection): Observable<any> { 
-    return this.http.post<any>(`${environment.apiBaseUrl}/collection/editCollection/`, editedCollection );
+    return this.http.post<any>(`${environment.apiBaseUrl}/collection/editCollection/`, editedCollection);
   }
     
-  //removeCollection(id: CollectionId): Observable<any> { 
-    // return this.http.delete<any>(`${environment.apiBaseUrl}/collection/removeCollection`, id);
-    //return this.http.delete<any>(environment.apiBaseUrl+"auth/registerUser", id)
-  //} 
+  removeCollection(id: String): Observable<any> { 
+    return this.http.delete<any>(`${environment.apiBaseUrl}/collection/removeCollection/${id}`);
+  } 
 }
