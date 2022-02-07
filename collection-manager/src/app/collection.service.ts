@@ -27,9 +27,9 @@ export class CollectionService {
   //   return this.http.post<any>(`${environment.apiBaseUrl}/collection/createCollection`, {});
   // }
   
-  // editCollection(id: CollectionId): Observable<any> { 
-  //   return this.http.post<any>(`${environment.apiBaseUrl}/collection/editCollection/${id}`, {} );
-  // }
+  editCollection(editedCollection: Collection): Observable<any> { 
+    return this.http.post<any>(`${environment.apiBaseUrl}/collection/editCollection/`, editedCollection );
+  }
     
   //removeCollection(id: CollectionId): Observable<any> { 
     // return this.http.delete<any>(`${environment.apiBaseUrl}/collection/removeCollection`, id);
