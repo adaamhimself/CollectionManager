@@ -1,3 +1,5 @@
+// This contoller holds the logic that works on developer requests
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const User = require('../models/userModel');
@@ -58,6 +60,8 @@ module.exports.getListOfUSers = async function(requesterId) {
             finalList.push({username, id, email, role})
         });
         // return the refined array
-        return {code: 400, message: finalList};
+        return {code: 200, message: finalList};
+    } else {
+        return {code: 400, message: `Not authorized for this function`};
     }
 }
