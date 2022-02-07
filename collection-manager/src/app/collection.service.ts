@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
- 
-import { CollectionId } from './CollectionId';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Collection } from './Collection';
