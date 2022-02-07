@@ -19,8 +19,8 @@ export class CollectionService {
   //   return this.http.get<any>(`${environment.apiBaseUrl}/collection/getCollectionById/${id}`, id );
   // }
   
-  getCollectionByUserId(id: CollectionId): Observable<any> { 
-    return this.http.get<Collection[]>(`${environment.apiBaseUrl}/collection/getCollectionByUserId`);
+  getCollectionByUserId(): Observable<any> { 
+    return this.http.get<Collection[]>(`${environment.apiBaseUrl}collection/getCollectionsByUserId`);
   }
 
   // createCollection(): Observable<any> { 

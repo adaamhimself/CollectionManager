@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from '../collection.service';
+import { Collection } from '../Collection';
 
 @Component({
   selector: 'app-manage-collections',
@@ -8,16 +9,28 @@ import { CollectionService } from '../collection.service';
 })
 export class ManageCollectionsComponent implements OnInit {
   gridColumns = 3;
-  collections: Array<any> = [];
+  collections: Array<Collection> = [];
 
-  constructor() {}
+  public warning: string;
+
+  private collectionSub: any;
+
+  constructor(private collection: CollectionService) {}
 
   ngOnInit(): void {
-
+    this.collectionSub = this.collection.getCollectionByUserId().subscribe(
+      response => {
+        this.collections = response;
+        console.log(response);
+      }, error => {
+        this.warning = error.error;
+      }
+    )
 
   }
 
   onDeleteClick(): void {
     //delete the collection
+    this.collectionSub.unsubscribe();
   }
 }

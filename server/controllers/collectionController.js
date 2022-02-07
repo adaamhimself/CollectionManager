@@ -24,21 +24,20 @@ module.exports.getCollectionById = async function(collection_id) {
 module.exports.getCollectionsByUserId = async function(userId) {
     try {
         let result = await User.findById(userId);
+        if (result.role === "administrator" || result.role === "developer") {
+            let collections = [];
+            try {
+                collections = await Collection.find({collection_user_id: userId});
+                return {code: 200, message: collections};
+            } catch(error) {
+                return {code: 400, message: error};
+            }
+        } else {
+            return {code: 401, message: "You are not authorized to view this content"};
+        }
     } catch(error) {
         return {code: 400, message: error};
     }    
-    if (result.role === "administrator" || result.role === "developer") {
-        let collections = [];
-        try {
-            collections = await Collection.find({collection_user_id: userId});
-            return {code: 200, message: collections};
-        } catch(error) {
-            return {code: 400, message: error};
-        }
-    } else {
-        return {code: 401, message: "You are not authorized to view this content"};
-    }
-
 }
 
 module.exports.createCollection = async function(requesterId, data) {
