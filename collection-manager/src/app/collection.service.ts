@@ -13,12 +13,12 @@ export class CollectionService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  // getCollectionById(id: CollectionId): Observable<any> { 
-  //   return this.http.get<any>(`${environment.apiBaseUrl}/collection/getCollectionById/${id}`, id );
-  // }
+  getCollectionById(id: String): Observable<any> { 
+    return this.http.get<Collection>(`${environment.apiBaseUrl}/collection/getCollectionById/${id}`);
+  }
   
   getCollectionByUserId(): Observable<any> { 
-    return this.http.get<Collection[]>(`${environment.apiBaseUrl}collection/getCollectionsByUserId`);
+    return this.http.get<Collection[]>(`${environment.apiBaseUrl}collection/getCollectionsByUserId/`);
   }
 
   // createCollection(): Observable<any> { 

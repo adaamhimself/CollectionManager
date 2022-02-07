@@ -17,8 +17,8 @@ const storage = multer.diskStorage({
   });
 const upload = multer({ storage: storage });
 
-router.get('/getCollectionById/', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await collection.getCollectionById(req.body.collection_id);
+router.get('/getCollectionById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await collection.getCollectionById(req.params.id);
     res.status(response.code).json(response.message);
 });
 
