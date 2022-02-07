@@ -13,19 +13,12 @@ export class EditCollectionComponent implements OnInit {
     public warning: string;
     public loading: boolean = false;
     private collectionSub: any;
+    private editSub: any;
 
     constructor(private routing: Router, private route: ActivatedRoute, private colService: CollectionService) { }
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
-        /*this.collectionSub = this.colService.getCollectionById(id).subscribe(
-            response => {
-                this.collection = response;
-                console.log("Editing collection:", response);
-            }, error => {
-                this.warning = error.error;
-            }
-        )*/
         this.collectionSub = this.colService.getCollectionByUserId().subscribe(
             response => {
                 //get the correct collection from the array of user collections
@@ -44,10 +37,11 @@ export class EditCollectionComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log("Changing collection to:", this.collectionModel);
-        this.collectionSub = this.colService.editCollection(this.collectionModel).subscribe(
+        
+      //console.log("Changing collection to:", this.collectionModel);
+        this.editSub = this.colService.editCollection(this.collectionModel).subscribe(
             response => {
-                console.log(response);
+                //console.log(response);
             }, error => {
                 this.warning = error.error;
             }

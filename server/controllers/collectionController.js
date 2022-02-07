@@ -62,31 +62,26 @@ module.exports.createCollection = async function(requesterId, data) {
 }
 
 module.exports.editCollection = async function(userId, editRequest) {
-    let keys = Object.keys(editRequest);
-    let i = 0;
-    let collectionId = { _id: editRequest.collection_id};
+    // grab the collection's id 
+    let collectionId = { _id: editRequest._id};
     let result = await Collection.findById(collectionId);
-    if(result.collection_user_id === userId) {
+    
+    if (editRequest.collection_user_id == result.collection_user_id) {
         try {
-            for (var j = 0 in editRequest) {
-                if (i == 0) {
-                    id = editRequest[j];
-                }
-                let field = keys[i];
-                let value = editRequest[j];
-                let update = { [keys[i]]: value};
-                if (i > 0) {
-                    await Collection.findOneAndUpdate(collectionId, update);
-                }
-                i++;
-            }
+            let request = new Collection;
+            if (editRequest.collection_name) request.collection_name = editRequest.collection_name;
+            if (editRequest.collection_description) request.collection_description = editRequest.collection_description;
+            console.log(request);
+            await Collection.findOneAndUpdate(collectionId, editRequest);
+            return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
         } catch(error) {
             return {code: 400, message: error};
         }
-        return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
     } else {
         return {code: 401, message: "Not authorized to update this collection"};
     }
+
+
 }
 
 module.exports.removeCollection = async function(userId, collectionId) {

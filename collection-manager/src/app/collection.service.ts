@@ -26,7 +26,7 @@ export class CollectionService {
   }
   
   editCollection(editedCollection: Collection): Observable<any> { 
-    return this.http.post<any>(`${environment.apiBaseUrl}collection/editCollection/`, editedCollection);
+    return this.http.put<any>(`${environment.apiBaseUrl}collection/editCollection/`, editedCollection);
   }
     
   removeCollection(id: String): Observable<any> { 
