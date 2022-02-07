@@ -68,10 +68,6 @@ module.exports.editCollection = async function(userId, editRequest) {
     
     if (editRequest.collection_user_id == result.collection_user_id) {
         try {
-            let request = new Collection;
-            if (editRequest.collection_name) request.collection_name = editRequest.collection_name;
-            if (editRequest.collection_description) request.collection_description = editRequest.collection_description;
-            console.log(request);
             await Collection.findOneAndUpdate(collectionId, editRequest);
             return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
         } catch(error) {
