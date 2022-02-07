@@ -28,55 +28,48 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
-import { MatSliderModule } from '@angular/material/slider';
-import {
-  HttpClient,
-  HttpClientModule,
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptTokenService } from './intercept-token.service';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @NgModule({
-  //components (pages)
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    NotFoundComponent,
-    CollectionsComponent,
-    MarketComponent,
-    LoginComponent,
-    RegisterComponent,
-    ManageCollectionsComponent,
-    EditCollectionComponent,
-  ],
-  //included modules
-  imports: [
-    BrowserModule,
-    MatIconModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatInputModule,
-    FlexLayoutModule,
-    FormsModule,
-    MatSidenavModule,
-    MatProgressBarModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatChipsModule,
-    NoopAnimationsModule,
-    HttpClientModule,
-    MatSliderModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptTokenService,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+    //components (pages)
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        NotFoundComponent,
+        CollectionsComponent,
+        MarketComponent,
+        LoginComponent,
+        RegisterComponent,
+    ],
+    //included modules
+    imports: [
+        BrowserModule,
+        MatIconModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatInputModule,
+        FlexLayoutModule,
+        FormsModule,
+        MatSidenavModule,
+        MatProgressBarModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatChipsModule,
+        NoopAnimationsModule,
+        HttpClientModule
+    ],
+    providers: 
+    [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: InterceptTokenService,
+        multi: true
+    }],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
