@@ -33,9 +33,14 @@ the data service and ts file are done since it has {{data from the array}}.-->
             <span aria-hidden="true">&times;</span>
           </button>
         </mat-card-header>
-        <img mat-card-image src="../../assets/images/bluelogo.png" />
+        <img
+          mat-card-image
+          src="{{collection.collection_image.collection_image_path}}"
+          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          alt="{{collection.collection_image.collection_image_alt_text}}"
+        />
         <mat-card-actions>
-          <button mat-button id="manageButton">MANAGE</button>
+          <button mat-button id="manageButton" routerLink="/editcollection/{{collection._id}}" >MANAGE</button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -27,7 +27,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'editcollection',
+    path: 'editcollection/:id',
     component: EditCollectionComponent,
   },
   {

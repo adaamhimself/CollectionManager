@@ -8,8 +8,9 @@
         <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="imageColumn">
           <img
             mat-card-image
-            src="../../assets/images/bluelogo.png"
-            alt="background image"
+            src="{{collectionModel.collection_image.collection_image_path}}"
+            onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+            alt="{{collectionModel.collection_image.collection_image_alt_text}}"
           />
           <!--Replace with proper image editing support-->
           <a href="">Edit Image</a>
@@ -21,26 +22,25 @@
           <p>Storage Code</p>
         </div>
         <!--3rd Column for text fields-->
-        <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="fieldsColumn">
+        <form #editForm="ngForm" fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="fieldsColumn">
           <mat-form-field class="full-width-input">
             <input
               matInput
-              placeholder="Collection Name"
               name="collectionname"
               required
               autofocus
+              [(ngModel)]="collectionModel.collection_name"
             />
             <mat-error>Collection name cannot be empty.</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
             <textarea
               matInput
-              placeholder="Description"
               name="description"
               required
               autofocus
-            >
-            </textarea>
+              [(ngModel)]="collectionModel.collection_description"
+            ></textarea>
             <mat-error>Description cannot be empty.</mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
@@ -53,7 +53,7 @@
             />
             <mat-error>Storage code cannot be empty.</mat-error>
           </mat-form-field>
-        </div>
+        </form>
         <!--4th Column for created/date/reference-->
         <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn2">
           <p>Created: N/A</p>
@@ -61,7 +61,7 @@
           <p>Reference Number: N/A</p>
           <!--Update button with actual data updating in the ts-->
           <button
-            (click)="updateCollection()"
+            (click)="onSubmit()"
             mat-raised-button
             color="accent"
             type="submit"
