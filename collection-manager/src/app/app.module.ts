@@ -43,6 +43,8 @@ import { MatSliderModule } from '@angular/material/slider';
         MarketComponent,
         LoginComponent,
         RegisterComponent,
+        ManageCollectionsComponent,
+        EditCollectionComponent
     ],
     //included modules
     imports: [
@@ -62,7 +64,8 @@ import { MatSliderModule } from '@angular/material/slider';
         MatFormFieldModule,
         MatChipsModule,
         NoopAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSliderModule
     ],
     providers: 
     [{
