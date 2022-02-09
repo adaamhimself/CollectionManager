@@ -11,7 +11,6 @@ const collectionSchema = new Schema({
         "collection_image_path": String,
         "collection_image_alt_text": String
     },
-    "items": [String],
     "conversations": [{
         "participant_id": [String],
         "messages": [{

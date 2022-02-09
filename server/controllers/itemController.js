@@ -38,11 +38,6 @@ module.exports.addItem = async function(userId, item) {
     newItem.date_last_updated = new Date();
     try {
         let response = await newItem.save();
-        let response2 = await Collection.findByIdAndUpdate(collectionId, 
-            { $push: 
-                {items: response._id}
-            }
-        );
         return {code: 201, message: `Item ${newItem.item_title} has been created`};
     } catch(error) {
         return {code: 400, message: error};

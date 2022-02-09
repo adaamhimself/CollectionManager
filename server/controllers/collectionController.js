@@ -45,18 +45,8 @@ module.exports.createCollection = async function(requesterId, data) {
     let newCollection = new Collection(data);
     newCollection.date_created = new Date();
     newCollection.date_last_updated = new Date();
-    let collectionId;
     try {
         let result = await newCollection.save();
-        collectionId = result._id.valueOf();
-        try {
-            await User.updateOne(
-                { _id: requesterId },
-                { $push: { collections: collectionId } }
-            );
-        } catch(error) {
-            return {code: 400, message: error};
-        }
         return {code: 201, message: `Collection ${data.collection_name} has been created`};
     } catch(error) {
         return {code: 400, message: error};
