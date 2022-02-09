@@ -13,7 +13,7 @@ const fs = require("fs");
 
 module.exports.getCollectionById = async function(collection_id) {
     try {
-        let result = await Collection.find({_id: collectio_id});
+        let result = await Collection.find({_id: collection_id});
         return {code: 200, message: result};
     } catch(error) {
         if (error.name == "CastError") return {code: 404, message: `Cannot find ${collectionId}`};
@@ -24,21 +24,20 @@ module.exports.getCollectionById = async function(collection_id) {
 module.exports.getCollectionsByUserId = async function(userId) {
     try {
         let result = await User.findById(userId);
+        if (result.role === "administrator" || result.role === "developer") {
+            let collections = [];
+            try {
+                collections = await Collection.find({collection_user_id: userId});
+                return {code: 200, message: collections};
+            } catch(error) {
+                return {code: 400, message: error};
+            }
+        } else {
+            return {code: 401, message: "You are not authorized to view this content"};
+        }
     } catch(error) {
         return {code: 400, message: error};
     }    
-    if (result.role === "administrator" || result.role === "developer") {
-        let collections = [];
-        try {
-            collections = await Collection.find({collection_user_id: userId});
-            return {code: 200, message: collections};
-        } catch(error) {
-            return {code: 400, message: error};
-        }
-    } else {
-        return {code: 401, message: "You are not authorized to view this content"};
-    }
-
 }
 
 module.exports.createCollection = async function(requesterId, data) {
@@ -63,31 +62,22 @@ module.exports.createCollection = async function(requesterId, data) {
 }
 
 module.exports.editCollection = async function(userId, editRequest) {
-    let keys = Object.keys(editRequest);
-    let i = 0;
-    let collectionId = { _id: editRequest.collection_id};
+    // grab the collection's id 
+    let collectionId = { _id: editRequest._id};
     let result = await Collection.findById(collectionId);
-    if(result.collection_user_id === userId) {
+    
+    if (editRequest.collection_user_id == result.collection_user_id) {
         try {
-            for (var j = 0 in editRequest) {
-                if (i == 0) {
-                    id = editRequest[j];
-                }
-                let field = keys[i];
-                let value = editRequest[j];
-                let update = { [keys[i]]: value};
-                if (i > 0) {
-                    await Collection.findOneAndUpdate(collectionId, update);
-                }
-                i++;
-            }
+            await Collection.findOneAndUpdate(collectionId, editRequest);
+            return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
         } catch(error) {
             return {code: 400, message: error};
         }
-        return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
     } else {
         return {code: 401, message: "Not authorized to update this collection"};
     }
+
+
 }
 
 module.exports.removeCollection = async function(userId, collectionId) {

@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { MarketComponent } from './market/market.component';
+import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
+import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 
 //import modules
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +28,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptTokenService } from './intercept-token.service';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -39,6 +43,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         MarketComponent,
         LoginComponent,
         RegisterComponent,
+        ManageCollectionsComponent,
+        EditCollectionComponent
     ],
     //included modules
     imports: [
@@ -58,9 +64,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         MatFormFieldModule,
         MatChipsModule,
         NoopAnimationsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSliderModule
     ],
-    providers: [],
+    providers: 
+    [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: InterceptTokenService,
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -17,12 +17,12 @@ const storage = multer.diskStorage({
   });
 const upload = multer({ storage: storage });
 
-router.get('/getCollectionById', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await collection.getCollectionById(req.body.collection_id);
+router.get('/getCollectionById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await collection.getCollectionById(req.params.id);
     res.status(response.code).json(response.message);
 });
 
-router.get('/getCollectionsByUserId', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.get('/getCollectionsByUserId/', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.getCollectionsByUserId(req.user._id);
     res.status(response.code).json(response.message);
 });
@@ -37,8 +37,8 @@ router.put('/editCollection', passport.authenticate('jwt', {session: false}), as
     res.status(response.code).json(response.message);
 });
 
-router.delete('/removeCollection', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await collection.removeCollection(req.user._id, req.body);
+router.delete('/removeCollection/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await collection.removeCollection(req.user._id, req.params.id);
     res.status(response.code).json(response.message);
 })
 

@@ -27,9 +27,7 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 /api/collection/getCollectionById  
 /api/collection/getCollectionsByUserId  
 /api/collection/editCollection  
-/api/collection/removeCollection  
-/api/collection/addImageToCollection  
-/api/collection/deleteImageFromCollection  
+/api/collection/removeCollection
 
 **Item routes**  
 /api/item/getItemById  
@@ -37,58 +35,6 @@ This intuitive, reliable, and secure collection manager will cause you to never 
 /api/item/createItem  
 /api/item/editItem  
 
-# Database Model  
-  
-**User**  
-&emsp;"username": String  
-&emsp;"password": String  
-&emsp;"email": String  
-&emsp;"full_name": String  
-&emsp;"role": String  
-&emsp;"collections": [String]  
-  
-**Collection**  
-&emsp;"collection_name": String  
-&emsp;"collection_description": String  
-&emsp;"collection_user_id": String  
-&emsp;"collection_image":  
-&emsp;{    
-&emsp;&emsp;"collection_image_path": String  
-&emsp;&emsp;"collection_image_alt_text": String  
-&emsp;}  
-  
-**Item**  
-&emsp;"item_title": String  
-&emsp;"item_description": String  
-&emsp;"template_object_id": String  
-&emsp;"template_name": String  
-&emsp;"condition": String  
-&emsp;"condition_note": String  
-&emsp;"storage_object_id": String  
-&emsp;"storage_note": String  
-&emsp;"reference_number": String  
-&emsp;"date_created": String  
-&emsp;"date_last_updated": String  
-&emsp;"custom_fields":  
-&emsp;[{  
-&emsp;&emsp;"key": Number  
-&emsp;&emsp;"value": String  
-&emsp;}]  
-&emsp;"item_images":  
-&emsp;[{  
-&emsp;&emsp;"item_image_path": String  
-&emsp;&emsp;"item_image_text": String  
-&emsp;&emsp;"item_image_alt_text": String  
-&emsp;}]  
-  
-**Conversations**  
-&emsp;"participant_id": [String]  
-&emsp;"messages":  
-&emsp;[{  
-&emsp;&emsp;"message_time": String  
-&emsp;&emsp;"message_content": String  
-&emsp;}]  
-  
 # How to make requests to the web service
 Note: json web token must be sent with all requests except for registration and login. 
 
@@ -130,19 +76,7 @@ Request format: provide the Id of the collection to be removed
 &emsp;"collection_id": "example"  
 }  
 
-**Add an image to a collection**  
-/api/collection/addImageToCollection  
-Request format: provide the Id of the collection to which you want to add an image. Send the photo as form data.  
-{  
-&emsp;"collection_id": "example"  
-}  
 
-**Delete an image from a collection**  
-/api/collection/deleteImageFromCollection  
-Request format: provide the Id of the collection that you want to remove the image from.  
-{  
-&emsp;"collection_id": "example"  
-}  
 
 # Updates    
 
