@@ -3,12 +3,12 @@ const router = express.Router();
 const passport = require('passport');
 const item = require('../controllers/itemController');
 
-router.get('/getItemById', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.get('/getItemById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.getItemById(req.user._id, req.params.id);
     res.status(response.code).json(response.message);
 });
 
-router.get('/getAllItemsByCollectionId', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.get('/getItemsByCollectionId/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.getItemsByCollectionId(req.user._id, req.params.id);
     res.status(response.code).json(response.message);
 });

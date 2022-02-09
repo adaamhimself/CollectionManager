@@ -14,7 +14,7 @@ const itemSchema = new Schema({
     "storage_note": String,
     "date_created": Date,
     "date_last_updated": Date,
-    "date_last_updated": String,
+    "date_last_updated": Date,
     "custom_fields": [{
         "key": Number,
         "value": String

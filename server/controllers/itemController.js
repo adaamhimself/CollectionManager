@@ -11,12 +11,22 @@ const { collection } = require('../models/userModel');
 const Item = require('../models/itemTemplate');
 const fs = require("fs");
 
-module.exports.getItemById = async function() {
-
+module.exports.getItemById = async function(userId, itemId) {
+    try {
+        let result = await Item.findById({_id: itemId});
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
 }
 
-module.exports.getItemsByCollectionId = async function() {
-
+module.exports.getItemsByCollectionId = async function(userId, collectionId) {
+    try {
+        let result = await Item.find({containing_collection_id: collectionId});
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
 }
 
 module.exports.addItem = async function(userId, item) {
@@ -37,7 +47,6 @@ module.exports.addItem = async function(userId, item) {
     } catch(error) {
         return {code: 400, message: error};
     }
-    
 }
 
 module.exports.editItem = async function() {
