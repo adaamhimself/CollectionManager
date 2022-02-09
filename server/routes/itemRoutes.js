@@ -23,8 +23,8 @@ router.put('/editItem', passport.authenticate('jwt', {session: false}), async(re
     res.status(response.code).json(response.message);
 });
 
-router.delete('/removeItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await item.removeItem(req.user._id, req.body);
+router.delete('/removeItem/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await item.removeItem(req.user._id, req.params.id);
     res.status(response.code).json(response.message);
 });
 
