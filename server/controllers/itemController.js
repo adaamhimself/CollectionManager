@@ -41,11 +41,11 @@ module.exports.addItem = async function(userId, item) {
     }
 }
 
-module.exports.editItem = async function(userId, itemUpdate) {
+module.exports.editItem = async function(userId, itemUpdate, itemId) {
     itemUpdate.date_last_updated = new Date();
     try {
-        await Item.findByIdAndUpdate({_id: itemUpdate._id}, itemUpdate);
-        return {code: 200, message: `Item ${itemUpdate._id} has been updated`};
+        await Item.findByIdAndUpdate(itemId, itemUpdate);
+        return {code: 200, message: `Item ${itemId} has been updated`};
     } catch(error) {
         return {code: 400, message: error};
     }
@@ -53,7 +53,7 @@ module.exports.editItem = async function(userId, itemUpdate) {
 
 module.exports.removeItem = async function(userId, itemId) {
     try {
-        await Item.findByIdAndRemove({_id: itemId});
+        await Item.findByIdAndRemove(itemId);
         return {code: 200, message: `Item ${itemId} has been removed`};
     } catch(error) {
         return {code: 400, message: error};

@@ -18,8 +18,8 @@ router.post('/addItem', passport.authenticate('jwt', {session: false}), async(re
     res.status(response.code).json(response.message);
 });
 
-router.put('/editItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await item.getItemById(req.user._id, req.body);
+router.put('/editItem/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await item.editItem(req.user._id, req.body, req.params.id);
     res.status(response.code).json(response.message);
 });
 
