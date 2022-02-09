@@ -43,6 +43,8 @@ module.exports.getCollectionsByUserId = async function(userId) {
 module.exports.createCollection = async function(requesterId, data) {
     data.collection_user_id = requesterId;
     let newCollection = new Collection(data);
+    newCollection.date_created = new Date();
+    newCollection.date_last_updated = new Date();
     let collectionId;
     try {
         let result = await newCollection.save();
@@ -64,8 +66,8 @@ module.exports.createCollection = async function(requesterId, data) {
 module.exports.editCollection = async function(userId, editRequest) {
     // grab the collection's id 
     let collectionId = { _id: editRequest._id};
-    let result = await Collection.findById(collectionId);
-    
+    editRequest.date_last_updated = new Date();
+    let result = await Collection.findById(collectionId);  
     if (editRequest.collection_user_id == result.collection_user_id) {
         try {
             await Collection.findOneAndUpdate(collectionId, editRequest);

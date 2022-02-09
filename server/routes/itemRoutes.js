@@ -13,8 +13,8 @@ router.get('/getAllItemsByCollectionId', passport.authenticate('jwt', {session: 
     res.status(response.code).json(response.message);
 });
 
-router.post('/createItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await item.createItem(req.user._id, req.body);
+router.post('/addItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await item.addItem(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });
 
