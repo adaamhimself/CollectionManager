@@ -19,14 +19,14 @@ export class ManageCollectionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.collectionSub = this.collection.getCollectionByUserId().subscribe(
-      response => {
+      (response) => {
         this.collections = response;
         console.log(response);
-      }, error => {
+      },
+      (error) => {
         this.warning = error.error;
       }
-    )
-
+    );
   }
 
   onDeleteClick(): void {

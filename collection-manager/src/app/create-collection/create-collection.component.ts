@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { Collection } from '../Collection';
 import { CollectionService } from '../collection.service';
+import { NewCollection } from '../newCollection';
 
 @Component({
   selector: 'app-create-collection',
@@ -10,8 +10,7 @@ import { CollectionService } from '../collection.service';
   styleUrls: ['./create-collection.component.css'],
 })
 export class CreateCollectionComponent implements OnInit {
-  public collectionModel: Collection = {
-    _id: '',
+  public collectionModel: NewCollection = {
     collection_name: '',
     collection_description: '',
     collection_user_id: '',
@@ -37,6 +36,7 @@ export class CreateCollectionComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.collectionModel);
     this.newSub = this.colService
       .createCollection(this.collectionModel)
       .subscribe(
@@ -49,21 +49,4 @@ export class CreateCollectionComponent implements OnInit {
       );
     this.routing.navigate(['/managecollections']);
   }
-
-  /*
-  onSubmit(): void {
-    //console.log("Changing collection to:", this.collectionModel);
-    this.newSub = this.colService
-      .editCollection(this.collectionModel)
-      .subscribe(
-        (response) => {
-          //console.log(response);
-        },
-        (error) => {
-          this.warning = error.error;
-        }
-      );
-    this.routing.navigate(['/managecollections']);
-  }
-  */
 }
