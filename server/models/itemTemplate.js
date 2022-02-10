@@ -20,7 +20,6 @@ const itemSchema = new Schema({
     }],
     "item_images": [{
         "item_image_path": String,
-        "item_image_text": String,
         "item_image_alt_text": String
     }]
 });

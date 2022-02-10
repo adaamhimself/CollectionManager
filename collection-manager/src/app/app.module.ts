@@ -31,6 +31,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptTokenService } from './intercept-token.service';
 import { MatSliderModule } from '@angular/material/slider';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatSliderModule } from '@angular/material/slider';
         LoginComponent,
         RegisterComponent,
         ManageCollectionsComponent,
-        EditCollectionComponent
+        EditCollectionComponent,
+        CreateCollectionComponent
     ],
     //included modules
     imports: [

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Collection } from './Collection';
+import { NewCollection } from './newCollection';
 
 
 @Injectable({
@@ -21,7 +22,7 @@ export class CollectionService {
     return this.http.get<Collection[]>(`${environment.apiBaseUrl}collection/getCollectionsByUserId/`);
   }
 
-  createCollection(newCollection: Collection): Observable<any> { 
+  createCollection(newCollection: NewCollection): Observable<any> { 
     return this.http.post<any>(`${environment.apiBaseUrl}collection/createCollection`, newCollection);
   }
   

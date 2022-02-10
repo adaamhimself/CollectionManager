@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'managecollections',
     component: ManageCollectionsComponent,
+  },
+  {
+    path: 'createcollection',
+    component: CreateCollectionComponent,
   },
   {
     path: '**',

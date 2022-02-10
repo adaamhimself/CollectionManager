@@ -67,3 +67,15 @@ module.exports.addImageToItem = async function() {
 module.exports.deleteImageFromItem = async function() {
 
 }
+
+module.exports.addCustomField = async function() {
+
+}
+
+module.exports.removecustomField = async function() {
+
+}
+
+module.exports.addTemplate = async function() {
+    
+}

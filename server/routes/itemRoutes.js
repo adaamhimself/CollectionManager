@@ -1,7 +1,29 @@
+// *****************
+// * Express setup *
+// *****************
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const item = require('../controllers/itemController');
+
+// ****************
+// * Multer Setup *
+// ****************
+const path = require("path");
+const fs = require("fs");
+const multer = require('multer');
+const req = require('express/lib/request');
+const storage = multer.diskStorage({
+    destination: "../public/photos",
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    }
+  });
+const upload = multer({ storage: storage });
+
+// ***************
+// * Item Routes *
+// ***************
 
 router.get('/getItemById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.getItemById(req.user._id, req.params.id);
@@ -28,7 +50,7 @@ router.delete('/removeItem/:id', passport.authenticate('jwt', {session: false}),
     res.status(response.code).json(response.message);
 });
 
-router.post('/addImageToItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/addImageToItem', upload.single("photo"), passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.addImageToItem(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });

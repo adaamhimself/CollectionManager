@@ -1,14 +1,18 @@
+// *****************
+// * Express setup *
+// *****************
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const collection = require('../controllers/collectionController');
 
-// Multer
+// ****************
+// * Multer Setup *
+// ****************
 const path = require("path");
 const fs = require("fs");
 const multer = require('multer');
 const req = require('express/lib/request');
-// temporary storage of photos
 const storage = multer.diskStorage({
     destination: "../public/photos",
     filename: function (req, file, cb) {
@@ -16,6 +20,10 @@ const storage = multer.diskStorage({
     }
   });
 const upload = multer({ storage: storage });
+
+// *********************
+// * Collection Routes *
+// *********************
 
 router.get('/getCollectionById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.getCollectionById(req.params.id);
