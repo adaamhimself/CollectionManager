@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { MarketComponent } from './market/market.component';
-import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
+import { MyCollectionsComponent } from './my-collections/my-collections.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 
 //import modules
@@ -44,7 +44,7 @@ import { CreateCollectionComponent } from './create-collection/create-collection
         MarketComponent,
         LoginComponent,
         RegisterComponent,
-        ManageCollectionsComponent,
+        MyCollectionsComponent,
         EditCollectionComponent,
         CreateCollectionComponent
     ],

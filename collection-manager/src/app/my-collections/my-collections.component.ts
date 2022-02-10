@@ -3,11 +3,11 @@ import { CollectionService } from '../collection.service';
 import { Collection } from '../Collection';
 
 @Component({
-  selector: 'app-manage-collections',
-  templateUrl: './manage-collections.component.html',
-  styleUrls: ['./manage-collections.component.css'],
+  selector: 'app-my-collections',
+  templateUrl: './my-collections.component.html',
+  styleUrls: ['./my-collections.component.css'],
 })
-export class ManageCollectionsComponent implements OnInit {
+export class MyCollectionsComponent implements OnInit {
   gridColumns = 3;
   collections: Array<Collection> = [];
 

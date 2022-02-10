@@ -5,7 +5,7 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
 //component imports
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
+import { MyCollectionsComponent } from './my-collections/my-collections.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
@@ -32,8 +32,8 @@ const routes: Routes = [
     component: EditCollectionComponent,
   },
   {
-    path: 'managecollections',
-    component: ManageCollectionsComponent,
+    path: 'mycollections',
+    component: MyCollectionsComponent,
   },
   {
     path: 'createcollection',
