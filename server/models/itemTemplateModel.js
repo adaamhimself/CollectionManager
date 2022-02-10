@@ -15,7 +15,7 @@ const itemSchema = new Schema({
     "date_created": Date,
     "date_last_updated": Date,
     "custom_fields": [{
-        "key": Number,
+        "key": String,
         "value": String
     }],
     "item_images": [{

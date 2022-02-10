@@ -7,7 +7,7 @@ const Collection = require('../models/collectionModel');
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
-const Item = require('../models/itemTemplate');
+const Item = require('../models/itemTemplateModel');
 const fs = require("fs");
 
 module.exports.getItemById = async function(userId, itemId) {
@@ -68,8 +68,26 @@ module.exports.deleteImageFromItem = async function() {
 
 }
 
-module.exports.addCustomField = async function() {
+module.exports.getCustomFields = async function(userId, itemId) {
+    try {
+        let response = await Item.findById(itemId);
+        return {code: 200, message: response.custom_fields};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
 
+module.exports.addCustomField = async function(userId, itemId, customField) {
+    try {
+        let result = await Item.findByIdAndUpdate(itemId, 
+            {
+                $push: {custom_fields: customField}
+            }
+        )
+        return {code: 201, message: `Custom field ${customField.key} added`};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
 }
 
 module.exports.removecustomField = async function() {

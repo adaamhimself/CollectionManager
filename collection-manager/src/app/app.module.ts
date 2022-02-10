@@ -32,6 +32,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { InterceptTokenService } from './intercept-token.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
+import { ViewCollectionComponent } from './view-collection/view-collection.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { CreateCollectionComponent } from './create-collection/create-collection
         RegisterComponent,
         MyCollectionsComponent,
         EditCollectionComponent,
-        CreateCollectionComponent
+        CreateCollectionComponent,
+        ViewCollectionComponent
     ],
     //included modules
     imports: [
