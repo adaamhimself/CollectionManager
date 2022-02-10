@@ -43,18 +43,10 @@ module.exports.getCollectionsByUserId = async function(userId) {
 module.exports.createCollection = async function(requesterId, data) {
     data.collection_user_id = requesterId;
     let newCollection = new Collection(data);
-    let collectionId;
+    newCollection.date_created = new Date();
+    newCollection.date_last_updated = new Date();
     try {
         let result = await newCollection.save();
-        collectionId = result._id.valueOf();
-        try {
-            await User.updateOne(
-                { _id: requesterId },
-                { $push: { collections: collectionId } }
-            );
-        } catch(error) {
-            return {code: 400, message: error};
-        }
         return {code: 201, message: `Collection ${data.collection_name} has been created`};
     } catch(error) {
         return {code: 400, message: error};
@@ -64,8 +56,8 @@ module.exports.createCollection = async function(requesterId, data) {
 module.exports.editCollection = async function(userId, editRequest) {
     // grab the collection's id 
     let collectionId = { _id: editRequest._id};
-    let result = await Collection.findById(collectionId);
-    
+    editRequest.date_last_updated = new Date();
+    let result = await Collection.findById(collectionId);  
     if (editRequest.collection_user_id == result.collection_user_id) {
         try {
             await Collection.findOneAndUpdate(collectionId, editRequest);

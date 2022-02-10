@@ -6,6 +6,7 @@ const userSchema = new Schema({
         type: String,
         unique: true
     },
+    "date_created": Date,
     "password": String,
     "email": {
         type: String,
@@ -15,8 +16,7 @@ const userSchema = new Schema({
     "role": {
         type: String,
         default: "user"
-    },
-    "collections": [String]
+    }
 });
 
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 
 //component imports
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'managecollections',
     component: ManageCollectionsComponent,
+  },
+  {
+    path: 'createcollection',
+    component: CreateCollectionComponent,
   },
   {
     path: '**',

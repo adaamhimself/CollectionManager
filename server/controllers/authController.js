@@ -34,6 +34,7 @@ module.exports.register = async function(data) {
         // ensure all accounts are created in lowercase to avoid issues
         data.username = String(data.username).toLowerCase();
         const newUser = new User(data);
+        newUser.date_created = new Date();
         try {
             await newUser.save(); 
         } catch(error) {
