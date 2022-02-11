@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const collection = require('../controllers/collectionController');
+const validate = require('../validateRequest');
 
 // ****************
 // * Multer Setup *
@@ -35,12 +36,12 @@ router.get('/getCollectionsByUserId/', passport.authenticate('jwt', {session: fa
     res.status(response.code).json(response.message);
 });
 
-router.post('/createCollection', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/createCollection', validate.validateRequestBody, passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.createCollection(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });
 
-router.put('/editCollection', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.put('/editCollection', validate.validateRequestBody, passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.editCollection(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });
@@ -50,12 +51,12 @@ router.delete('/removeCollection/:id', passport.authenticate('jwt', {session: fa
     res.status(response.code).json(response.message);
 })
 
-router.post('/addImageToCollection', upload.single("photo"), passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/addImageToCollection', validate.validateRequestBody, upload.single("photo"), passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.addImageToCollection(req.body, req.file.filename);
     res.status(response.code).json(response.message);
 });
 
-router.delete('/deleteImageFromCollection', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.delete('/deleteImageFromCollection', validate.validateRequestBody, passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.deleteImageFromCollection(req.user._id, req.body.collection_id);
     res.status(response.code).json(response.message);
 });

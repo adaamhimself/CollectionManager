@@ -10,6 +10,8 @@ const jwt = require('jsonwebtoken');
 const Item = require('../models/itemTemplateModel');
 const fs = require("fs");
 
+
+
 module.exports.getItemById = async function(userId, itemId) {
     try {
         let result = await Item.findById({_id: itemId});

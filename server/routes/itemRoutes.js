@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const item = require('../controllers/itemController');
+const validate = require('../validateRequest');
 
 // ****************
 // * Multer Setup *
@@ -35,12 +36,12 @@ router.get('/getItemsByCollectionId/:id', passport.authenticate('jwt', {session:
     res.status(response.code).json(response.message);
 });
 
-router.post('/addItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/addItem', validate.validateRequestBody, passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.addItem(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });
 
-router.put('/editItem/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.put('/editItem/:id', validate.validateRequestBody, passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.editItem(req.user._id, req.body, req.params.id);
     res.status(response.code).json(response.message);
 });
@@ -50,7 +51,7 @@ router.delete('/removeItem/:id', passport.authenticate('jwt', {session: false}),
     res.status(response.code).json(response.message);
 });
 
-router.post('/addImageToItem', upload.single("photo"), passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/addImageToItem', validate.validateRequestBody, validate.validateRequestBody, upload.single("photo"), passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.addImageToItem(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });
@@ -60,7 +61,7 @@ router.delete('/deleteImageFromItem', passport.authenticate('jwt', {session: fal
     res.status(response.code).json(response.message);
 });
 
-router.post('/addCustomField', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/addCustomField', validate.validateRequestBody, passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.addCustomField(req.user._id, req.body.item_id, req.body.custom_field);
     res.status(response.code).json(response.message);
 });
