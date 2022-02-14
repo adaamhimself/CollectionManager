@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
+import { AddItemComponent } from './add-item/add-item.component';
 import {
   HttpClient,
   HttpClientModule,
@@ -52,6 +53,7 @@ import { ViewItemComponent } from './view-item/view-item.component';
     EditCollectionComponent,
     CreateCollectionComponent,
     ViewItemComponent,
+    AddItemComponent
   ],
   //included modules
   imports: [

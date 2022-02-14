@@ -10,6 +10,7 @@ import { ManageCollectionsComponent } from './manage-collections/manage-collecti
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { ViewItemComponent } from './view-item/view-item.component';
+import { AddItemComponent } from './add-item/add-item.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'createcollection',
     component: CreateCollectionComponent,
+  },
+  {
+    path: 'additem',
+    component: AddItemComponent,
   },
   {
     path: 'viewitem/:id',
