@@ -8,4 +8,11 @@ export class NewItem {
       "item_image_path": string;
       "item_image_alt_text": string;
     };
+    "item_template": string;
+    "item_title": string;
+    "item_templateNote": string;
+    "item_storageType": string;
+    "item_storageCode": string;
+    "item_storageLocation": string;
+    "item_storageNote": string;    
   }
