@@ -38,6 +38,8 @@ import { InterceptTokenService } from './intercept-token.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
 import { ViewItemComponent } from './view-item/view-item.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   //components (pages)
@@ -53,7 +55,8 @@ import { ViewItemComponent } from './view-item/view-item.component';
     EditCollectionComponent,
     CreateCollectionComponent,
     ViewItemComponent,
-    AddItemComponent
+    AddItemComponent,
+    DeleteDialogComponent
   ],
   //included modules
   imports: [
@@ -75,6 +78,7 @@ import { ViewItemComponent } from './view-item/view-item.component';
     NoopAnimationsModule,
     HttpClientModule,
     MatSliderModule,
+    MatDialogModule
   ],
   providers: [
     {

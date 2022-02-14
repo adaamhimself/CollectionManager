@@ -17,7 +17,7 @@ mat-toolbar {
 }
 
 #manageButton {
-  width: 95%;
+  width: 50%;
   box-shadow: 1px 1px 2px 2px #888888;
   font-weight: bold;
 }
@@ -31,4 +31,8 @@ mat-toolbar {
   top: 5px;
   cursor: pointer;
   outline: none;
+}
+
+mat-card-actions {
+  display: inline;
 }

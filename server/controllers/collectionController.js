@@ -73,14 +73,15 @@ module.exports.editCollection = async function(userId, editRequest) {
 }
 
 module.exports.removeCollection = async function(userId, collectionId) {
-    let result = await Collection.findById(collectionId);
+    let id = { _id: collectionId};
+    let result = await Collection.findById(id);
     if(result.collection_user_id === userId) {
         try {
             await Collection.findByIdAndDelete(collectionId);
         } catch(error) {
             return {code: 400, message: error};
         }
-        return {code: 200, message: `Collection ${editRequest.collection_name} has been updated`}
+        return {code: 200, message: `Collection ${collectionId} has been updated`}
     } else {
         return {code: 401, message: "Not authorized to remove this collection"};
     }

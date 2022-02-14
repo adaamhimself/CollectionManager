@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CollectionService } from '../collection.service';
 import { Collection } from '../Collection';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+
 
 @Component({
   selector: 'app-manage-collections',
@@ -14,14 +17,15 @@ export class ManageCollectionsComponent implements OnInit {
   public warning: string;
 
   private collectionSub: any;
+  private deleteCollectionSub: any;
 
-  constructor(private collection: CollectionService) {}
+
+  constructor(private collection: CollectionService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.collectionSub = this.collection.getCollectionByUserId().subscribe(
       (response) => {
         this.collections = response;
-        console.log(response);
       },
       (error) => {
         this.warning = error.error;
@@ -32,5 +36,21 @@ export class ManageCollectionsComponent implements OnInit {
   onDeleteClick(): void {
     //delete the collection
     this.collectionSub.unsubscribe();
+  }
+
+  deleteCollection(id: string): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "yes") {
+        this.deleteCollectionSub = this.collection.removeCollection(id).subscribe(
+      (response) => {
+        window.location.reload();
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
+    }
+    });
   }
 }
