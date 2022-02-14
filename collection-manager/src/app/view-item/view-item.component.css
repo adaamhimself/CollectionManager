@@ -1,0 +1,16 @@
+.image {
+    padding: 10px;
+}
+
+.border {
+    padding: 10px;
+}
+
+.header {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.label {
+    font-weight: bold;
+}
