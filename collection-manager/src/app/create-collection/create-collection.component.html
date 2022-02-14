@@ -74,13 +74,12 @@
               [disabled]="loading"
               class="submitCollection"
             >
-              <mat-icon>login</mat-icon>
               <span *ngIf="loading; else login">
                 <span>&nbsp;&nbsp;&nbsp; Processing Request </span>
               </span>
               <!-- login template that appears if done loading-->
               <ng-template #login>
-                <span>&nbsp;&nbsp;&nbsp; Login </span>
+                <span>&nbsp;&nbsp;&nbsp; Create </span>
               </ng-template>
             </button>
           </div>
