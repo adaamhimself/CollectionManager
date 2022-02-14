@@ -19,7 +19,7 @@ jwtOptions.secretOrKey = 'fkpm3FPpZCyG%d@@UI8IPBoxw';
 var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     if (jwt_payload) {
         next(null, { _id: jwt_payload._id, 
-            userName: jwt_payload.email, 
+            username: jwt_payload.username, 
             role: jwt_payload.role }); 
     } else {
         next(null, false);
@@ -60,7 +60,8 @@ module.exports.login = async function(data) {
         if (await bcrypt.compare(data.password, found.password)) {
             var payload = {
                 _id: found._id,
-                username: found.username
+                username: found.username,
+                role: found.role
             }
             var token = jwt.sign(payload, jwtOptions.secretOrKey);
             return {code: 200, message: {token: token}};
