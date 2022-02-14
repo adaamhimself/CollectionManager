@@ -36,6 +36,7 @@ import {
 import { InterceptTokenService } from './intercept-token.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
+import { ViewItemComponent } from './view-item/view-item.component';
 
 @NgModule({
   //components (pages)
@@ -50,6 +51,7 @@ import { CreateCollectionComponent } from './create-collection/create-collection
     ManageCollectionsComponent,
     EditCollectionComponent,
     CreateCollectionComponent,
+    ViewItemComponent,
   ],
   //included modules
   imports: [

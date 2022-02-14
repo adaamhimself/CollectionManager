@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { ViewItemComponent } from './view-item/view-item.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'createcollection',
     component: CreateCollectionComponent,
+  },
+  {
+    path: 'viewitem/:id',
+    component: ViewItemComponent,
   },
   {
     path: '**',
