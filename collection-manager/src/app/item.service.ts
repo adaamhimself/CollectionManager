@@ -17,8 +17,8 @@ export class ItemService {
     return this.http.get<Item>(`${environment.apiBaseUrl}item/getItemById/${id}`);
   }
   
-  getAllItemsByCollectionId(): Observable<any> { 
-    return this.http.get<Item[]>(`${environment.apiBaseUrl}item/getAllItemsByCollectionId/`);
+  getAllItemsByCollectionId(id: String): Observable<any> { 
+    return this.http.get<Item[]>(`${environment.apiBaseUrl}item/getItemsByCollectionId/${id}`);
   }
 
   createItem(newItem: NewItem): Observable<any> { 

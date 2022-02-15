@@ -40,6 +40,7 @@ import { CreateCollectionComponent } from './create-collection/create-collection
 import { ViewItemComponent } from './view-item/view-item.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ViewCollectionComponent } from './view-collection/view-collection.component';
 
 @NgModule({
   //components (pages)
@@ -56,7 +57,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     CreateCollectionComponent,
     ViewItemComponent,
     AddItemComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    ViewCollectionComponent
   ],
   //included modules
   imports: [

@@ -11,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { ViewItemComponent } from './view-item/view-item.component';
 import { AddItemComponent } from './add-item/add-item.component';
+import { ViewCollectionComponent } from './view-collection/view-collection.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'createcollection',
     component: CreateCollectionComponent,
+  },
+  {
+    path: 'viewcollection/:id',
+    component: ViewCollectionComponent,
   },
   {
     path: 'additem',
