@@ -21,6 +21,9 @@ app.use('/api/collection', collectionRouter);
 const itemRouter = require('./routes/itemRoutes');
 app.use('/api/item', itemRouter);
 
+const storageRouter = require('./routes/storageRoutes');
+app.use('/api/storage', storageRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database
