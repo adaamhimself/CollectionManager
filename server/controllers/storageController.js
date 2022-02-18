@@ -28,6 +28,15 @@ module.exports.getStorageDetails = async function(storageId) {
     }
 }
 
+module.exports.editStorageDetails = async function(editRequest) {
+    try {
+        await Storage.findByIdAndUpdate(editRequest.storage_object_id, editRequest);
+        return {code: 200, message: `Storage ${editRequest.storage_object_id} updated`};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
 module.exports.addItemToStorage = async function(storageId, itemId) {
     // Add the item to storage location by updating it's storage_object_id field to associate with new storage location
     try {

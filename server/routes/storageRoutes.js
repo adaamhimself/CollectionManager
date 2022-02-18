@@ -3,13 +3,18 @@ const router = express.Router();
 const passport = require('passport');
 const storage = require('../controllers/storageController');
 
-router.get('/getItemsInStorageByCode', passport.authenticate('jwt', {session: false}), (req, res) => {
-    let response = await storage.getItemsInStorageByCode(req.body.storage_object_id);
+router.get('/getItemsInStorageByCode/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    let response = await storage.getItemsInStorageByCode(req.params.id);
     res.status(response.code).json(response.message);
 });
 
-router.get('/getStorageDetails', passport.authenticate('jwt', {session: false}), (req, res) => {
-    let response = await storage.getStorageDetails(req.body.storage_object_id);
+router.get('/getStorageDetails/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    let response = await storage.getStorageDetails(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
+router.put('/editStorageDetails', passport.authenticate('jwt', {session: false}), (req, res) => {
+    let response = await storage.editStorageDetails(req.body);
     res.status(response.code).json(response.message);
 });
 
@@ -18,8 +23,8 @@ router.post('/addItemToStorage', passport.authenticate('jwt', {session: false}),
     res.status(response.code).json(response.message);
 });
 
-router.delete('/removeItemFromStorage', passport.authenticate('jwt', {session: false}), (req, res) => {
-    let response = await storage.removeItemFromStorage(req.body.item_id);
+router.delete('/removeItemFromStorage/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    let response = await storage.removeItemFromStorage(req.params.id);
     res.status(response.code).json(response.message);
 });
 
@@ -28,7 +33,7 @@ router.put('/transferItemToADifferentStorage', passport.authenticate('jwt', {ses
     res.status(response.code).json(response.message);
 });
 
-router.delete('/removeStorageLocation', passport.authenticate('jwt', {session: false}), (req, res) => {
-    let response = await storage.removeStorageLocation(req.body.storage_object_id);
+router.delete('/removeStorageLocation/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
+    let response = await storage.removeStorageLocation(req.params.id);
     res.status(response.code).json(response.message);
 });
