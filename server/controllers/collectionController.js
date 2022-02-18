@@ -105,7 +105,8 @@ module.exports.addImageToCollection = async function(data, filename) {
     try {
         await Collection.updateOne(collectionId, 
             { 
-                $set: {
+                $set: 
+                {
                     'collection_image.collection_image_path': filePath,
                     'collection_image.collection_image_alt_text': filename
                 }
