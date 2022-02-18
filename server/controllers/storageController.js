@@ -42,7 +42,7 @@ module.exports.addItemToStorage = async function(storageId, itemId) {
     }
 }
 
-module.exports.removeItemFromStorage = async function(storageId, itemId) {
+module.exports.removeItemFromStorage = async function(itemId) {
     // Remove the association between an item and a storage location
     try {
         await Item.findByIdAndUpdate(itemId, 
@@ -60,7 +60,14 @@ module.exports.removeItemFromStorage = async function(storageId, itemId) {
 
 module.exports.transferItemToADifferentStorage = async function(newStorageId, itemId) {
     try {
-
+        await Item.findByIdAndUpdate(itemId, 
+            {
+                $set:
+                {
+                    "storage_object_id": newStorageId
+                }
+            }
+        );
     } catch(error) {
         return {code:400, message: error};
     }
