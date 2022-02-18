@@ -76,6 +76,45 @@ Request format: provide the Id of the collection to be removed
 &emsp;"collection_id": "example"  
 }  
 
+**Storage**  
+To send storage ids use: storage_object_id  
+To send item ids use: item_id    
+
+/api/storage/getItemsInStorageByCode/:id  
+Add the storage id to the request url to return a list of items in that storage location    
+
+/api/storage/getStorageDetails/:id  
+Add the storage id to the request url to return that storage location's details    
+
+/api/storage/editStorageDetails  
+Send a put request with at body that contains the storage id along with any fields that need to be modified.  
+E.g.,  
+{  
+&emsp;"storage_object_id": "13ijh23i5bj23",  
+&emsp;"storage_name": "Testing name change"  
+}    
+
+/api/storage/addItemToStorage  
+Send a post request with a body that contains the storage location's id and the item's id  
+E.g.,  
+{  
+&emsp;"storage_object_id": "13ijh23i5bj23",  
+&emsp;"item_id": "a23ui2bu325iub"  
+}    
+
+/api/storage/removeItemFromStorage/:id  
+Add the item id to the request url to remove that item from its storage location    
+
+/api/storage/transferItemToADifferentStorage  
+Send a put request with a body that contains the new storage location's id and the item's id  
+E.g.,  
+{  
+&emsp;"storage_object_id": "13ijh23i5bj23",  
+&emsp;"item_id": "a23ui2bu325iub"  
+}    
+
+/api/storage/removeStorageLocation  
+Add the storage id to the request url to remove that storage location    
 
 
 # Updates    
