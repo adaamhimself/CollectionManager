@@ -7,7 +7,6 @@ const Collection = require('../models/collectionModel');
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
-const { collection } = require('../models/userModel');
 const fs = require("fs");
 
 
