@@ -16,7 +16,7 @@ export class ViewCollectionComponent implements OnInit {
   private collectionSub: any;
   public warning: string;
   public items: Array<Item>;
-  public collectionDetails: Collection;
+  public collectionDetails: Collection = new Collection;
   gridColumns = 3;
 
   constructor(private item: ItemService, private collection: CollectionService, private route: ActivatedRoute) { }
