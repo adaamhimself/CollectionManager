@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const storage = require('../controllers/storageController');
+const validate = require('../validateRequest');
 
 router.get('/getItemsInStorageByCode/:id', passport.authenticate('jwt', {session: false}), (req, res) => {
     let response = await storage.getItemsInStorageByCode(req.params.id);
