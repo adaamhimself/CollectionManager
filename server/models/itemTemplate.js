@@ -11,6 +11,8 @@ const itemSchema = new Schema({
     "condition": String,
     "condition_note": String,
     "storage_object_id": String,
+    "storage_type": String,
+    "storage_location": String,
     "storage_note": String,
     "date_created": Date,
     "date_last_updated": Date,

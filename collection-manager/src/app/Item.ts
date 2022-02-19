@@ -1,20 +1,27 @@
 // Holds item objects
 
 export class Item {
-    "_id": string;
-    "item_name": string;
-    "item_description": string;
+    "_id": String;
+    "containing_collection_id": String;
     "item_user_id": String;
-    "item_images": 
-    {
-            "item_image_path": string;
-            "item_image_alt_text": string;
-    }
-    "item_template": string;
-    "item_title": string;
-    "item_templateNote": string;
-    "item_storageType": string;
-    "item_storageCode": string;
-    "item_storageLocation": string;
-    "item_storageNote": string;   
+    "item_title": String;
+    "item_description": String;
+    "template_object_id": String;
+    "template_name": String;
+    "condition": String;
+    "condition_note": String;
+    "storage_object_id": String;
+    "storage_type": String;
+    "storage_location": String;
+    "storage_note": String;
+    "date_created": Date;
+    "date_last_updated": Date;
+    "custom_fields": [{
+        "key": Number,
+        "_id": String
+    }];
+    "item_images": [{
+        "item_image_path": String,
+        "item_image_text": String,
+    }] 
 }
