@@ -13,7 +13,7 @@ const fs = require("fs");
 module.exports.getCollectionById = async function(collection_id) {
     try {
         let result = await Collection.find({_id: collection_id});
-        return {code: 200, message: result};
+        return {code: 200, message: result[0]};
     } catch(error) {
         if (error.name == "CastError") return {code: 404, message: `Cannot find ${collectionId}`};
         return {code: 400, message: error};
