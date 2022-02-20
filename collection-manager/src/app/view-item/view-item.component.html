@@ -1,5 +1,29 @@
 <div class="row">
-    <h1>Collection > View Item > {{ item.item_title }}</h1>
+    <h1><a routerLink="/viewcollection/{{collectionDetails._id}}">{{collectionDetails.collection_name}}</a> > View Item > {{ item.item_title }}</h1>
+    <div style="
+      padding-top: 50px;
+      margin-right: 0;
+      margin-left: auto;
+    ">
+    <button
+      (click)="onSubmit()"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="align-self-end ml-auto"
+    >
+      <p
+        style="
+          display: in-line;
+          margin-top: 10px;
+          line-height: 18px;
+          font-size: medium;
+        "
+      >
+        Edit
+      </p>
+    </button>
+    &nbsp;
     <button
             (click)="onDelete()"
             mat-raised-button
@@ -9,7 +33,7 @@
           >
             <p
               style="
-                display: inline-block;
+                display: in-line;
                 margin-top: 10px;
                 line-height: 18px;
                 font-size: medium;
@@ -18,6 +42,7 @@
               Delete
             </p>
         </button>
+        </div>
 </div>
 <br>
 <div class="row rounded border border-dark">

@@ -39,7 +39,7 @@ export class ViewCollectionComponent implements OnInit {
       (error) => {
         this.warning = error.error;
       }
-    )
+    );
   }
 
 }
