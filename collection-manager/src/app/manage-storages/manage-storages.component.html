@@ -1,0 +1,92 @@
+<mat-toolbar color="primary">
+  <span>Storage</span>
+</mat-toolbar>
+
+<!--text version to showcase grid items, use the below commented out one once
+    the data service and ts file are done since it has {{data from the array}}.-->
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let num of [1, 2, 3, 4, 5, 6, 7]"
+    >
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>storage {{ num }}</mat-card-title>
+          <button
+            class="close-button"
+            aria-label="Close alert"
+            type="button"
+            data-close
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </mat-card-header>
+        <!--2nd Column for text names-->
+        <mat-card fxLayout="row" fxLayoutGap="15px" class="cards">
+          <span>Code: </span>
+          <span class="centerspan">code here</span>
+        </mat-card>
+        <mat-card fxLayout="row" fxLayoutGap="18px" class="cards">
+          <span>Type: </span>
+          <span class="centerspan">type here</span>
+        </mat-card>
+        <mat-card fxLayout="row" fxLayoutGap="0px" class="cards">
+          <span>Location: </span>
+          <span class="centerspan">location here</span>
+        </mat-card>
+        <mat-card-actions>
+          <!--add routerLink to button once viewitems is done-->
+          <button mat-button id="manageButtonBlue">View Items</button>
+          <!--add routerLink to button once edititems is done-->
+          <button mat-button id="manageButton">Edit</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!--
+  <div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
+      <div
+        [fxFlex]="100 / gridColumns + '%'"
+        fxFlex.xs="100%"
+        fxFlex.sm="33%"
+        *ngFor="let storage of storages"
+      >
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title>{{ storage.storage_name }}</mat-card-title>
+            <button
+              class="close-button"
+              aria-label="Close alert"
+              type="button"
+              (click)="deleteStorage(storage._id)"
+              data-close
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </mat-card-header>
+          <mat-card fxLayout="row" fxLayoutGap="15px" class="cards">
+            <span>Code: </span>
+            <span class="centerspan">AddCodeHereWhenClass</span>
+          </mat-card>
+          <mat-card fxLayout="row" fxLayoutGap="18px" class="cards">
+            <span>Type: </span>
+            <span class="centerspan">{{ storage.storage_type }}</span>
+          </mat-card>
+          <mat-card fxLayout="row" fxLayoutGap="0px" class="cards">
+            <span>Location: </span>
+            <span class="centerspan">{{ storage.storage_location }}</span>
+          </mat-card>
+          <mat-card-actions>
+            <button mat-button id="manageButton">Edit</button>
+            <button mat-button id="manageButton">View Items</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  -->

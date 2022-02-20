@@ -1,0 +1,115 @@
+<!--Create storage form that uses onSubmit() to send its data
+The storage code part is missing ngModel because storage code itself isnt supported yet-->
+<div class="content">
+  <mat-card>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <h2>Create Storage Location</h2>
+        <mat-error> {{ warning }}</mat-error
+        ><br />
+        <!--storage name-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Name: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Enter Storage Name..."
+              name="storagename"
+              required
+              autofocus
+              [(ngModel)]="createStorage.storage_name"
+            />
+            <mat-error>Storage name cannot be empty.</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br />
+        <!--storage code-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Code: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Code..."
+              name="code"
+              required
+              autofocus
+            />
+            <mat-error>Storage code cannot be empty.</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br />
+        <!--storage type-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Type: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Enter Type..."
+              name="type"
+              required
+              [(ngModel)]="createStorage.storage_type"
+            />
+            <mat-error>Storage type cannot be empty.</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br />
+        <!--storage location-->
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+          <span class="spantext">Storage Location: </span>
+          <mat-form-field class="full-width-input">
+            <input
+              matInput
+              placeholder="Enter Location..."
+              name="location"
+              required
+              [(ngModel)]="createStorage.storage_location"
+            />
+            <mat-error>Password does not match.</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <br />
+        <br />
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="loading === true"
+        >
+          <mat-icon>store</mat-icon>
+          <!--If request is loading send processing, if not load #register template-->
+          <span *ngIf="loading; else register"> Processing Request </span>
+          <ng-template #register>
+            <span>&nbsp;&nbsp;&nbsp;Create Storage Location</span>
+          </ng-template>
+        </button>
+      </form>
+    </mat-card-content>
+
+    <div class="success" *ngIf="success == true">
+      Storage Creation Successful. Proceed to<br /><br />
+      <a mat-raised-button color="accent" [routerLink]="['/managestorages']">
+        <mat-icon>store</mat-icon>&nbsp;&nbsp;&nbsp;your storages.
+      </a>
+    </div>
+  </mat-card>
+</div>
