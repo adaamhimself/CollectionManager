@@ -1,1 +1,45 @@
-<p>edit-storage works!</p>
+<!--Edit Storage Location-->
+<h1>Storage > Edit Storage Location > Storage One</h1>
+<div class="card-wrapper">
+    <div fxLayout="row">
+      <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
+        <mat-card-content fxLayout.gt-sm="row">
+
+            <!--Column for text names-->
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn">
+            <p>Storage Name</p>            
+            <p>Code</p>
+            <p>Type</p>
+            <p>Location</p>
+          </div>
+
+          <form>
+            <div class="form-group row">
+                <div class="col-auto">
+                  <input type="text" class="form-control" id="inputStorageName" placeholder="Storage One">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-auto">
+                  <input type="text" class="form-control" id="inputStorageCode" placeholder="12234">
+                </div>  
+              </div>       
+              <div class="form-group row">
+                <div class="col-auto">
+                  <input type="text" class="form-control" id="inputStorageType" placeholder="12234">
+                </div>  
+              </div>       
+              <div class="form-group row">
+                <div class="col-auto">
+                  <input type="text" class="form-control" id="inputStorageLocation" placeholder="Basement">
+                </div>  
+              </div>          
+        <div>
+          <a href="#" class="btn btn-primary">Save</a>      
+        </div>         
+        </form>
+    </mat-card-content>
+    </mat-card>
+    </div>
+</div>
+        

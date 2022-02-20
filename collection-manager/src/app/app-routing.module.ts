@@ -13,6 +13,7 @@ import { CreateCollectionComponent } from './create-collection/create-collection
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 import { ManageStoragesComponent } from './manage-storages/manage-storages.component';
 import { CreateStorageComponent } from './create-storage/create-storage.component';
+import { EditStorageComponent } from './edit-storage/edit-storage.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'createstorage',
     component: CreateStorageComponent,
+  },
+  {
+    path: 'editstorage',
+    component: EditStorageComponent,
   },
   {
     path: '**',
