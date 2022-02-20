@@ -11,7 +11,7 @@ import { ItemService } from '../item.service';
 export class EditItemComponent implements OnInit {
     public warning: string;
     private editSub: any;
-    public itemModel: Item = null;//synced form model
+    public itemModel: Item = new Item;//synced form model
     public itemName: string = "";//displays at top of page
 
     constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService) { }
