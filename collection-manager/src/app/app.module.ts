@@ -41,6 +41,8 @@ import { InterceptTokenService } from './intercept-token.service';
 import { MatSliderModule } from '@angular/material/slider';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CreateStorageComponent } from './create-storage/create-storage.component';
+import { ManageStoragesComponent } from './manage-storages/manage-storages.component';
 
 @NgModule({
   //components (pages)
@@ -59,7 +61,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     AddItemComponent,
     DeleteDialogComponent,
     ViewCollectionComponent,
-    EditItemComponent
+    EditItemComponent,
+    CreateStorageComponent,
+    ManageStoragesComponent
   ],
   //included modules
   imports: [

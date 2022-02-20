@@ -11,6 +11,8 @@ import { ViewCollectionComponent } from './view-collection/view-collection.compo
 import { EditItemComponent } from './edit-item/edit-item.component';
 import { CreateCollectionComponent } from './create-collection/create-collection.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
+import { ManageStoragesComponent } from './manage-storages/manage-storages.component';
+import { CreateStorageComponent } from './create-storage/create-storage.component';
 
 const routes: Routes = [
   {
@@ -56,6 +58,14 @@ const routes: Routes = [
   {
     path: 'edititem/:id',
     component: EditItemComponent,
+  },
+  {
+    path: 'managestorages',
+    component: ManageStoragesComponent,
+  },
+  {
+    path: 'createstorage',
+    component: CreateStorageComponent,
   },
   {
     path: '**',
