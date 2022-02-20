@@ -43,6 +43,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateStorageComponent } from './create-storage/create-storage.component';
 import { ManageStoragesComponent } from './manage-storages/manage-storages.component';
+import { EditStorageComponent } from './edit-storage/edit-storage.component';
 
 @NgModule({
   //components (pages)
@@ -63,7 +64,8 @@ import { ManageStoragesComponent } from './manage-storages/manage-storages.compo
     ViewCollectionComponent,
     EditItemComponent,
     CreateStorageComponent,
-    ManageStoragesComponent
+    ManageStoragesComponent,
+    EditStorageComponent
   ],
   //included modules
   imports: [
