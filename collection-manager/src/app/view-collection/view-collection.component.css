@@ -35,3 +35,14 @@ mat-toolbar {
 mat-card-actions {
   display: inline;
 }
+
+#button{
+  width:50%;
+  margin-left:25%;
+  margin-right:25%;
+  margin-top: 20px;
+}
+
+mat-card-content{
+  padding-top: 20px;
+}

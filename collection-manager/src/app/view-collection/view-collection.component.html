@@ -1,6 +1,15 @@
 <mat-toolbar color="primary">
     <span>{{collectionDetails.collection_name}}</span>
   </mat-toolbar>
+
+  <mat-card class="mat-elevation-z4">
+    <mat-card-content>
+      <span>Looks like you don't have any items in this collection yet</span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" id="button" routerLink="/additem">Add a new item</button>
+    </mat-card-actions>
+  </mat-card>
   
   <!--text version to showcase grid items, use the below commented out one once
   the data service and ts file are done since it has {{data from the array}}.-->
