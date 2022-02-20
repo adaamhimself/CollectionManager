@@ -27,15 +27,15 @@
           </mat-card-header>
           <img
             mat-card-image
-            src="{{item.item_images.item_image_path}}"
+            src='../../assets/images/bluelogo.png'
             onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-            alt="{{item.item_images.item_image_alt_text}}"
+            alt="Item image"
           />
           <mat-card-content>
             {{item.item_description}}
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button id="manageButton">View</button>
+            <button mat-button id="manageButton" routerLink="/viewitem/{{item._id}}">View</button>
             <button mat-button id="manageButton">Edit</button>
           </mat-card-actions>
         </mat-card>

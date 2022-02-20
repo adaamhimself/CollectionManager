@@ -1,6 +1,5 @@
-<p>view-item works!</p>
 <div class="row">
-    <h1>Collection > View Item > Item</h1>
+    <h1>Collection > View Item > {{ item.item_title }}</h1>
     <button
             (click)="onDelete()"
             mat-raised-button
@@ -26,21 +25,23 @@
         <div class="image">
             <img
               mat-card-image
-              src="{{item.item_images.item_image_path}}"
+              src='../../assets/images/bluelogo.png'
               onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-              alt="{{item.item_images.item_image_alt_text}}"
+              alt="text"
               class="img-thumbnail"
             />
-            <a href="">Manage Images</a>
+            <a routerLink="/manageimages/{{item._id}}">Manage Images</a>
         </div><br>
         <div class="header">Basic</div><br>
         <div class="rounded border border-dark">
             <p class="label">Description</p>
             <p class="bg-light">{{ item.item_description }}</p><br>
             <p class="label">Reference Number</p>
-            <p class="bg-light">1234567890</p><br>
-            <p class="label">Created: DATE HERE</p>
-            <p class="label">Last updated: DATE HERE</p>
+            <p class="bg-light">{{ item._id }}</p><br>
+            <p class="label">Created:</p>
+            <p class="bg-light">{{ item.date_created }}</p><br>
+            <p class="label">Last updated:</p>
+            <p class="bg-light">{{ item.date_last_updated }}</p><br>
         </div>
     </div>
     <div class="col-md-4">
@@ -50,35 +51,21 @@
                 <p>Title</p><br>
             </div>
             <div class="col-lg-7">
-                <p class="bg-light">Template Name</p><br>
-                <p class="bg-light">{{ item.item_name }}</p><br>
+                <p class="bg-light">Template name</p><br>
+                <p class="bg-light">{{ item.item_title }}</p><br>
             </div>
         </div>
-        <div class="header">Template Name</div>
+        <div class="header">Template name</div>
         <br>
         <div class="rounded border border-dark">
             <div class="row">
                 <div class="col-lg-6 label">
-                    <p>Author(s)</p><br>
-                    <p>Date Published</p><br>
-                    <p>Publisher</p><br>
-                    <p>Format</p><br>
-                    <p>Edition</p><br>
-                    <p>Language</p><br>
-                    <p>Pages</p><br>
                     <p>Condition</p><br>
                     <p>Condition Note</p>
                 </div>
                 <div class="col-lg-6">
-                    <p class="bg-light">Names</p><br>
-                    <p class="bg-light">Date</p><br>
-                    <p class="bg-light">Publisher</p><br>
-                    <p class="bg-light">Hardcover</p><br>
-                    <p class="bg-light">1st</p><br>
-                    <p class="bg-light">English</p><br>
-                    <p class="bg-light">233</p><br>
-                    <p class="bg-light">Poor</p><br>
-                    <p class="bg-light">Very old and brittle. Some pages are dog eared.</p>
+                    <p class="bg-light">{{ item.condition }}</p><br>
+                    <p class="bg-light">{{ item.condition_note }}</p>
                 </div>
             </div>
         </div>
@@ -93,25 +80,23 @@
                     <p>Storage Location</p>
                 </div>
                 <div class="col-lg-7">
-                    <p class="bg-light">Box</p><br>
-                    <p class="bg-light">12345</p><br>
-                    <p class="bg-light">Basement</p><br>
+                    <p class="bg-light">{{ item.storage_type }}</p><br>
+                    <p class="bg-light">{{ item.storage_object_id }}</p><br>
+                    <p class="bg-light">{{ item.storage_location }}</p><br>
                 </div>
             </div>
             <br>
             <p class="label">Note</p>
-            <p class="bg-light">Must be kept in a cool, dark place.</p><br>
+            <p class="bg-light">{{ item.storage_note }}</p><br>
         </div>
         <br>
         <p class="header">Other</p>
+        
         <div class="rounded border border-dark">
-            <div class="row">
-                <div class="col-lg-5 label">
-                    <p>Custom field</p><br>
-                </div>
-                <div class="col-lg-7">
-                    <p class="bg-light">Custom information</p><br>
-                </div>
+            <p class="label">Custom fields</p><br>
+            <div *ngFor="let item of item.custom_fields">
+                <p class="label">{{ item.key }}</p>
+                <p class="bg-light">{{ item._id }}</p><br>
             </div>
             <button
             (click)="onSubmit()"
