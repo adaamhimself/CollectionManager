@@ -39,7 +39,7 @@ export class EditItemComponent implements OnInit {
                 this.warning = error.error;
             }
         );
-        this.routing.navigate(['/managecollections']);
+        this.routing.navigate([`/viewcollection/${this.itemModel.containing_collection_id}`]);
     }
 
     onClose(): void {
