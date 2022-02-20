@@ -4,7 +4,7 @@
     <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
       <mat-card-content fxLayout.gt-sm="row">
         <!--form for new item details-->
-        <form #addItemForm="ngForm">
+        <form #addItemForm="ngForm" (ngSubmit)="onSubmit()">
           <!--image selection-->
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
             <img
@@ -25,7 +25,7 @@
                   name="name"
                   required
                   autofocus
-                  [(ngModel)]="itemModel.item_name"
+                  [(ngModel)]="itemModel.item_title"
                 />
                 <mat-error>Item name cannot be empty.</mat-error>
               </mat-form-field>
@@ -50,7 +50,7 @@
                 <input
                   matInput
                   name="template"
-                  required
+                  
                   autofocus
                   [(ngModel)]="itemModel.item_template"
                 />
@@ -67,7 +67,7 @@
                 <input
                   matInput
                   name="storage-type"
-                  required
+                  
                   autofocus
                   [(ngModel)]="itemModel.item_storageType"
                 />
@@ -79,7 +79,7 @@
                 <input
                   matInput
                   name="storage-code"
-                  required
+                  
                   autofocus
                   [(ngModel)]="itemModel.item_storageCode"
                 />
@@ -91,7 +91,7 @@
                 <input
                   matInput
                   name="storage-location"
-                  required
+                  
                   autofocus
                   [(ngModel)]="itemModel.item_storageLocation"
                 />
@@ -103,7 +103,7 @@
                 <textarea
                   matInput
                   name="storage-note"
-                  required
+                  
                   autofocus
                   [(ngModel)]="itemModel.item_storageNote"
                 ></textarea>
@@ -112,7 +112,6 @@
             </div>
             <!--Add button-->
             <button
-              (click)="onSubmit()"
               mat-raised-button
               color="accent"
               type="submit"

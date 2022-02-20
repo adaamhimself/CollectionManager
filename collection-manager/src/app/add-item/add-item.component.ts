@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../item.service';
 import { NewItem } from '../newItem';
 
@@ -11,40 +11,26 @@ import { NewItem } from '../newItem';
 export class AddItemComponent implements OnInit {
     public warning: string;
     private editSub: any;
-    public itemModel: NewItem = null;//synced form model
+    public itemModel: NewItem = new NewItem;//synced form model
     public collectionName:string;
 
-    constructor(private routing: Router, private itemService: ItemService) {
-        this.itemModel = new NewItem;
+    constructor(private routing: Router, private itemService: ItemService, private route: ActivatedRoute) {
     }
 
     ngOnInit(): void { 
         this.collectionName = "Collection Name";
-        //fill out default values for a new item
-        this.itemModel.item_name = "";
-        this.itemModel.item_description = "";
-        this.itemModel.item_user_id = "Get the user ID";
-        this.itemModel.item_image = {
-            item_image_path: "../../assets/images/bluelogo.png",
-            item_image_alt_text: "Item image"
-        };
-        this.itemModel.item_title = "N/A";
-        this.itemModel.item_template = "";
-        this.itemModel.item_templateNote = "";
-        this.itemModel.item_storageType = "";
-        this.itemModel.item_storageCode = "";
-        this.itemModel.item_storageLocation = "";
-        this.itemModel.item_storageNote = "";
     }
 
     onSubmit(): void {
         //fill out the rest of the NewItem attributes
-        this.itemModel.item_image.item_image_alt_text = `Image for ${this.itemModel.item_name}`;
+        //this.itemModel.item_image.item_image_alt_text = `Image for ${this.itemModel.item_title}`;
         //send to createItem
+        let id: String = this.route.snapshot.params['id'];
         console.log("Sending:", this.itemModel);
-        this.editSub = this.itemService.createItem(this.itemModel).subscribe(
+        this.itemModel.containing_collection_id = id;
+        this.editSub = this.itemService.addItem(this.itemModel).subscribe(
             response => {
-                //console.log(response);
+                console.log(response);
             }, error => {
                 this.warning = error.error;
             }

@@ -46,7 +46,7 @@ const routes: Routes = [
     component: ViewCollectionComponent,
   },
   {
-    path: 'additem',
+    path: 'additem/:id',
     component: AddItemComponent,
   },
   {

@@ -69,12 +69,14 @@ module.exports.deleteImageFromItem = async function() {
 }
 
 module.exports.addCustomField = async function(userId, itemId, customField) {
+    console.log(customField);
     try {
         let result = await Item.findByIdAndUpdate(itemId, 
             {
                 $push: {custom_fields: customField}
             }
         )
+        console.log(result);
         return {code: 201, message: `Custom field ${customField.key} added`};
     } catch(error) {
         return {code: 400, message: error};

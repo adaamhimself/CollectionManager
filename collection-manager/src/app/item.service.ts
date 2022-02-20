@@ -21,8 +21,8 @@ export class ItemService {
     return this.http.get<Item[]>(`${environment.apiBaseUrl}item/getItemsByCollectionId/${id}`);
   }
 
-  createItem(newItem: NewItem): Observable<any> { 
-    return this.http.post<any>(`${environment.apiBaseUrl}item/createItem`, newItem);
+  addItem(newItem: NewItem): Observable<any> { 
+    return this.http.post<any>(`${environment.apiBaseUrl}item/addItem`, newItem);
   }
   
   editItem(editedItem: Item): Observable<any> { 
