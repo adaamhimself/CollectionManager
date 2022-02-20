@@ -10,7 +10,7 @@ import { ItemService } from '../item.service';
 })
 export class ViewItemComponent implements OnInit {
 
-  item: Item;
+  item: Item = new Item;
 
   public warning: string;
 
@@ -23,7 +23,6 @@ export class ViewItemComponent implements OnInit {
     this.itemSub = this.itemService.getItemById(id).subscribe(
       (response) => {
         this.item = response;
-        console.log(response);
       },
       (error) => {
         this.warning = error.error;
