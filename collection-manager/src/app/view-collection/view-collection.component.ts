@@ -15,7 +15,7 @@ export class ViewCollectionComponent implements OnInit {
   private itemSub: any;
   private collectionSub: any;
   public warning: string;
-  public items: Array<Item>;
+  public items: Array<Item> = [];
   public collectionDetails: Collection = new Collection;
   gridColumns = 3;
 
