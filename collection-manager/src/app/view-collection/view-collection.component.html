@@ -35,8 +35,8 @@
             {{item.item_description}}
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button id="manageButton" routerLink="/viewitem/{{item._id}}">View</button>
-            <button mat-button id="manageButton">Edit</button>
+            <button mat-raised-button color="primary" id="manageButton" routerLink="/viewitem/{{item._id}}">View</button>
+            <button mat-button id="manageButton" routerLink="/edititem/{{item._id}}">Edit</button>
           </mat-card-actions>
         </mat-card>
       </div>

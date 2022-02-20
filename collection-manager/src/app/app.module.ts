@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-//import page components
+//import components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -9,8 +10,16 @@ import { CollectionsComponent } from './collections/collections.component';
 import { MarketComponent } from './market/market.component';
 import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
+import { ViewItemComponent } from './view-item/view-item.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ViewCollectionComponent } from './view-collection/view-collection.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
 
-//import modules
+//import other
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
@@ -20,27 +29,18 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
+
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './register/register.component';
-import { AddItemComponent } from './add-item/add-item.component';
-import {
-  HttpClient,
-  HttpClientModule,
-  HTTP_INTERCEPTORS,
-} from '@angular/common/http';
+
 import { InterceptTokenService } from './intercept-token.service';
 import { MatSliderModule } from '@angular/material/slider';
-import { CreateCollectionComponent } from './create-collection/create-collection.component';
-import { ViewItemComponent } from './view-item/view-item.component';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ViewCollectionComponent } from './view-collection/view-collection.component';
 
 @NgModule({
   //components (pages)
@@ -58,7 +58,8 @@ import { ViewCollectionComponent } from './view-collection/view-collection.compo
     ViewItemComponent,
     AddItemComponent,
     DeleteDialogComponent,
-    ViewCollectionComponent
+    ViewCollectionComponent,
+    EditItemComponent
   ],
   //included modules
   imports: [

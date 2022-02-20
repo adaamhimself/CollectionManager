@@ -19,7 +19,6 @@ mat-toolbar {
 #manageButton {
   width: 50%;
   box-shadow: 1px 1px 2px 2px #888888;
-  font-weight: bold;
 }
 
 .close-button {

@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateCollectionComponent } from './create-collection/create-collection.component';
-import { EditCollectionComponent } from './edit-collection/edit-collection.component';
-
-//component imports
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
@@ -12,6 +8,9 @@ import { RegisterComponent } from './register/register.component';
 import { ViewItemComponent } from './view-item/view-item.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { ViewCollectionComponent } from './view-collection/view-collection.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
+import { CreateCollectionComponent } from './create-collection/create-collection.component';
+import { EditCollectionComponent } from './edit-collection/edit-collection.component';
 
 const routes: Routes = [
   {
@@ -53,6 +52,10 @@ const routes: Routes = [
   {
     path: 'viewitem/:id',
     component: ViewItemComponent,
+  },
+  {
+    path: 'edititem/:id',
+    component: EditItemComponent,
   },
   {
     path: '**',
