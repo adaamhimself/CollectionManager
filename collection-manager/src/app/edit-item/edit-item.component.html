@@ -4,7 +4,7 @@
     <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
       <mat-card-content fxLayout.gt-sm="row">
         <!--form for new item details-->
-        <form #addItemForm="ngForm">
+        <form #addItemForm="ngForm" (ngSubmit)="onSubmit()">
           <!--image selection-->
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
             <img
@@ -112,7 +112,6 @@
             </div>
             <!--Add button-->
             <button
-              (click)="onSubmit()"
               mat-raised-button
               color="accent"
               type="submit"

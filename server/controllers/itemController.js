@@ -42,6 +42,7 @@ module.exports.addItem = async function(userId, item) {
 }
 
 module.exports.editItem = async function(userId, itemUpdate, itemId) {
+    console.log(itemUpdate);
     itemUpdate.date_last_updated = new Date();
     try {
         await Item.findByIdAndUpdate(itemId, itemUpdate);
