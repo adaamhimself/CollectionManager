@@ -45,7 +45,7 @@
         </div>
 </div>
 <br>
-<div class="row rounded border border-dark">
+<div class="row rounded border border-dark box">
     <div class="col-md-4">
         <div class="image">
             <img
@@ -118,10 +118,12 @@
         <p class="header">Other</p>
         
         <div class="rounded border border-dark">
-            <p class="label">Custom fields</p><br>
-            <div *ngFor="let item of item.custom_fields">
+            <div *ngIf="item.custom_fields[0].key != 0">
+              <p class="label">Custom fields</p><br>
+              <div *ngFor="let item of item.custom_fields">
                 <p class="label">{{ item.key }}</p>
                 <p class="bg-light">{{ item._id }}</p><br>
+              </div>
             </div>
             <button
             (click)="onSubmit()"

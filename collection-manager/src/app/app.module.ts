@@ -44,6 +44,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateStorageComponent } from './create-storage/create-storage.component';
 import { ManageStoragesComponent } from './manage-storages/manage-storages.component';
 import { EditStorageComponent } from './edit-storage/edit-storage.component';
+import { CustomFieldDialogComponent } from './custom-field-dialog/custom-field-dialog.component';
 
 @NgModule({
   //components (pages)
@@ -65,7 +66,8 @@ import { EditStorageComponent } from './edit-storage/edit-storage.component';
     EditItemComponent,
     CreateStorageComponent,
     ManageStoragesComponent,
-    EditStorageComponent
+    EditStorageComponent,
+    CustomFieldDialogComponent
   ],
   //included modules
   imports: [

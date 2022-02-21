@@ -4,6 +4,8 @@ import { Collection } from '../Collection';
 import { CollectionService } from '../collection.service';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CustomFieldDialogComponent } from '../custom-field-dialog/custom-field-dialog.component';
 
 @Component({
   selector: 'app-view-item',
@@ -17,8 +19,9 @@ export class ViewItemComponent implements OnInit {
   public warning: string;
   private itemSub: any;
   private collectionSub: any;
+  private addFieldSub: any;
   
-  constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService) { }
+  constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     let id: String = this.route.snapshot.params['id'];
@@ -41,14 +44,28 @@ export class ViewItemComponent implements OnInit {
   }
 
   onSubmit(): void {
-      this.routing.navigate([`/edititem/${this.item._id}`]);
+    this.routing.navigate([`/edititem/${this.item._id}`]);
   }
 
   onDelete(): void {
-      this.routing.navigate(['/deleteItem']);
+    this.itemSub.unsubscribe();
   }
 
-  // manageImages(): void {
-
-  // }
+  addCustomField(id: String): void {
+    const dialogRef = this.dialog.open(CustomFieldDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "save") {
+        //this.deleteCollectionSub = this.collection.removeCollection(id).subscribe
+        // confused here
+        this.addFieldSub = this.collection.removeCollection(id).subscribe(
+      (response) => {
+        window.location.reload();
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
+    }
+    });
+  }
 }

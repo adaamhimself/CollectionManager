@@ -14,3 +14,9 @@
 .label {
     font-weight: bold;
 }
+
+.box {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+}
