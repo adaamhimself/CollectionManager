@@ -19,7 +19,12 @@ export class ViewItemComponent implements OnInit {
   public warning: string;
   private itemSub: any;
   private collectionSub: any;
+<<<<<<< Updated upstream
   private addFieldSub: any;
+=======
+
+  private deleteSub: any;
+>>>>>>> Stashed changes
   
   constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog) { }
 
@@ -48,7 +53,19 @@ export class ViewItemComponent implements OnInit {
   }
 
   onDelete(): void {
+<<<<<<< Updated upstream
     this.itemSub.unsubscribe();
+=======
+    this.deleteSub = this.itemService.removeItem(this.item._id).subscribe(
+      (response) => {
+        this.collectionDetails = response;
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );  
+    this.routing.navigate(['/managecollections']);
+>>>>>>> Stashed changes
   }
 
   addCustomField(id: String): void {
