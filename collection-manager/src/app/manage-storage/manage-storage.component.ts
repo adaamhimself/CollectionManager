@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CollectionService } from '../collection.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { Storage } from '../Storage';
+import { StorageService } from '../storage.service';
 
 @Component({
   selector: 'app-manage-storage',
@@ -17,10 +18,14 @@ export class ManageStorageComponent implements OnInit {
   private deleteStorageSub: any;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private storage: StorageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.storageSub = this.storage.getStorageByUserId
+
+  }
 
   onDeleteClick(): void {
     //delete the collection

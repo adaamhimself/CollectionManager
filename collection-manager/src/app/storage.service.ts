@@ -20,8 +20,8 @@ export class StorageService {
     return this.http.get<Item[]>(`${environment.apiBaseUrl}storage/getItemsInStorageByCode/${id}`);
   }
 
-  getStorageByUserId(id: string): Observable<any> {
-    return this.http.get<Storage[]>(`${environment.apiBaseUrl}storage/getStorageByUserId/${id}`);
+  getStorageByUserId(): Observable<any> {
+    return this.http.get<Storage[]>(`${environment.apiBaseUrl}storage/getStorageByUserId/`);
   }
 
   createStorage(newStorage: Storage): Observable<any> {

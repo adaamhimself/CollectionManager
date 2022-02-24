@@ -14,8 +14,8 @@ router.get('/getStorageDetails/:id', passport.authenticate('jwt', {session: fals
     res.status(response.code).json(response.message);
 });
 
-router.get('/getStorageByUserId/:id', passport.authenticate('jwt', {session: false}), async(req, res) =>  {
-    let response = await storage.getStorageByUserId(req.params.id);
+router.get('/getStorageByUserId/', passport.authenticate('jwt', {session: false}), async(req, res) =>  {
+    let response = await storage.getStorageByUserId(req.user._id);
     res.status(response.code).json(response.message);
 });
 
