@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Item } from './Item';
-import { env } from 'process';
+import { Storage } from './Storage';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StorageServiceService {
+export class StorageService {
 
   constructor(private http: HttpClient) { }
 

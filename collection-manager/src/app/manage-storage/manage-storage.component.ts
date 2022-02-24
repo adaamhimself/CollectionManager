@@ -2,22 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CollectionService } from '../collection.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-import { Storage } from '../storage';
+import { Storage } from '../Storage';
 
 @Component({
-  selector: 'app-manage-storages',
-  templateUrl: './manage-storages.component.html',
-  styleUrls: ['./manage-storages.component.css'],
+  selector: 'app-manage-storage',
+  templateUrl: './manage-storage.component.html',
+  styleUrls: ['./manage-storage.component.css'],
 })
-export class ManageStoragesComponent implements OnInit {
+export class ManageStorageComponent implements OnInit {
   gridColumns = 4;
-  storages: Array<Storage> = [];
+  storageList: Array<Storage> = [];
 
   private storageSub: any;
   private deleteStorageSub: any;
 
   constructor(
-    private collection: CollectionService,
     public dialog: MatDialog
   ) {}
 
@@ -25,12 +24,16 @@ export class ManageStoragesComponent implements OnInit {
 
   onDeleteClick(): void {
     //delete the collection
-    this.storageSub.unsubscribe();
+
   }
 
   deleteCollection(id: String): void {
     // needs data services completed for storages
     //const dialogRef = this.dialog.open(DeleteDialogComponent);
     //dialogRef.afterClosed().subscribe(result => {
+  }
+
+  ngOnDestroy(): void {
+    this.storageSub.unsubscribe();
   }
 }

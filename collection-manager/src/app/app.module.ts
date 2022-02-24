@@ -42,7 +42,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CreateStorageComponent } from './create-storage/create-storage.component';
-import { ManageStoragesComponent } from './manage-storages/manage-storages.component';
+import { ManageStorageComponent } from './manage-storage/manage-storage.component';
 import { EditStorageComponent } from './edit-storage/edit-storage.component';
 import { CustomFieldDialogComponent } from './custom-field-dialog/custom-field-dialog.component';
 
@@ -65,7 +65,7 @@ import { CustomFieldDialogComponent } from './custom-field-dialog/custom-field-d
     ViewCollectionComponent,
     EditItemComponent,
     CreateStorageComponent,
-    ManageStoragesComponent,
+    ManageStorageComponent,
     EditStorageComponent,
     CustomFieldDialogComponent
   ],

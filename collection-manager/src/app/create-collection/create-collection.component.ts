@@ -36,7 +36,6 @@ export class CreateCollectionComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.collectionModel);
     this.newSub = this.colService
       .createCollection(this.collectionModel)
       .subscribe(

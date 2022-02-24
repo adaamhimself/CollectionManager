@@ -22,7 +22,7 @@ The storage code part is missing ngModel because storage code itself isnt suppor
               name="storagename"
               required
               autofocus
-              [(ngModel)]="createStorage.storage_name"
+              [(ngModel)]="newStorage.storage_name"
             />
             <mat-error>Storage name cannot be empty.</mat-error>
           </mat-form-field>
@@ -42,7 +42,7 @@ The storage code part is missing ngModel because storage code itself isnt suppor
               placeholder="Enter Type..."
               name="type"
               required
-              [(ngModel)]="createStorage.storage_type"
+              [(ngModel)]="newStorage.storage_type"
             />
             <mat-error>Storage type cannot be empty.</mat-error>
           </mat-form-field>
@@ -62,7 +62,7 @@ The storage code part is missing ngModel because storage code itself isnt suppor
               placeholder="Enter Location..."
               name="location"
               required
-              [(ngModel)]="createStorage.storage_location"
+              [(ngModel)]="newStorage.storage_location"
             />
             <mat-error>Password does not match.</mat-error>
           </mat-form-field>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageStoragesComponent } from './manage-storages.component';
+import { ManageStorageComponent } from './manage-storage.component';
 
 describe('ManageStoragesComponent', () => {
-  let component: ManageStoragesComponent;
-  let fixture: ComponentFixture<ManageStoragesComponent>;
+  let component: ManageStorageComponent;
+  let fixture: ComponentFixture<ManageStorageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageStoragesComponent ]
+      declarations: [ ManageStorageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageStoragesComponent);
+    fixture = TestBed.createComponent(ManageStorageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
