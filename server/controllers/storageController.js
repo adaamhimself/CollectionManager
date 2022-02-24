@@ -28,10 +28,30 @@ module.exports.getStorageDetails = async function(storageId) {
     }
 }
 
+module.exports.getStorageByUserId = async function(userId) {
+    // Return all storage associated with a userId
+    try {
+        let result = await Storage.find({"storage_owner_id": userId});
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
+module.exports.createStorage = async function(data) {
+    try {
+        let newStorage = new Storage(data);
+        await newStorage.save();
+        return {code: 201, message: `Storage location created`};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
 module.exports.editStorageDetails = async function(editRequest) {
     try {
-        await Storage.findByIdAndUpdate(editRequest.storage_object_id, editRequest);
-        return {code: 200, message: `Storage ${editRequest.storage_object_id} updated`};
+        await Storage.findByIdAndUpdate(editRequest._id, editRequest);
+        return {code: 200, message: `Storage ${editRequest._id} updated`};
     } catch(error) {
         return {code: 400, message: error};
     }

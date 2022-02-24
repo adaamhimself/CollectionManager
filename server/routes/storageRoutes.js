@@ -14,6 +14,16 @@ router.get('/getStorageDetails/:id', passport.authenticate('jwt', {session: fals
     res.status(response.code).json(response.message);
 });
 
+router.get('/getStorageByUserId/:id', passport.authenticate('jwt', {session: false}), async(req, res) =>  {
+    let response = await storage.getStorageByUserId(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
+router.post('/createStorage', passport.authenticate('jwt', {session: false}), async(req, res) =>  {
+    let response = await storage.createStorage(req.body);
+    res.status(response.code).json(response.message);
+});
+
 router.put('/editStorageDetails/', passport.authenticate('jwt', {session: false}), async(req, res) => { 
     let response = await storage.editStorageDetails(req.body);
     res.status(response.code).json(response.message);
