@@ -23,7 +23,15 @@ export class ManageStorageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.storageSub = this.storage.getStorageByUserId
+    this.storageSub = this.storage.getStorageByUserId()
+    .subscribe(
+      (response) => {
+        this.storageList = response;
+      },
+      (error) => {
+
+      }
+    )
 
   }
 

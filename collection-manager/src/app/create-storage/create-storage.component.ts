@@ -23,15 +23,17 @@ export class CreateStorageComponent implements OnInit {
 
   constructor(private storage: StorageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {  }
 
   onSubmit(): void {
     // // register services that comunicate with the database will be called here
+    this.loading = true;
     this.storageSub = this.storage.createStorage(this.newStorage)
     .subscribe(
       (response) => {
         console.log(response);
         this.success = true;
+        this.loading = false;
       },
       (error) => {
         this.warning = error.error;

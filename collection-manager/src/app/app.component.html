@@ -9,7 +9,12 @@
     >
     <a class="nav-item" *ngIf="token" [routerLink]="['/createcollection']"
     ><span>Add New Collection</span></a
-  >
+    >
+
+    <a class="nav-item" *ngIf="token" [routerLink]="['/managestorage']"
+    ><span>Storage Boxes</span></a
+    >
+
     <a class="nav-item" *ngIf="token" [routerLink]="['/market']"
       ><span>Market</span></a
     >

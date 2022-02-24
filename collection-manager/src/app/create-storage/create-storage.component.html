@@ -73,7 +73,7 @@ The storage code part is missing ngModel because storage code itself isnt suppor
           mat-raised-button
           color="primary"
           type="submit"
-          [disabled]="loading === true"
+          [disabled]="success === true"
         >
           <mat-icon>store</mat-icon>
           <!--If request is loading send processing, if not load #register template-->
@@ -87,8 +87,8 @@ The storage code part is missing ngModel because storage code itself isnt suppor
 
     <div class="success" *ngIf="success == true">
       Storage Creation Successful. Proceed to<br /><br />
-      <a mat-raised-button color="accent" [routerLink]="['/managestorages']">
-        <mat-icon>store</mat-icon>&nbsp;&nbsp;&nbsp;your storages.
+      <a mat-raised-button color="accent" [routerLink]="['/managestorage']">
+        <mat-icon>store</mat-icon>&nbsp;&nbsp;&nbsp;Storage Boxes.
       </a>
     </div>
   </mat-card>

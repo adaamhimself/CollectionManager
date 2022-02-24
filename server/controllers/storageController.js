@@ -38,10 +38,14 @@ module.exports.getStorageByUserId = async function(userId) {
     }
 }
 
-module.exports.createStorage = async function(data) {
+module.exports.createStorage = async function(data, userId) {
     try {
-        let newStorage = new Storage(data);
-        await newStorage.save();
+        let newStorage = new Storage();
+        newStorage.storage_name = data.storage_name;
+        newStorage.storage_type = data.storage_type;
+        newStorage.storage_location = data.storage_location;
+        newStorage.storage_owner_id = userId;
+        let result = await newStorage.save();
         return {code: 201, message: `Storage location created`};
     } catch(error) {
         return {code: 400, message: error};

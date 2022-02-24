@@ -20,7 +20,7 @@ router.get('/getStorageByUserId/', passport.authenticate('jwt', {session: false}
 });
 
 router.post('/createStorage', passport.authenticate('jwt', {session: false}), async(req, res) =>  {
-    let response = await storage.createStorage(req.body);
+    let response = await storage.createStorage(req.body, req.user._id);
     res.status(response.code).json(response.message);
 });
 
