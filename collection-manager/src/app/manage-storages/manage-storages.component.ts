@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CollectionService } from '../collection.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-import { StorageData } from '../StorageData';
+import { Storage } from '../storage';
 
 @Component({
   selector: 'app-manage-storages',
@@ -11,7 +11,7 @@ import { StorageData } from '../StorageData';
 })
 export class ManageStoragesComponent implements OnInit {
   gridColumns = 4;
-  storages: Array<StorageData> = [];
+  storages: Array<Storage> = [];
 
   private storageSub: any;
   private deleteStorageSub: any;

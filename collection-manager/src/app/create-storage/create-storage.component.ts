@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { StorageData } from '../StorageData';
+import { Storage } from '../storage';
 
 @Component({
   selector: 'app-create-storage',
@@ -9,11 +7,10 @@ import { StorageData } from '../StorageData';
   styleUrls: ['./create-storage.component.css'],
 })
 export class CreateStorageComponent implements OnInit {
-  public createStorage: StorageData = {
-    _id: '',
-    storage_name: '',
-    storage_type: '',
-    storage_location: '',
+  public createStorage: Storage = {
+    storage_name: "",
+    storage_type: "",
+    storage_location: "",
   };
 
   public warning: string;
@@ -22,12 +19,13 @@ export class CreateStorageComponent implements OnInit {
   public response: string;
   private storageSub: any;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
     // // register services that comunicate with the database will be called here
+
   }
 
   ngOnDestroy(): void {
