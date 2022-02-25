@@ -67,6 +67,26 @@ The storage code part is missing ngModel because storage code itself isnt suppor
             <mat-error>Password does not match.</mat-error>
           </mat-form-field>
         </mat-card>
+        <br>
+        <mat-card
+          fxLayout="row"
+          fxLayoutGap="15px"
+          fxLayoutAlign="start center"
+          class="cards"
+        >
+        <span class="spantext">Labeling Code: </span>
+        <mat-form-field class="full-width-input">
+          <input
+            matInput
+            placeholder="Give this box a code... e.g. 001"
+            name="code"
+            required
+            [(ngModel)]="newStorage.storage_assigned_code"
+          />
+          <mat-error>Must assign a code to this storage box</mat-error>
+        </mat-form-field>
+        </mat-card>
+
         <br />
         <br />
         <button
@@ -88,7 +108,7 @@ The storage code part is missing ngModel because storage code itself isnt suppor
     <div class="success" *ngIf="success == true">
       Storage Creation Successful. Proceed to<br /><br />
       <a mat-raised-button color="accent" [routerLink]="['/managestorage']">
-        <mat-icon>store</mat-icon>&nbsp;&nbsp;&nbsp;Storage Boxes.
+        <mat-icon>store</mat-icon>&nbsp;&nbsp;&nbsp;Storage Boxes
       </a>
     </div>
   </mat-card>

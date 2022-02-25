@@ -13,6 +13,7 @@ export class CreateStorageComponent implements OnInit {
     storage_name: '',
     storage_type: '',
     storage_location: '',
+    storage_assigned_code: ''
   };
 
   public warning: string;

@@ -45,6 +45,7 @@ module.exports.createStorage = async function(data, userId) {
         newStorage.storage_type = data.storage_type;
         newStorage.storage_location = data.storage_location;
         newStorage.storage_owner_id = userId;
+        newStorage.storage_assigned_code = data.storage_assigned_code;
         let result = await newStorage.save();
         return {code: 201, message: `Storage location created`};
     } catch(error) {

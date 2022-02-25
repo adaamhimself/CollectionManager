@@ -11,7 +11,7 @@ import { StorageService } from '../storage.service';
   styleUrls: ['./manage-storage.component.css'],
 })
 export class ManageStorageComponent implements OnInit {
-  gridColumns = 4;
+  gridColumns = 3;
   storageList: Array<Storage> = [];
 
   private storageSub: any;
