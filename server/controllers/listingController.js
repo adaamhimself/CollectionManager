@@ -12,9 +12,27 @@ module.exports.getListing = async function(id) {
     }
 }
 
-module.exports.getListingsByCategoryId = async function(category) {
+module.exports.getTradingListingsByCategory = async function(category) {
     try {
-        let result = await Listing.find({listing_category: category})
+        let result = await Listing.find({listing_category: category, listing_type: "trade"})
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
+module.exports.getSellingListingsByCategory = async function(category) {
+    try {
+        let result = await Listing.find({listing_category: category, listing_type: "sell"})
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
+module.exports.getWantedListingsByCategory = async function(category) {
+    try {
+        let result = await Listing.find({listing_category: category, listing_type: "want"})
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};

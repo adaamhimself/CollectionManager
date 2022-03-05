@@ -8,8 +8,18 @@ router.get('/getListingById/:id', passport.authenticate('jwt', {session: false})
     res.status(response.code).json(response.message);
 });
 
-router.get('/getListingsByCategory', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await listing.getListing(req.params.id);
+router.get('/getTradingListingsByCategory', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.getTradingListingsByCategory(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
+router.get('/getSellingListingsByCategory', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.getSellingListingsByCategory(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
+router.get('/getWantedListingsByCategory', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.getWantedListingsByCategory(req.params.id);
     res.status(response.code).json(response.message);
 });
 
