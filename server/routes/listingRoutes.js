@@ -18,8 +18,8 @@ router.post('/createListing', passport.authenticate('jwt', {session: false}), as
     res.status(response.code).json(response.message);
 });
 
-router.put('/modifyListing', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await listing.modifyListing(req.body);
+router.put('/modifyListing/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.modifyListing(req.body, req.params.id);
     res.status(response.code).json(response.message);
 });
 

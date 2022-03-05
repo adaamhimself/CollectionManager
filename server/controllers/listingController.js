@@ -32,9 +32,10 @@ module.exports.createListing = async function(user_id, listing) {
     }
 }
 
-module.exports.modifyListing = async function(changes) {
+module.exports.modifyListing = async function(changes, listing_id) {
     try {
-
+        await Listing.findByIdAndUpdate(listing_id, changes);
+        return {code: 200, message: `Item ${listing_id} has been updated`};
     } catch(error) {
         return {code: 400, message: error};
     }
@@ -42,7 +43,8 @@ module.exports.modifyListing = async function(changes) {
 
 module.exports.deleteListing = async function(id) {
     try {
-
+        await Listing.findByIdAndDelete(id);
+        return {code: 200, message: `Listing ${id} has been removed`};
     } catch(error) {
         return {code: 400, message: error};
     }  
