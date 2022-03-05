@@ -24,6 +24,9 @@ app.use('/api/item', itemRouter);
 const storageRouter = require('./routes/storageRoutes');
 app.use('/api/storage', storageRouter);
 
+const chatRouter = require('./routes/chatRoutes');
+app.use('/api/message', chatRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database
