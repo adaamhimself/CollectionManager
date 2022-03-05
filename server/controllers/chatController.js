@@ -33,19 +33,7 @@ module.exports.getConversations = async function(user_id) {
                 username = username.username;
             }
             conversation.push({username: username, messages: result[i].messages});
-            console.log(username);
         }
-    
-
-        // result.forEach(async (element) => {          
-        //     if (element.participants[0] == user_id) {
-        //         username = await getParticipantName(element.participants[1]);
-        //     } else {
-        //         username = await getParticipantName(element.participants[0]);
-        //     }
-        //     conversation_ids.push({username: username, messages: element.messages});
-        // });
-
         return {code: 200, message: conversation};
     } catch(error) {
         return {code: 400, message: error};
