@@ -3,7 +3,12 @@ const router = express.Router();
 const passport = require('passport');
 const listing = require('../controllers/listingController');
 
-router.get('./getListing/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.get('/getListingById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.getListing(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
+router.get('/getListingsByCategory', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await listing.getListing(req.params.id);
     res.status(response.code).json(response.message);
 });
