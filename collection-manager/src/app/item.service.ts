@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthService } from './auth.service';
 import { Item } from './Item';
 import { NewItem } from './newItem';
 
@@ -11,7 +10,7 @@ import { NewItem } from './newItem';
 })
 export class ItemService {
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   getItemById(id: String): Observable<any> { 
     return this.http.get<Item>(`${environment.apiBaseUrl}item/getItemById/${id}`);
