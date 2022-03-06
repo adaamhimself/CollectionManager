@@ -14,6 +14,9 @@ import { EditCollectionComponent } from './edit-collection/edit-collection.compo
 import { ManageStorageComponent } from './manage-storage/manage-storage.component';
 import { CreateStorageComponent } from './create-storage/create-storage.component';
 import { EditStorageComponent } from './edit-storage/edit-storage.component';
+import { CreateTradeComponent } from './create-trade/create-trade.component';
+import { CreateSaleComponent } from './create-sale/create-sale.component';
+import { CreateWantedComponent } from './create-wanted/create-wanted.component';
 
 const routes: Routes = [
   {
@@ -71,6 +74,18 @@ const routes: Routes = [
   {
     path: 'editstorage',
     component: EditStorageComponent,
+  },
+  {
+    path: 'createtrade',
+    component: CreateTradeComponent,
+  },
+  {
+    path: 'createsale',
+    component: CreateSaleComponent,
+  },
+  {
+    path: 'createwanted',
+    component: CreateWantedComponent,
   },
   {
     path: '**',
