@@ -24,15 +24,18 @@ router.get('/getWantedListingsByCategory/:id', passport.authenticate('jwt', {ses
 });
 
 router.get('/getAllWantedListings', passport.authenticate('jwt', {session: false}), async(req, res) => {
-
+    let response = await listing.getAllWantedListings();
+    res.status(response.code).json(response.message);
 });
 
 router.get('/getAllTradingListings', passport.authenticate('jwt', {session: false}), async(req, res) => {
-
+    let response = await listing.getAllTradingListings();
+    res.status(response.code).json(response.message);
 });
 
 router.get('/getAllSellingListings', passport.authenticate('jwt', {session: false}), async(req, res) => {
-
+    let response = await listing.getAllSellingListings();
+    res.status(response.code).json(response.message);
 });
 
 router.post('/createListing', passport.authenticate('jwt', {session: false}), async(req, res) => {

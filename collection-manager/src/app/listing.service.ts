@@ -27,6 +27,18 @@ export class ListingService {
     return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getWantedListingsByCategory/${id}`);
   }
 
+  getAllWantedListings(): Observable<any> {
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getAllWantedListings/`);
+  }
+
+  getAllTradingListings(): Observable<any> {
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getAllTradingListings/`);
+  }
+
+  getAllSellingListings(): Observable<any> {
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getAllSellingListings/`);
+  }
+
   createListing(newListing: Listing): Observable<any> {
     return this.http.post<any>(`${environment.apiBaseUrl}listing/createListing`, newListing);
   }
