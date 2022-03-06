@@ -48,6 +48,7 @@ import { CustomFieldDialogComponent } from './custom-field-dialog/custom-field-d
 import { CreateSaleComponent } from './create-sale/create-sale.component';
 import { CreateTradeComponent } from './create-trade/create-trade.component';
 import { CreateWantedComponent } from './create-wanted/create-wanted.component';
+import { ViewPostingComponent } from './view-posting/view-posting.component';
 
 @NgModule({
   //components (pages)
@@ -73,7 +74,8 @@ import { CreateWantedComponent } from './create-wanted/create-wanted.component';
     CustomFieldDialogComponent,
     CreateSaleComponent,
     CreateTradeComponent,
-    CreateWantedComponent
+    CreateWantedComponent,
+    ViewPostingComponent
   ],
   //included modules
   imports: [

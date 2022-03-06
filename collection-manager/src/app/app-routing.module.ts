@@ -17,6 +17,8 @@ import { EditStorageComponent } from './edit-storage/edit-storage.component';
 import { CreateTradeComponent } from './create-trade/create-trade.component';
 import { CreateSaleComponent } from './create-sale/create-sale.component';
 import { CreateWantedComponent } from './create-wanted/create-wanted.component';
+import { MarketComponent } from './market/market.component';
+import { ViewPostingComponent } from './view-posting/view-posting.component';
 
 const routes: Routes = [
   {
@@ -74,6 +76,14 @@ const routes: Routes = [
   {
     path: 'editstorage',
     component: EditStorageComponent,
+  },
+  {
+    path: 'market',
+    component: MarketComponent,
+  },
+  {
+    path: 'viewposting/:id',
+    component: ViewPostingComponent,
   },
   {
     path: 'createtrade',

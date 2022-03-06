@@ -1,0 +1,51 @@
+<h1 *ngIf="postType == 'selling'">Selling Posting</h1>
+<h1 *ngIf="postType == 'wanted'">Wanted Posting</h1>
+<h1 *ngIf="postType == 'trading'">Trade Posting</h1>
+<div class="card-wrapper">
+  <div fxLayout="row">
+    <mat-card class="center space-top">
+      <mat-card-header>
+        <mat-card-title>{{ posting.name }}</mat-card-title>
+      </mat-card-header>
+      <!--Content for selling-->
+      <mat-card-content *ngIf="postType == 'selling'">
+        <img
+          mat-card-image
+          src="{{ posting.image_path }}"
+          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          alt="{{ posting.image_alt }}"
+        />
+        <p><strong>Description:</strong> {{ posting.description }}</p>
+        <p><strong>Category:</strong> {{ posting.category }}</p>
+        <p><strong>Condition:</strong> {{ posting.condition }}</p>
+        <p><strong>Price:</strong> ${{ posting.price }}</p>
+        <p><strong>Location:</strong> {{ posting.location }}</p>
+        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+      </mat-card-content>
+      <!--Content for wanted-->
+      <mat-card-content *ngIf="postType == 'wanted'">
+        <p><strong>Description:</strong> {{ posting.description }}</p>
+        <p><strong>Category:</strong> {{ posting.category }}</p>
+        <p><strong>Condition:</strong> {{ posting.condition }}</p>
+        <p><strong>Price:</strong> ${{ posting.price }}</p>
+        <p><strong>Location:</strong> {{ posting.location }}</p>
+        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+      </mat-card-content>
+      <!--Content for trading-->
+      <mat-card-content *ngIf="postType == 'trading'">
+        <img
+          mat-card-image
+          src="{{ posting.image_path }}"
+          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          alt="{{ posting.image_alt }}"
+        />
+        <p><strong>Description:</strong> {{ posting.description }}</p>
+        <p><strong>Category:</strong> {{ posting.category }}</p>
+        <p><strong>Condition:</strong> {{ posting.condition }}</p>
+        <p><strong>Location:</strong> {{ posting.location }}</p>
+        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+        <p><strong>Looking for:</strong> {{ posting.wanted }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
