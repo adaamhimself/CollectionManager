@@ -10,4 +10,5 @@ export class Listing {
   'listing_location': String;
   'listing_condition': String;
   'listing_wanted': String;
+  'listing_date': Date;
 }
