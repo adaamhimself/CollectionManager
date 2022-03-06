@@ -14,6 +14,8 @@ const listingSchema = new Schema({
     "listing_type": String,
     "listing_category": String,
     "listing_location": String,
+    "listing_condition": String,
+    "listing_wanted": String,
     "promoted": {
         type: Boolean,
         default: false 

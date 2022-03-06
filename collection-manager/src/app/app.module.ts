@@ -45,6 +45,10 @@ import { CreateStorageComponent } from './create-storage/create-storage.componen
 import { ManageStorageComponent } from './manage-storage/manage-storage.component';
 import { EditStorageComponent } from './edit-storage/edit-storage.component';
 import { CustomFieldDialogComponent } from './custom-field-dialog/custom-field-dialog.component';
+import { CreateSaleComponent } from './create-sale/create-sale.component';
+import { CreateTradeComponent } from './create-trade/create-trade.component';
+import { CreateWantedComponent } from './create-wanted/create-wanted.component';
+import { ViewPostingComponent } from './view-posting/view-posting.component';
 
 @NgModule({
   //components (pages)
@@ -67,7 +71,11 @@ import { CustomFieldDialogComponent } from './custom-field-dialog/custom-field-d
     CreateStorageComponent,
     ManageStorageComponent,
     EditStorageComponent,
-    CustomFieldDialogComponent
+    CustomFieldDialogComponent,
+    CreateSaleComponent,
+    CreateTradeComponent,
+    CreateWantedComponent,
+    ViewPostingComponent
   ],
   //included modules
   imports: [
