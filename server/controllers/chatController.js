@@ -11,7 +11,6 @@ module.exports.getMessagesWithUser = async function(user_id) {
     try {
         user_id = user_id.trim();
         let result = await Chat.find({participants: user_id});
-        
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
@@ -21,7 +20,6 @@ module.exports.getMessagesWithUser = async function(user_id) {
 module.exports.getConversations = async function(user_id) {
     // returns a list of conversation ids and the name of the other participant
     try {
-        
         let result = await Chat.find({participants: user_id});
         let conversation = [];
         for (i = 0; i < result.length; i++) {
