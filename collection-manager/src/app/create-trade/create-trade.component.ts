@@ -20,12 +20,12 @@ export class CreateTradeComponent implements OnInit {
     listing_user_id: '',
     listing_price: '',
     listing_description: '',
-    listing_type: '',
+    listing_type: 'trade',
     listing_category: '',
     listing_location: '',
     listing_condition: '',
     listing_wanted: '',
-    listing_date: new Date()
+    listing_date: new Date(),
   };
 
   collections: Array<Collection> = [];
@@ -82,15 +82,21 @@ export class CreateTradeComponent implements OnInit {
   // collections variable, not sure if im using the right method)
   selected(): void {
     let id: String = this.route.snapshot.params['id'];
-    this.itemSub = this.item.getAllItemsByCollectionId(id).subscribe(
-      (response) => {
-        this.items = response;
-      },
-      (error) => {
-        this.warning = error.error;
-      }
-    );
+    this.itemSub = this.item
+      .getAllItemsByCollectionId(this.selectedCollection._id)
+      .subscribe(
+        (response) => {
+          this.items = response;
+        },
+        (error) => {
+          this.warning = error.error;
+        }
+      );
     console.log(this.selectedCollection);
     console.log(this.items[0]);
+  }
+
+  itemPicked(): void {
+    this.tradeModel.item_id = this.selectedItem._id;
   }
 }

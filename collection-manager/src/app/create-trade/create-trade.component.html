@@ -18,17 +18,28 @@
     </mat-card-content>
     <!--Labels Section-->
     <mat-card-content class="labelContent">
+      <label id="postName">Trade Name:</label>
       <label id="collName">Collection:</label>
       <label id="itemName">Item Name:</label>
       <label id="description">Description:</label>
       <label id="condition">Condition:</label>
-      <label id="lookingFor">Want:</label>
+      <label id="lookingFor">Want to get:</label>
     </mat-card-content>
     <!--Fields Section-->
     <mat-card-content>
       <form class="my-form">
         <mat-card-content>
           <form class="my-form">
+            <mat-form-field class="full-width">
+              <mat-label>Enter a title for your post..</mat-label>
+              <input
+                matInput
+                placeholder="Listing Name"
+                name="listingname"
+                required
+                [(ngModel)]="tradeModel.listing_name"
+              />
+            </mat-form-field>
             <select
               [(ngModel)]="selectedCollection"
               (change)="selected()"
@@ -45,7 +56,7 @@
             </select>
             <select
               [(ngModel)]="selectedItem"
-              (change)="selected()"
+              (change)="itemPicked()"
               name="selectItems"
               class="selectsTwo"
             >
@@ -57,17 +68,6 @@
                 {{ item.item_title }}
               </option>
             </select>
-            <!--
-            <mat-form-field class="full-width">
-              <mat-label>Item name..</mat-label>
-              <input
-                matInput
-                placeholder="Item Name"
-                name="itemname"
-                required
-              />
-            </mat-form-field>
-            -->
             <mat-form-field class="full-width">
               <mat-label>Item description..</mat-label>
               <input
