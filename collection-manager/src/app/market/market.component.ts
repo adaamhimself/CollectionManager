@@ -19,11 +19,12 @@ class PostingCardInfo {
     post_date: Date;
     category: String;
     location: String;
-    image_path: String;
-    image_alt: String;
+    image_path: String = "";
+    image_alt: String = "";
+    
 
     constructor(listing: Listing, item: Item) {
-        //fields from the listing
+        // //fields from the listing
         this.listing_id = listing._id;
         this.user_id = listing.listing_user_id;
         this.name = listing.listing_name;
@@ -36,9 +37,10 @@ class PostingCardInfo {
         //fields from the item
         this.item_id = item._id;
         this.condition = item.condition;
-        this.image_path = item.item_images[0].item_image_path;
-        this.image_alt = item.item_images[0].item_image_text;
-        if (this.image_path == ""){
+        if (Object.keys(item.item_images).length != 0) {
+            this.image_path = item.item_images[0].item_image_path;
+            this.image_alt = item.item_images[0].item_image_text;
+        } else {
             this.image_path = "../../assets/images/bluelogo.png";
             this.image_alt = "logo";
         }
@@ -67,7 +69,6 @@ export class MarketComponent implements OnInit {
     //changes the posting type that is shown
     //called by showSellingPostings, showWantedPostings, and showTradingPostings
     showPostings(listings: any, type: String): void {
-        console.log("listing:", listings);
         this.postings = [];//clear the displayed postings
         this.postType = type;//type of posting being displayed
         //add class "type-selected" to selected posting type only (they all must also have class post-type)
@@ -85,6 +86,7 @@ export class MarketComponent implements OnInit {
             this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                 (item) => {
                     //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
+                    let temp = new PostingCardInfo(listing, item);
                     this.postings.push(new PostingCardInfo(listing, item));
                 },
                 (error) => {
@@ -92,6 +94,7 @@ export class MarketComponent implements OnInit {
                 }
             );
         });
+        console.log(this.postings);
     }
 
     //called when the user clicks "Selling" (span element with id type-selling)
