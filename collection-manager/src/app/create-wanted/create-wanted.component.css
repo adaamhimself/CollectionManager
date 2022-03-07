@@ -3,6 +3,7 @@
   max-width: 500px;
   width: 100%;
   padding-left: 15px;
+  color: black;
 }
 .full-width {
   width: 100%;
@@ -37,6 +38,10 @@
   padding-left: -200px;
 }
 
+.labelContent {
+  min-width: 160px;
+}
+
 .labelContent label {
   color: black;
   display: flex;
@@ -46,7 +51,7 @@
 }
 
 #itemName {
-  padding-top: 20px;
+  padding-top: 28px;
 }
 
 #description {
@@ -57,8 +62,12 @@
   padding-top: 28px;
 }
 
+.p {
+  color: black;
+}
+
 #price {
-  padding-top: 28px;
+  padding-top: 29px;
 }
 
 #createButton {

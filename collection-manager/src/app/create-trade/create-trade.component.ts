@@ -15,6 +15,7 @@ import { NewListing } from '../newListing';
 export class CreateTradeComponent implements OnInit {
   public tradeModel: NewListing = {
     item_id: '',
+    item_wanted_name: '',
     listing_name: '',
     listing_user_id: '',
     listing_price: '',
@@ -47,7 +48,6 @@ export class CreateTradeComponent implements OnInit {
 
   // get a list of collections the user has and store in collections variable to be used in
   // the dropdown box on the page
-  // (working)
   ngOnInit(): void {
     let id: String = this.route.snapshot.params['id'];
     this.collectionSub = this.collection.getCollectionByUserId().subscribe(
@@ -61,7 +61,6 @@ export class CreateTradeComponent implements OnInit {
   }
 
   // create a new listing with the listing data
-  // (not working gives POST error in console but the tradeModel grabs data properly)
   onSubmit(): void {
     this.newSub = this.listingService.createListing(this.tradeModel).subscribe(
       (response) => {
@@ -77,8 +76,6 @@ export class CreateTradeComponent implements OnInit {
 
   // when a collection is chosen from the dropdown box, call this method and populate the item
   // dropdown select box based on the collection chosen previously thats stored in collections.
-  // (not working the - items variable isnt able to grab items from the collection stored in the
-  // collections variable, not sure if im using the right method)
   selected(): void {
     let id: String = this.route.snapshot.params['id'];
     this.itemSub = this.item

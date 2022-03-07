@@ -13,17 +13,17 @@
           id="userImage"
         />
         <br />
-        <a href="">Add Images</a>
+        <a href="">Add images of what you are offering.</a>
       </div>
     </mat-card-content>
     <!--Labels Section-->
     <mat-card-content class="labelContent">
-      <label id="postName">Trade Name:</label>
-      <label id="collName">Collection:</label>
-      <label id="itemName">Item Name:</label>
-      <label id="description">Description:</label>
-      <label id="condition">Condition:</label>
-      <label id="lookingFor">Want to get:</label>
+      <label id="postName">Listing Name:</label>
+      <label id="collName">Select Collection:</label>
+      <label id="itemName">Select an Item:</label>
+      <label id="description">Item Description:</label>
+      <label id="condition">Item Condition:</label>
+      <label id="lookingFor">What are you looking for in return?</label>
     </mat-card-content>
     <!--Fields Section-->
     <mat-card-content>
@@ -34,7 +34,7 @@
               <mat-label>Enter a title for your post..</mat-label>
               <input
                 matInput
-                placeholder="Listing Name"
+                placeholder="Enter a title for your post.."
                 name="listingname"
                 required
                 [(ngModel)]="tradeModel.listing_name"
@@ -45,6 +45,7 @@
               (change)="selected()"
               name="selectCollection"
               class="selects"
+              required
             >
               <option
                 class="options"
@@ -59,6 +60,7 @@
               (change)="itemPicked()"
               name="selectItems"
               class="selectsTwo"
+              required
             >
               <option
                 class="options"
@@ -69,30 +71,32 @@
               </option>
             </select>
             <mat-form-field class="full-width">
-              <mat-label>Item description..</mat-label>
+              <mat-label>Enter details about what you are offering..</mat-label>
               <input
                 matInput
-                placeholder="Description"
+                placeholder="Enter details about what you are offering.."
                 name="description"
                 required
                 [(ngModel)]="tradeModel.listing_description"
               />
             </mat-form-field>
             <mat-form-field class="full-width">
-              <mat-label>Item condition..</mat-label>
+              <mat-label>Enter the condition of the item..</mat-label>
               <input
                 matInput
-                placeholder="Condition"
+                placeholder="Enter the condition of the item.."
                 name="condition"
+                required
                 [(ngModel)]="tradeModel.listing_condition"
               />
             </mat-form-field>
             <mat-form-field class="full-width">
-              <mat-label>Looking for..</mat-label>
+              <mat-label>Enter desired items details..</mat-label>
               <input
                 matInput
-                placeholder="Wanted"
+                placeholder="Enter desired items details.."
                 name="wanted"
+                required
                 [(ngModel)]="tradeModel.listing_wanted"
               />
             </mat-form-field>

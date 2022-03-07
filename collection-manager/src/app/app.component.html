@@ -8,11 +8,11 @@
       ><span>My Collections</span></a
     >
     <a class="nav-item" *ngIf="token" [routerLink]="['/createcollection']"
-    ><span>Add New Collection</span></a
+      ><span>Add New Collection</span></a
     >
 
     <a class="nav-item" *ngIf="token" [routerLink]="['/managestorage']"
-    ><span>Storage Boxes</span></a
+      ><span>Storage Boxes</span></a
     >
 
     <a class="nav-item" *ngIf="token" [routerLink]="['/market']"
@@ -20,6 +20,9 @@
     >
     <a class="nav-item" *ngIf="token" [routerLink]="['/chat']"
       ><span>Chat</span></a
+    >
+    <a class="nav-item" *ngIf="token" [routerLink]="['/createtrade']"
+      ><span>Trading</span></a
     >
   </div>
 

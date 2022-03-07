@@ -3,9 +3,25 @@
   max-width: 500px;
   width: 100%;
   padding-left: 15px;
+  color: black;
 }
 .full-width {
   width: 100%;
+}
+
+.selects {
+  margin-top: 18px;
+  width: 100%;
+}
+
+.selectsTwo {
+  margin-top: 32px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.options {
+  padding: 20px;
 }
 
 .my-card {
@@ -36,6 +52,10 @@
   padding-left: -200px;
 }
 
+.labelContent {
+  min-width: 120px;
+}
+
 .labelContent label {
   color: black;
   display: flex;
@@ -44,12 +64,16 @@
   font-weight: bold;
 }
 
+#collName {
+  padding-top: 28px;
+}
+
 #itemName {
   padding-top: 25px;
 }
 
 #description {
-  padding-top: 30px;
+  padding-top: 29px;
 }
 
 #condition {
@@ -57,7 +81,7 @@
 }
 
 #lookingFor {
-  padding-top: 30px;
+  padding-top: 29px;
 }
 
 #createButton {

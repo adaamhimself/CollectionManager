@@ -3,6 +3,7 @@ const Schema = Mongoose.Schema;
 
 const listingSchema = new Schema({
     "item_id": String,
+    "item_wanted_name": String,
     "listing_name": String,
     "listing_user_id": String,
     "listing_price": String,
