@@ -34,7 +34,7 @@ module.exports.getConversations = async function(user_id) {
                 username = await User.findById(result[i].participants[0]);
                 username = username.username;
             }
-            conversation.push({username: username, messages: result[i].messages});
+            conversation.push({username: username, _id: result[i]._id, messages: result[i].messages});
         }
         return {code: 200, message: conversation};
     } catch(error) {
