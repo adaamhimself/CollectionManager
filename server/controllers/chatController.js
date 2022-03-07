@@ -21,17 +21,18 @@ module.exports.getMessagesWithUser = async function(user_id) {
 module.exports.getConversations = async function(user_id) {
     // returns a list of conversation ids and the name of the other participant
     try {
+        
         let result = await Chat.find({participants: user_id});
         let conversation = [];
         let other_user_id;
 
         for (i = 0; i < result.length; i++) {
             if (result[i].participants[0] === user_id) {
-                username = await User.findById(result[i].participants[1]);
+                username = await User.findById(result[i].participants[1].trim());
                 username = username.username;
             } 
             else if (result[i].participants[1] === user_id) {
-                username = await User.findById(result[i].participants[0]);
+                username = await User.findById(result[i].participants[0].trim());
                 username = username.username;
             }
             conversation.push({username: username, _id: result[i]._id, messages: result[i].messages});
