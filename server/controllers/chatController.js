@@ -24,8 +24,6 @@ module.exports.getConversations = async function(user_id) {
         
         let result = await Chat.find({participants: user_id});
         let conversation = [];
-        let other_user_id;
-
         for (i = 0; i < result.length; i++) {
             if (result[i].participants[0] === user_id) {
                 username = await User.findById(result[i].participants[1].trim());
