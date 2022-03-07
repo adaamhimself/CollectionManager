@@ -8,19 +8,28 @@
         <mat-card-title>{{ posting.name }}</mat-card-title>
       </mat-card-header>
       <!--Content for selling-->
-      <mat-card-content *ngIf="postType == 'selling'">
-        <img
-          mat-card-image
-          src="{{ posting.image_path }}"
-          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-          alt="{{ posting.image_alt }}"
-        />
-        <p><strong>Description:</strong> {{ posting.description }}</p>
-        <p><strong>Category:</strong> {{ posting.category }}</p>
-        <p><strong>Condition:</strong> {{ posting.condition }}</p>
-        <p><strong>Price:</strong> ${{ posting.price }}</p>
-        <p><strong>Location:</strong> {{ posting.location }}</p>
-        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+      <mat-card-content
+        *ngIf="postType == 'selling'"
+        fxLayout="row wrap"
+        fxLayoutGap="16px grid"
+      >
+        <div fxFlex="40%">
+          <img
+            mat-card-image
+            src="{{ posting.image_path }}"
+            class="posting-image"
+            onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+            alt="{{ posting.image_alt }}"
+          />
+        </div>
+        <div fxFlex="60%">
+          <p><strong>Description:</strong> {{ posting.description }}</p>
+          <p><strong>Category:</strong> {{ posting.category }}</p>
+          <p><strong>Condition:</strong> {{ posting.condition }}</p>
+          <p><strong>Price:</strong> ${{ posting.price }}</p>
+          <p><strong>Location:</strong> {{ posting.location }}</p>
+          <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+        </div>
       </mat-card-content>
       <!--Content for wanted-->
       <mat-card-content *ngIf="postType == 'wanted'">
@@ -32,27 +41,32 @@
         <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
       </mat-card-content>
       <!--Content for trading-->
-      <mat-card-content *ngIf="postType == 'trading'">
-        <img
-          mat-card-image
-          src="{{ posting.image_path }}"
-          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-          alt="{{ posting.image_alt }}"
-        />
-        <p><strong>Description:</strong> {{ posting.description }}</p>
-        <p><strong>Category:</strong> {{ posting.category }}</p>
-        <p><strong>Condition:</strong> {{ posting.condition }}</p>
-        <p><strong>Location:</strong> {{ posting.location }}</p>
-        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
-        <p><strong>Looking for:</strong> {{ posting.wanted }}</p>
+      <mat-card-content
+        *ngIf="postType == 'trading'"
+        fxLayout="row wrap"
+        fxLayoutGap="16px grid"
+      >
+        <div fxFlex="40%">
+          <img
+            mat-card-image
+            src="{{ posting.image_path }}"
+            class="posting-image"
+            onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+            alt="{{ posting.image_alt }}"
+          />
+        </div>
+        <div fxFlex="60%">
+          <p><strong>Description:</strong> {{ posting.description }}</p>
+          <p><strong>Category:</strong> {{ posting.category }}</p>
+          <p><strong>Condition:</strong> {{ posting.condition }}</p>
+          <p><strong>Location:</strong> {{ posting.location }}</p>
+          <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
+          <p><strong>Looking for:</strong> {{ posting.wanted }}</p>
+        </div>
       </mat-card-content>
       <!--button to open chat with the user who posted the listing-->
       <mat-card-actions>
-        <button
-          mat-raised-button
-          color="primary"
-          routerLink="/home"
-        >
+        <button mat-raised-button color="primary" routerLink="/chat">
           Notify User
         </button>
       </mat-card-actions>

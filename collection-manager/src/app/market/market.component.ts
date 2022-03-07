@@ -21,13 +21,11 @@ class PostingCardInfo {
     location: String;
     image_path: String = "";
     image_alt: String = "";
-    
 
     constructor(listing: Listing, item: Item) {
-        // //fields from the listing
+        //fields from the listing
         this.listing_id = listing._id;
         this.user_id = listing.listing_user_id;
-        this.name = listing.listing_name;
         this.description = listing.listing_description;
         this.wanted = listing.listing_wanted;
         this.price = listing.listing_price;
@@ -36,7 +34,21 @@ class PostingCardInfo {
         this.post_date = listing.listing_date;
         //fields from the item
         this.item_id = item._id;
-        this.condition = item.condition;
+        //name
+        if (listing.listing_name && listing.listing_name != ""){
+            this.name = listing.listing_name;
+        } else if (item.item_title && item.item_title != ""){
+            this.name = item.item_title;
+        } else {
+            this.name = "No Name";
+        }
+        //condition
+        if (item.condition && item.condition != ""){
+            this.condition = item.condition;
+        } else {
+            this.condition = "N/A";
+        }
+        //image
         if (Object.keys(item.item_images).length != 0) {
             this.image_path = item.item_images[0].item_image_path;
             this.image_alt = item.item_images[0].item_image_text;

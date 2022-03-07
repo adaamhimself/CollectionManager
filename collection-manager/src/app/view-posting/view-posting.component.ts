@@ -27,7 +27,6 @@ class PostingViewInfo {
         //fields from the listing
         this.listing_id = listing._id;
         this.user_id = listing.listing_user_id;
-        this.name = listing.listing_name;
         this.description = listing.listing_description;
         this.wanted = listing.listing_wanted;
         this.price = listing.listing_price;
@@ -36,10 +35,25 @@ class PostingViewInfo {
         this.post_date = listing.listing_date;
         //fields from the item
         this.item_id = item._id;
-        this.condition = item.condition;
-        this.image_path = item.item_images[0].item_image_path;
-        this.image_alt = item.item_images[0].item_image_text;
-        if (this.image_path == ""){
+        //name
+        if (listing.listing_name && listing.listing_name != ""){
+            this.name = listing.listing_name;
+        } else if (item.item_title && item.item_title != ""){
+            this.name = item.item_title;
+        } else {
+            this.name = "No Name";
+        }
+        //condition
+        if (item.condition && item.condition != ""){
+            this.condition = item.condition;
+        } else {
+            this.condition = "N/A";
+        }
+        //image
+        if (Object.keys(item.item_images).length != 0) {
+            this.image_path = item.item_images[0].item_image_path;
+            this.image_alt = item.item_images[0].item_image_text;
+        } else {
             this.image_path = "../../assets/images/bluelogo.png";
             this.image_alt = "logo";
         }
@@ -87,6 +101,9 @@ export class ViewPostingComponent implements OnInit {
                 this.posting = null;
                 //change the displayed post type
                 this.postType = listing.listing_type;
+                if (this.postType == "sale") this.postType = "selling";
+                if (this.postType == "want") this.postType = "wanting";
+                if (this.postType == "trade") this.postType = "trading";
                 //convert the listing into PostingViewInfo (passing the listing and item) and set the shown posting
                 this.posting = new PostingViewInfo(listing, item);
             },
