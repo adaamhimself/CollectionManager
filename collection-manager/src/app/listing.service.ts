@@ -16,6 +16,10 @@ export class ListingService {
     return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getListingById/${id}`);
   }
 
+  getMyListings(): Observable<any> {
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/myListings`);
+  }
+
   getTradingListingsByCategory(id: String): Observable<any> {
     return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getTradingListingsByCategory/${id}`);
   }
