@@ -25,6 +25,7 @@ export class CreateTradeComponent implements OnInit {
     listing_location: '',
     listing_condition: '',
     listing_wanted: '',
+    listing_date: new Date()
   };
 
   collections: Array<Collection> = [];

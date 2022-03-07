@@ -65,6 +65,7 @@ export class MarketComponent implements OnInit {
         this.showSellingPostings();//default
     }
 
+    //changes the posting type that is shown
     //called by showSellingPostings, showWantedPostings, and showTradingPostings
     showPostings(listings: any, type: String): void {
         console.log("listing:", listings);
@@ -94,10 +95,10 @@ export class MarketComponent implements OnInit {
         });
     }
 
-    //called from the user clicks "Selling" (span with id type-selling)
+    //called when the user clicks "Selling" (span element with id type-selling)
     showSellingPostings(): void {
         //retrieve all selling postings
-        this.listingSub = this.listingService.getSellingListingsByCategory(this.query).subscribe(
+        this.listingSub = this.listingService.getAllSellingListings().subscribe(
             (response) => {
                 this.showPostings(response, "selling");
             },
@@ -107,10 +108,10 @@ export class MarketComponent implements OnInit {
         );
     }
 
-    //called from the user clicks "Wanted" (span with id type-wanted)
+    //called when the user clicks "Wanted" (span element with id type-wanted)
     showWantedPostings(): void {
         //retrieve all wanted postings
-        this.listingSub = this.listingService.getWantedListingsByCategory(this.query).subscribe(
+        this.listingSub = this.listingService.getAllWantedListings().subscribe(
             (response) => {
                 this.showPostings(response, "wanted");
             },
@@ -120,10 +121,10 @@ export class MarketComponent implements OnInit {
         );
     }
 
-    //called from the user clicks "Trading" (span with id type-trading)
+    //called when the user clicks "Trading" (span element with id type-trading)
     showTradingPostings(): void {
         //retrieve all trading postings
-        this.listingSub = this.listingService.getTradingListingsByCategory(this.query).subscribe(
+        this.listingSub = this.listingService.getAllTradingListings().subscribe(
             (response) => {
                 this.showPostings(response, "trading");
             },
