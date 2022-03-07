@@ -19,6 +19,7 @@ import { CreateSaleComponent } from './create-sale/create-sale.component';
 import { CreateWantedComponent } from './create-wanted/create-wanted.component';
 import { MarketComponent } from './market/market.component';
 import { ViewPostingComponent } from './view-posting/view-posting.component';
+import { ChatHomeComponent } from './chat-home/chat-home.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,10 @@ const routes: Routes = [
   {
     path: 'createwanted',
     component: CreateWantedComponent,
+  },
+  {
+    path: 'chat',
+    component: ChatHomeComponent,
   },
   {
     path: '**',
