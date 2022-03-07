@@ -12,6 +12,16 @@ module.exports.getListing = async function(id) {
     }
 }
 
+module.exports.myListings = async function(user_id) {
+    try {
+        user_id = user_id.trim();
+        let result = await Listing.find({listing_user_id: user_id});
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
 module.exports.getTradingListingsByCategory = async function(category) {
     try {
         let result = await Listing.find({listing_category: category, listing_type: "trade"})

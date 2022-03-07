@@ -8,6 +8,11 @@ router.get('/getListingById/:id', passport.authenticate('jwt', {session: false})
     res.status(response.code).json(response.message);
 });
 
+router.get('/myListings', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.myListings(req.user._id);
+    res.status(response.code).json(response.message);
+});
+
 router.get('/getTradingListingsByCategory/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await listing.getTradingListingsByCategory(req.params.id);
     res.status(response.code).json(response.message);
