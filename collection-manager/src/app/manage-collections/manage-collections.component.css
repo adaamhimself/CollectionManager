@@ -32,6 +32,23 @@ mat-toolbar {
   outline: none;
 }
 
+.option {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+.option:hover,
+.option:active {
+  color: #dddddd;
+}
+
 mat-card-actions {
   display: inline;
+}
+
+mat-icon {
+  margin-top: -4px;
+  vertical-align: middle;
 }

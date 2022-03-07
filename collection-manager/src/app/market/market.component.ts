@@ -2,62 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { Listing } from '../listing';
+import { ListingDisplayInfo } from '../listing-display-info';
 import { ListingService } from '../listing.service';
-
-//This class contains the attributes that the HTML requires to show needed information.
-//It contains attributes from both the listing and the item that is linked to it (item_id).
-//The item must be retrieved ahead of time to be passed in the constructor with the listing.
-class PostingCardInfo {
-    listing_id: String;
-    item_id: String;
-    user_id: String;
-    name: String;
-    description: String;
-    wanted: String;
-    condition: String;
-    price: String;
-    post_date: Date;
-    category: String;
-    location: String;
-    image_path: String = "";
-    image_alt: String = "";
-
-    constructor(listing: Listing, item: Item) {
-        //fields from the listing
-        this.listing_id = listing._id;
-        this.user_id = listing.listing_user_id;
-        this.description = listing.listing_description;
-        this.wanted = listing.listing_wanted;
-        this.price = listing.listing_price;
-        this.category = listing.listing_category;
-        this.location = listing.listing_location;
-        this.post_date = listing.listing_date;
-        //fields from the item
-        this.item_id = item._id;
-        //name
-        if (listing.listing_name && listing.listing_name != ""){
-            this.name = listing.listing_name;
-        } else if (item.item_title && item.item_title != ""){
-            this.name = item.item_title;
-        } else {
-            this.name = "No Name";
-        }
-        //condition
-        if (item.condition && item.condition != ""){
-            this.condition = item.condition;
-        } else {
-            this.condition = "N/A";
-        }
-        //image
-        if (Object.keys(item.item_images).length != 0) {
-            this.image_path = item.item_images[0].item_image_path;
-            this.image_alt = item.item_images[0].item_image_text;
-        } else {
-            this.image_path = "../../assets/images/bluelogo.png";
-            this.image_alt = "logo";
-        }
-    }
-}
 
 @Component({
     selector: 'app-market',
@@ -65,7 +11,7 @@ class PostingCardInfo {
     styleUrls: ['./market.component.css']
 })
 export class MarketComponent implements OnInit {
-    public postings: Array<PostingCardInfo> = [];//currently shown postings
+    public postings: Array<ListingDisplayInfo> = [];//currently shown postings
     public postType: String = "selling";//currently displayed type: selling, wanted, or trading
     public gridColumns = 3;
     public warning: string;
@@ -98,8 +44,7 @@ export class MarketComponent implements OnInit {
             this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                 (item) => {
                     //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
-                    let temp = new PostingCardInfo(listing, item);
-                    this.postings.push(new PostingCardInfo(listing, item));
+                    this.postings.push(new ListingDisplayInfo(listing, item));
                 },
                 (error) => {
                     this.warning = error.error;

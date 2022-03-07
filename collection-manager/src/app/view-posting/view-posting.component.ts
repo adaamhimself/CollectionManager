@@ -1,64 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { Listing } from '../listing';
+import { ListingDisplayInfo } from '../listing-display-info';
 import { ListingService } from '../listing.service';
-
-//This class contains the attributes that the HTML requires to show needed information.
-//It contains attributes from both the listing and the item that is linked to it (item_id).
-//The item must be retrieved ahead of time to be passed in the constructor with the listing.
-class PostingViewInfo {
-    listing_id: String;
-    item_id: String;
-    user_id: String;
-    name: String;
-    description: String;
-    wanted: String;
-    condition: String;
-    price: String;
-    post_date: Date;
-    category: String;
-    location: String;
-    image_path: String;
-    image_alt: String;
-
-    constructor(listing: Listing, item: Item) {
-        //fields from the listing
-        this.listing_id = listing._id;
-        this.user_id = listing.listing_user_id;
-        this.description = listing.listing_description;
-        this.wanted = listing.listing_wanted;
-        this.price = listing.listing_price;
-        this.category = listing.listing_category;
-        this.location = listing.listing_location;
-        this.post_date = listing.listing_date;
-        //fields from the item
-        this.item_id = item._id;
-        //name
-        if (listing.listing_name && listing.listing_name != ""){
-            this.name = listing.listing_name;
-        } else if (item.item_title && item.item_title != ""){
-            this.name = item.item_title;
-        } else {
-            this.name = "No Name";
-        }
-        //condition
-        if (item.condition && item.condition != ""){
-            this.condition = item.condition;
-        } else {
-            this.condition = "N/A";
-        }
-        //image
-        if (Object.keys(item.item_images).length != 0) {
-            this.image_path = item.item_images[0].item_image_path;
-            this.image_alt = item.item_images[0].item_image_text;
-        } else {
-            this.image_path = "../../assets/images/bluelogo.png";
-            this.image_alt = "logo";
-        }
-    }
-}
 
 @Component({
     selector: 'app-view-posting',
@@ -66,13 +12,16 @@ class PostingViewInfo {
     styleUrls: ['./view-posting.component.css']
 })
 export class ViewPostingComponent implements OnInit {
-    public posting: PostingViewInfo = null;
+    public posting: ListingDisplayInfo = null;
     public postType: String = "";
     public warning: string;
+    public chatRoute: String = "/chat";//multiple html locations use this
+
     private listingSub: any = null;
     private itemSub: any = null;
+    private deleteSub: any = null;
 
-    constructor(private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService) { }
+    constructor(private routing: Router, private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService) { }
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
@@ -101,11 +50,10 @@ export class ViewPostingComponent implements OnInit {
                 this.posting = null;
                 //change the displayed post type
                 this.postType = listing.listing_type;
-                if (this.postType == "sale") this.postType = "selling";
-                if (this.postType == "want") this.postType = "wanting";
+                //fix types that are stored with different names
                 if (this.postType == "trade") this.postType = "trading";
                 //convert the listing into PostingViewInfo (passing the listing and item) and set the shown posting
-                this.posting = new PostingViewInfo(listing, item);
+                this.posting = new ListingDisplayInfo(listing, item);
             },
             (error) => {
                 this.warning = error.error;
@@ -117,5 +65,6 @@ export class ViewPostingComponent implements OnInit {
     ngOnDestroy() {
         if (this.listingSub) this.listingSub.unsubscribe();
         if (this.itemSub) this.itemSub.unsubscribe();
+        if (this.deleteSub) this.deleteSub.unsubscribe();
     }
 }

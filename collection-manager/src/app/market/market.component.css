@@ -33,22 +33,26 @@ mat-toolbar {
   outline: none;
 }
 
-.post-type-selector {
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
 .post-type {
-  font-size: 20px;
-  color: white;
   border-bottom: none;
   cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.option {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
 }
 
 .post-type:hover,
-.post-type:active {
+.post-type:active,
+.option:hover,
+.option:active {
   color: #dddddd;
 }
 
@@ -62,4 +66,9 @@ mat-card-content {
 
 mat-card-actions {
   display: inline;
+}
+
+mat-icon{
+    margin-top: -4px;
+    vertical-align: middle;
 }

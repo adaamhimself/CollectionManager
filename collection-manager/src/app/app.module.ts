@@ -6,7 +6,6 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { CollectionsComponent } from './collections/collections.component';
 import { MarketComponent } from './market/market.component';
 import { ManageCollectionsComponent } from './manage-collections/manage-collections.component';
 import { EditCollectionComponent } from './edit-collection/edit-collection.component';
@@ -57,7 +56,6 @@ import { ChatHomeComponent } from './chat-home/chat-home.component';
     AppComponent,
     HomeComponent,
     NotFoundComponent,
-    CollectionsComponent,
     MarketComponent,
     LoginComponent,
     RegisterComponent,

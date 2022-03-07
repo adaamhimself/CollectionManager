@@ -1,10 +1,11 @@
 <div class="row">
-    <h1><a routerLink="/viewcollection/{{collectionDetails._id}}">{{collectionDetails.collection_name}}</a> > View Item > {{ item.item_title }}</h1>
-    <div style="
-      padding-top: 50px;
-      margin-right: 0;
-      margin-left: auto;
-    ">
+  <h1>
+    <a routerLink="/viewcollection/{{ collectionDetails._id }}">{{
+      collectionDetails.collection_name
+    }}</a>
+    > View Item > {{ item.item_title }}
+  </h1>
+  <div style="padding-top: 50px; margin-right: 0; margin-left: auto">
     <button
       (click)="onSubmit()"
       mat-raised-button
@@ -25,124 +26,145 @@
     </button>
     &nbsp;
     <button
-            (click)="onDelete()"
-            mat-raised-button
-            color="warn"
-            type="submit"
-            class="align-self-end ml-auto"
-          >
-            <p
-              style="
-                display: in-line;
-                margin-top: 10px;
-                line-height: 18px;
-                font-size: medium;
-              "
-            >
-              Delete
-            </p>
-        </button>
-        </div>
+      (click)="onDelete()"
+      mat-raised-button
+      color="warn"
+      type="submit"
+      class="align-self-end ml-auto"
+    >
+      <p
+        style="
+          display: in-line;
+          margin-top: 10px;
+          line-height: 18px;
+          font-size: medium;
+        "
+      >
+        Delete
+      </p>
+    </button>
+  </div>
 </div>
-<br>
+<br />
 <div class="row rounded border border-dark box">
-    <div class="col-md-4">
-        <div class="image">
-            <img
-              mat-card-image
-              src='../../assets/images/bluelogo.png'
-              onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-              alt="text"
-              class="img-thumbnail"
-            />
-            <a routerLink="/manageimages/{{item._id}}">Manage Images</a>
-        </div><br>
-        <div class="header">Basic</div><br>
-        <div class="rounded border border-dark">
-            <p class="label">Description</p>
-            <p class="bg-light">{{ item.item_description }}</p><br>
-            <p class="label">Reference Number</p>
-            <p class="bg-light">{{ item._id }}</p><br>
-            <p class="label">Created:</p>
-            <p class="bg-light">{{ item.date_created }}</p><br>
-            <p class="label">Last updated:</p>
-            <p class="bg-light">{{ item.date_last_updated }}</p><br>
-        </div>
+  <div class="col-md-4">
+    <div class="image">
+      <img
+        mat-card-image
+        src="../../assets/images/bluelogo.png"
+        onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+        alt="text"
+        class="img-thumbnail"
+      />
+      <a routerLink="/manageimages/{{ item._id }}">Manage Images</a>
     </div>
-    <div class="col-md-4">
-        <div class="row">
-            <div class="col-lg-5 label">
-                <p>Template</p><br>
-                <p>Title</p><br>
-            </div>
-            <div class="col-lg-7">
-                <p class="bg-light">Template name</p><br>
-                <p class="bg-light">{{ item.item_title }}</p><br>
-            </div>
-        </div>
-        <div class="header">Template name</div>
-        <br>
-        <div class="rounded border border-dark">
-            <div class="row">
-                <div class="col-lg-6 label">
-                    <p>Condition</p><br>
-                    <p>Condition Note</p>
-                </div>
-                <div class="col-lg-6">
-                    <p class="bg-light">{{ item.condition }}</p><br>
-                    <p class="bg-light">{{ item.condition_note }}</p>
-                </div>
-            </div>
-        </div>
+    <br />
+    <div class="header">Basic</div>
+    <br />
+    <div class="rounded border border-dark">
+      <p class="label">Description</p>
+      <p class="bg-light">{{ item.item_description }}</p>
+      <br />
+      <p class="label">Reference Number</p>
+      <p class="bg-light">{{ item._id }}</p>
+      <br />
+      <p class="label">Created:</p>
+      <p class="bg-light">{{ item.date_created }}</p>
+      <br />
+      <p class="label">Last updated:</p>
+      <p class="bg-light">{{ item.date_last_updated }}</p>
+      <br />
     </div>
-    <div class="col-md-4">
-        <div class="header">Storage</div><br>
-        <div class="rounded border border-dark">
-            <div class="row">
-                <div class="col-lg-5 label">
-                    <p>Storage Type</p><br>
-                    <p>Storage Code</p><br>
-                    <p>Storage Location</p>
-                </div>
-                <div class="col-lg-7">
-                    <p class="bg-light">{{ item.storage_type }}</p><br>
-                    <p class="bg-light">{{ item.storage_object_id }}</p><br>
-                    <p class="bg-light">{{ item.storage_location }}</p><br>
-                </div>
-            </div>
-            <br>
-            <p class="label">Note</p>
-            <p class="bg-light">{{ item.storage_note }}</p><br>
-        </div>
-        <br>
-        <p class="header">Other</p>
-        
-        <div class="rounded border border-dark">
-            <div *ngIf="item.custom_fields[0].key != 0">
-              <p class="label">Custom fields</p><br>
-              <div *ngFor="let item of item.custom_fields">
-                <p class="label">{{ item.key }}</p>
-                <p class="bg-light">{{ item._id }}</p><br>
-              </div>
-            </div>
-            <button
-            (click)="addCustomField(item._id)"
-            mat-raised-button
-            color="accent"
-            type="submit"
-            class="align-self-end ml-auto"
-          >
-            <p
-              style="
-                display: inline-flex;
-                margin-top: 10px;
-                line-height: 18px;
-                font-size: larger;
-              "
-            >
-              Add custom field
-            </p>
-          </button>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-lg-5 label">
+        <p>Template</p>
+        <br />
+        <p>Title</p>
+        <br />
+      </div>
+      <div class="col-lg-7">
+        <p class="bg-light">Template name</p>
+        <br />
+        <p class="bg-light">{{ item.item_title }}</p>
+        <br />
+      </div>
     </div>
+    <div class="header">Template name</div>
+    <br />
+    <div class="rounded border border-dark">
+      <div class="row">
+        <div class="col-lg-6 label">
+          <p>Condition</p>
+          <br />
+          <p>Condition Note</p>
+        </div>
+        <div class="col-lg-6">
+          <p class="bg-light">{{ item.condition }}</p>
+          <br />
+          <p class="bg-light">{{ item.condition_note }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="header">Storage</div>
+    <br />
+    <div class="rounded border border-dark">
+      <div class="row">
+        <div class="col-lg-5 label">
+          <p>Storage Type</p>
+          <br />
+          <p>Storage Code</p>
+          <br />
+          <p>Storage Location</p>
+        </div>
+        <div class="col-lg-7">
+          <p class="bg-light">{{ item.storage_type }}</p>
+          <br />
+          <p class="bg-light">{{ item.storage_object_id }}</p>
+          <br />
+          <p class="bg-light">{{ item.storage_location }}</p>
+          <br />
+        </div>
+      </div>
+      <br />
+      <p class="label">Note</p>
+      <p class="bg-light">{{ item.storage_note }}</p>
+      <br />
+    </div>
+    <br />
+    <p class="header">Other</p>
+
+    <div class="rounded border border-dark">
+      <div *ngIf="item.custom_fields[0].key != 0">
+        <p class="label">Custom fields</p>
+        <br />
+        <div *ngFor="let item of item.custom_fields">
+          <p class="label">{{ item.key }}</p>
+          <p class="bg-light">{{ item._id }}</p>
+          <br />
+        </div>
+      </div>
+      <button
+        (click)="addCustomField(item._id)"
+        mat-raised-button
+        color="accent"
+        type="submit"
+        class="align-self-end ml-auto"
+      >
+        <p
+          style="
+            display: inline-flex;
+            margin-top: 10px;
+            line-height: 18px;
+            font-size: larger;
+          "
+        >
+          Add custom field
+        </p>
+      </button>
+    </div>
+  </div>
 </div>

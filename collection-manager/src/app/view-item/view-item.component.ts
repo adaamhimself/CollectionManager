@@ -77,4 +77,12 @@ export class ViewItemComponent implements OnInit {
     }
     });
   }
+  
+  //unsubscribes upon being destroyed
+  ngOnDestroy() {
+    if (this.itemSub) this.itemSub.unsubscribe();
+    if (this.collectionSub) this.collectionSub.unsubscribe();
+    if (this.addFieldSub) this.addFieldSub.unsubscribe();
+    if (this.deleteSub) this.deleteSub.unsubscribe();
+}
 }

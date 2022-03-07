@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <span>Marketplace</span>
-  <span class="post-type-selector">
+  <!--options to show either selling, wanted, and trading listings-->
+  <span>
     <span
       class="post-type type-selected"
       id="type-selling"
@@ -13,6 +14,12 @@
     <span class="post-type" id="type-trading" (click)="showTradingPostings()"
       >Trading</span
     >
+  </span>
+  <!--option to create a new selling, wanted, or trading listing-->
+  <span>
+    <span class="option" routerLink="/createsale"><mat-icon>add</mat-icon>Sale</span>
+    <span class="option" routerLink="/createwanted"><mat-icon>add</mat-icon>Wanted</span>
+    <span class="option" routerLink="/createtrade"><mat-icon>add</mat-icon>Trade</span>
   </span>
 </mat-toolbar>
 <div class="content">
@@ -37,23 +44,24 @@
         <!--Content for selling-->
         <mat-card-content *ngIf="postType == 'selling'">
           <p><strong>Description:</strong> {{ post.description }}</p>
-          <p><strong>Category:</strong> {{ post.category }}</p>
-          <p><strong>Condition:</strong> {{ post.condition }}</p>
+          <p *ngIf="post.category != 'N/A'"><strong>Category:</strong> {{ post.category }}</p>
+          <p *ngIf="post.condition != 'N/A'"><strong>Condition:</strong> {{ post.condition }}</p>
           <p><strong>Price:</strong> ${{ post.price }}</p>
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
         </mat-card-content>
         <!--Content for wanted-->
         <mat-card-content *ngIf="postType == 'wanted'">
           <p><strong>Description:</strong> {{ post.description }}</p>
-          <p><strong>Category:</strong> {{ post.category }}</p>
-          <p><strong>Condition:</strong> {{ post.condition }}</p>
+          <p *ngIf="post.category != 'N/A'"><strong>Category:</strong> {{ post.category }}</p>
+          <p *ngIf="post.condition != 'N/A'"><strong>Condition:</strong> {{ post.condition }}</p>
           <p><strong>Price Range:</strong> ${{ post.price }}</p>
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
         </mat-card-content>
         <!--Content for trading-->
         <mat-card-content *ngIf="postType == 'trading'">
           <p><strong>Description:</strong> {{ post.description }}</p>
-          <p><strong>Condition:</strong> {{ post.condition }}</p>
+          <p *ngIf="post.category != 'N/A'"><strong>Category:</strong> {{ post.category }}</p>
+          <p *ngIf="post.condition != 'N/A'"><strong>Condition:</strong> {{ post.condition }}</p>
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
           <p><strong>Looking for:</strong> {{ post.wanted }}</p>
         </mat-card-content>
