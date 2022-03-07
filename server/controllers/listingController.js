@@ -41,7 +41,7 @@ module.exports.getWantedListingsByCategory = async function(category) {
 
 module.exports.getAllWantedListings = async function() {
     try {
-        let result = await Listing.find({listing_category: "want"});
+        let result = await Listing.find({listing_type: "want"});
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
@@ -50,7 +50,7 @@ module.exports.getAllWantedListings = async function() {
 
 module.exports.getAllTradingListings = async function() {
     try {
-        let result = await Listing.find({listing_category: "trade"});
+        let result = await Listing.find({listing_type: "trade"});
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
@@ -59,7 +59,7 @@ module.exports.getAllTradingListings = async function() {
 
 module.exports.getAllSellingListings = async function() {
     try {
-        let result = await Listing.find({listing_category: "sell"});
+        let result = await Listing.find({listing_type: "sale"});
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
