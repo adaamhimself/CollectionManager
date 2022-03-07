@@ -19,7 +19,7 @@ router.post('/addToConversation/:id', passport.authenticate('jwt', {session: fal
 });
 
 router.delete('/deleteConversation/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await storage.deleteConversation(req.params.id);
+    let response = await chat.deleteConversation(req.params.id);
     res.status(response.code).json(response.message);
 });
 

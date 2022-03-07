@@ -11,7 +11,7 @@ module.exports.getMessagesWithUser = async function(user_id) {
     try {
         user_id = user_id.trim();
         let result = await Chat.find({participants: user_id});
-        // fix
+        
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
