@@ -17,7 +17,7 @@ class PostingViewInfo {
     wanted: String;
     condition: String;
     price: String;
-    post_date: String;
+    post_date: Date;
     category: String;
     location: String;
     image_path: String;
@@ -33,7 +33,7 @@ class PostingViewInfo {
         this.price = listing.listing_price;
         this.category = listing.listing_category;
         this.location = listing.listing_location;
-        this.post_date = Date.now().toString();
+        this.post_date = listing.listing_date;
         //fields from the item
         this.item_id = item._id;
         this.condition = item.condition;
@@ -74,9 +74,10 @@ export class ViewPostingComponent implements OnInit {
 
     //handles showing the retrieved listing
     showPosting(listing: any) {
+        console.log("viewing: ", listing);
         //if nothing was retrieved from the service
         if (!listing) {
-            console.log("Nothing returned from listing service");
+            console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
             return;
         }
         //get the item instance it's linked to (using the field item_id)
