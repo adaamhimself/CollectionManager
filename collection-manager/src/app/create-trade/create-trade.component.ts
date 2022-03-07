@@ -4,8 +4,8 @@ import { Collection } from '../Collection';
 import { CollectionService } from '../collection.service';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
-import { Listing } from '../listing';
 import { ListingService } from '../listing.service';
+import { NewListing } from '../newListing';
 
 @Component({
   selector: 'app-create-trade',
@@ -13,8 +13,7 @@ import { ListingService } from '../listing.service';
   styleUrls: ['./create-trade.component.css'],
 })
 export class CreateTradeComponent implements OnInit {
-  public tradeModel: Listing = {
-    _id: '',
+  public tradeModel: NewListing = {
     item_id: '',
     listing_name: '',
     listing_user_id: '',

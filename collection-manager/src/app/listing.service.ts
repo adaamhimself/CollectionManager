@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Listing } from './listing';
+import { NewListing } from './newListing';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class ListingService {
     return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getAllSellingListings/`);
   }
 
-  createListing(newListing: Listing): Observable<any> {
+  createListing(newListing: NewListing): Observable<any> {
     return this.http.post<any>(`${environment.apiBaseUrl}listing/createListing`, newListing);
   }
 
