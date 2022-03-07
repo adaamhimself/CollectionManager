@@ -1,6 +1,11 @@
 mat-toolbar {
   justify-content: space-between;
-  min-width: 500px;
+  min-width: 700px;
+}
+
+.create-toolbar {
+    color: white;
+    background-color: white;
 }
 
 .content {
@@ -33,7 +38,7 @@ mat-toolbar {
   outline: none;
 }
 
-.post-type {
+.selector {
   border-bottom: none;
   cursor: pointer;
   padding-left: 5px;
@@ -42,17 +47,20 @@ mat-toolbar {
   margin-right: 5px;
 }
 
-.option {
+.create-option {
   cursor: pointer;
-  padding-left: 5px;
-  padding-right: 5px;
+  background-color: rgb(25,118,210);
+  margin: 0;
+  padding: 5px;
+  min-width: 220px;
+  text-align: center;
   vertical-align: top;
 }
 
-.post-type:hover,
-.post-type:active,
-.option:hover,
-.option:active {
+.selector:hover,
+.selector:active,
+.create-option:hover,
+.create-option:active {
   color: #dddddd;
 }
 

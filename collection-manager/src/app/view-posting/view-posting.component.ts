@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Item } from '../Item';
 import { ItemService } from '../item.service';
-import { Listing } from '../listing';
 import { ListingDisplayInfo } from '../listing-display-info';
 import { ListingService } from '../listing.service';
 

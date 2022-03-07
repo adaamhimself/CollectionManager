@@ -2,25 +2,28 @@
   <span>Marketplace</span>
   <!--options to show either selling, wanted, and trading listings-->
   <span>
+    <span class="selector" id="option-mine" (click)="showMyPostings()"
+      >Mine</span
+    >
     <span
-      class="post-type type-selected"
-      id="type-selling"
+      class="selector type-selected"
+      id="option-selling"
       (click)="showSellingPostings()"
       >Selling</span
     >
-    <span class="post-type" id="type-wanted" (click)="showWantedPostings()"
+    <span class="selector" id="option-wanted" (click)="showWantedPostings()"
       >Wanted</span
     >
-    <span class="post-type" id="type-trading" (click)="showTradingPostings()"
+    <span class="selector" id="option-trading" (click)="showTradingPostings()"
       >Trading</span
     >
   </span>
-  <!--option to create a new selling, wanted, or trading listing-->
-  <span>
-    <span class="option" routerLink="/createsale"><mat-icon>add</mat-icon>Sale</span>
-    <span class="option" routerLink="/createwanted"><mat-icon>add</mat-icon>Wanted</span>
-    <span class="option" routerLink="/createtrade"><mat-icon>add</mat-icon>Trade</span>
-  </span>
+</mat-toolbar>
+<!--options to create a new selling, wanted, or trading listing-->
+<mat-toolbar class="create-toolbar">
+    <span class="create-option" routerLink="/createsale"><mat-icon>add</mat-icon>New Sale Listing</span>
+    <span class="create-option" routerLink="/createwanted"><mat-icon>add</mat-icon>New Wanted Listing</span>
+    <span class="create-option" routerLink="/createtrade"><mat-icon>add</mat-icon>New Trade Listing</span>
 </mat-toolbar>
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
@@ -65,6 +68,7 @@
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
           <p><strong>Looking for:</strong> {{ post.wanted }}</p>
         </mat-card-content>
+        <!--view button-->
         <mat-card-actions>
           <button
             mat-raised-button

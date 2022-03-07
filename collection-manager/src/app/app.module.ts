@@ -75,7 +75,7 @@ import { ChatHomeComponent } from './chat-home/chat-home.component';
     CreateTradeComponent,
     CreateWantedComponent,
     ViewPostingComponent,
-    ChatHomeComponent
+    ChatHomeComponent,
   ],
   //included modules
   imports: [
