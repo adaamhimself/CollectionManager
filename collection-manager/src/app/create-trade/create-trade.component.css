@@ -10,7 +10,7 @@
 }
 
 .selects {
-  margin-top: 20px;
+  margin-top: 18px;
   width: 100%;
 }
 
@@ -52,6 +52,10 @@
   padding-left: -200px;
 }
 
+.labelContent {
+  min-width: 90px;
+}
+
 .labelContent label {
   color: black;
   display: flex;
@@ -60,12 +64,16 @@
   font-weight: bold;
 }
 
+#collName {
+  padding-top: 28px;
+}
+
 #itemName {
   padding-top: 25px;
 }
 
 #description {
-  padding-top: 30px;
+  padding-top: 29px;
 }
 
 #condition {
@@ -73,7 +81,7 @@
 }
 
 #lookingFor {
-  padding-top: 30px;
+  padding-top: 29px;
 }
 
 #createButton {
