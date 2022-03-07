@@ -1,8 +1,3 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const express = require('express');
-const app = express();
-
 const Chat = require('../models/chatModel');
 const User = require('../models/userModel');
 
