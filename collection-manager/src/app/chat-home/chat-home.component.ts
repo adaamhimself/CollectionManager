@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Message } from '../Message';
+import { Replies } from '../Replies';
 import { ConversationService } from '../conversation.service';
 
 @Component({
@@ -11,12 +12,20 @@ import { ConversationService } from '../conversation.service';
 export class ChatHomeComponent implements OnInit {
 
   conversations: Array<Message> = [];
+  replies: Array<Replies> = [];
   public warning: string;
+
+  // subscriptions
   private messageSub: any;
+  private sendsub: any;
+  private repliesSub: any;
+
   userMessage: string;
   messages: any;
   author: any;
   author_id: any;
+  current_conversation_id: any;
+  reply_body: any;
 
 
   constructor(private routing: Router, private route: ActivatedRoute, private conversationService: ConversationService) { }
@@ -28,12 +37,36 @@ export class ChatHomeComponent implements OnInit {
         this.messages = this.conversations[0].messages;
         this.author = this.conversations[0].username;
         this.author_id = this.conversations[0].other_participant_id;
+        this.current_conversation_id = this.conversations[0]._id;
+        this.loadMessages(this.conversations[0].other_participant_id);
       },
       (error) => {
         this.warning = error.error;
       }
     );
 
+  }
+
+  sendMessage(): void {
+    this.sendsub = this.conversationService.addToConversation(this.current_conversation_id, this.reply_body).subscribe(
+      (response) => {
+
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
+  }
+
+  loadMessages(id): void {
+    this.repliesSub = this.conversationService.getMessagesWithUser(id).subscribe(
+      (response) => {
+        this.replies = response.messages;
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
   }
 
   onDelete(): void {

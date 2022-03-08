@@ -5,8 +5,8 @@ module.exports.getMessagesWithUser = async function(user_id) {
     // returns all the messages between the requestor and the other user
     try {
         user_id = user_id.trim();
-        let result = await Chat.find({participants: user_id});
-        return {code: 200, message: result};
+        let result = await Chat.find({participants: user_id}, {messages: 1, _id:0});
+        return {code: 200, message: result[0]};
     } catch(error) {
         return {code: 400, message: error};
     }
@@ -29,7 +29,7 @@ module.exports.getConversations = async function(user_id) {
                 other_participant_id = username._id;
                 username = username.username;
             }
-            conversation.push({username: username, other_participant_id: other_participant_id, _id: result[i]._id, messages: result[i].messages});
+            conversation.push({username: username, other_participant_id: other_participant_id, _id: result[i]._id});
         }
         return {code: 200, message: conversation};
     } catch(error) {
@@ -40,7 +40,7 @@ module.exports.getConversations = async function(user_id) {
 
 module.exports.addToCoversation = async function(user_id, other_user_id, newMessage) {
     try {
-        let found = await Chat.find({participants: user_id, participants: other_user_id});
+        let found = await Chat.find({participants: {$all: [user_id, other_user_id]}});
         if (Object.keys(found).length != 0) {
             let message = {
                 author: user_id,
