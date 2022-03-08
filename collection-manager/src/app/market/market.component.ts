@@ -46,20 +46,17 @@ export class MarketComponent implements OnInit {
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                     (item) => {
                         //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
-                        if (item) this.postings.push(new ListingDisplayInfo(listing, item));
+                        this.postings.push(new ListingDisplayInfo(listing, item));
                     },
                     (error) => {
-                        console.log("Error retrieving item with ID:", listing.item_id);
                         this.warning = error.error;
                     }
                 );
             } else {
+                //if there's no linked image, send an empty image
                 let temp = new Item;
-
-
                 this.postings.push(new ListingDisplayInfo(listing, temp));
             }
-
         });
     }
 

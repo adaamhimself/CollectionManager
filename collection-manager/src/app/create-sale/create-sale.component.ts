@@ -95,4 +95,6 @@ export class CreateSaleComponent implements OnInit {
   itemPicked(): void {
     this.tradeModel.item_id = this.selectedItem._id;
   }
+
+  
 }

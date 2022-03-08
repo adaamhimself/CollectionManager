@@ -3,8 +3,7 @@
 <h1 *ngIf="postType == 'trading'">Trade Posting</h1>
 
 <div *ngIf="posting" class="rounded border border-dark">
-  <!--Content for sale posting-->
-  <div *ngIf="postType == 'selling'" class="row">
+  <div class="row">
     <div class="col-md-4">
       <img
         mat-card-image
@@ -14,8 +13,9 @@
         alt="{{ posting.image_alt }}"
       />
     </div>
-    <div class="col-md-4">
-      <h2 style="margin-right: auto">{{ posting.name }}</h2>
+    <!--Content for sale posting-->
+    <div class="col" *ngIf="posting.type == 'selling'">
+      <h1 style="margin-right: auto">{{ posting.name }}</h1>
       <p><strong>Description:</strong> {{ posting.description }}</p>
       <p><strong>Category:</strong> {{ posting.category }}</p>
       <p><strong>Condition:</strong> {{ posting.condition }}</p>
@@ -23,31 +23,20 @@
       <p><strong>Location:</strong> {{ posting.location }}</p>
       <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
     </div>
-  </div>
-  <!--Content for wanted posting-->
-  <div *ngIf="postType == 'wanted'" class="row">
-    <h2 style="margin-right: auto">{{ posting.name }}</h2>
-    <p><strong>Description:</strong> {{ posting.description }}</p>
-    <p><strong>Category:</strong> {{ posting.category }}</p>
-    <p><strong>Condition:</strong> {{ posting.condition }}</p>
-    <p><strong>Price Range:</strong> ${{ posting.price }}</p>
-    <p><strong>Location:</strong> {{ posting.location }}</p>
-    <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
-  </div>
-  <!--Content for trade posting-->
-  <div *ngIf="postType == 'trading'" class="row">
-    <div class="col-md-4">
-      <img
-        mat-card-image
-        src="{{ posting.image_path }}"
-        class="posting-image"
-        onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-        alt="{{ posting.image_alt }}"
-      />
+    <!--Content for wanted posting-->
+    <div class="col" *ngIf="posting.type == 'wanted'">
+        <h1 style="margin-right: auto">{{ posting.name }}</h1>
+        <p><strong>Description:</strong> {{ posting.description }}</p>
+        <p><strong>Category:</strong> {{ posting.category }}</p>
+        <p><strong>Condition:</strong> {{ posting.condition }}</p>
+        <p><strong>Price Range:</strong> ${{ posting.price }}</p>
+        <p><strong>Location:</strong> {{ posting.location }}</p>
+        <p><strong>Date posted:</strong> {{ posting.post_date }}</p>
     </div>
-    <div class="col-md-4">
-      <h2 style="margin-right: auto">{{ posting.name }}</h2>
-      <p><strong>Description:</strong> {{ posting.description }}</p>
+    <!--Content for trade posting-->
+    <div class="col" *ngIf="posting.type == 'trading'">
+        <h1 style="margin-right: auto">{{ posting.name }}</h1>
+        <p><strong>Description:</strong> {{ posting.description }}</p>
       <p><strong>Category:</strong> {{ posting.category }}</p>
       <p><strong>Condition:</strong> {{ posting.condition }}</p>
       <p><strong>Location:</strong> {{ posting.location }}</p>

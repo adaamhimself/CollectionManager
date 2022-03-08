@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { ListingDisplayInfo } from '../listing-display-info';
 import { ListingService } from '../listing.service';
@@ -17,7 +18,6 @@ export class ViewPostingComponent implements OnInit {
 
     private listingSub: any = null;
     private itemSub: any = null;
-    private deleteSub: any = null;
 
     constructor(private routing: Router, private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService) { }
 
@@ -36,34 +36,38 @@ export class ViewPostingComponent implements OnInit {
     //handles showing the retrieved listing
     showPosting(listing: any) {
         console.log("viewing: ", listing);
+        this.posting = null;//clear the displayed posting
+        //fix types that are stored with different names
+        if (listing.listing_type == "sale") listing.listing_type = "selling";
+        if (listing.listing_type == "trade") listing.listing_type = "trading";
+        //change the displayed post type
+        this.postType = listing.listing_type;
         //if nothing was retrieved from the service
         if (!listing) {
             console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
             return;
         }
-        //get the item instance it's linked to (using the field item_id)
-        this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
-            (item) => {
-                //clear the displayed posting
-                this.posting = null;
-                //fix types that are stored with different names
-                if (listing.listing_type == "sale") listing.listing_type = "selling";
-                if (listing.listing_type == "trade") listing.listing_type = "trading";
-                //change the displayed post type
-                this.postType = listing.listing_type;
-                //convert the listing into PostingViewInfo (passing the listing and item) and set the shown posting
-                this.posting = new ListingDisplayInfo(listing, item);
-            },
-            (error) => {
-                this.warning = error.error;
-            }
-        );
+        //1. get the item instance it's linked to (using the field item_id)
+        if (listing.item_id) {
+            this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
+                (item) => {
+                    //2. convert the listing into PostingViewInfo (passing the listing and item) and set the shown posting
+                    this.posting = new ListingDisplayInfo(listing, item);
+                },
+                (error) => {
+                    this.warning = error.error;
+                }
+            );
+        } else {
+            //if there's no linked image, send an empty image
+            let temp = new Item;
+            this.posting = new ListingDisplayInfo(listing, temp);
+        }
     }
 
     //unsubscribes upon being destroyed
     ngOnDestroy() {
         if (this.listingSub) this.listingSub.unsubscribe();
         if (this.itemSub) this.itemSub.unsubscribe();
-        if (this.deleteSub) this.deleteSub.unsubscribe();
     }
 }
