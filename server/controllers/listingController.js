@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Listing = require('../models/listingTemplateModel');
+const Listing = require('../models/listingModel');
 
 module.exports.getListing = async function(id) {
     try {
