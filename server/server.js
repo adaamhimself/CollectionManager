@@ -30,6 +30,9 @@ app.use('/api/message', chatRouter);
 const listingRouter = require('./routes/listingRoutes');
 app.use('/api/listing', listingRouter);
 
+const articleRouter = require('./routes/postedArticleRoutes');
+app.use('/api/article', articleRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database

@@ -13,13 +13,13 @@ router.get('/getListOfArticles', passport.authenticate('jwt', {session: false}),
     res.status(response.code).json(response.message);
 });
 
-router.post('/postArticle', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await Article.postArticle(req.body);
+router.post('/createArticle', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await Article.createArticle(req.body);
     res.status(response.code).json(response.message);
 });
 
-router.put('/editArticlePost', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await Article.editArticlePost(req.body);
+router.put('/editArticlePost/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await Article.editArticlePost(req.params.id, req.body);
     res.status(response.code).json(response.message);
 });
 
