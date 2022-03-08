@@ -50,7 +50,8 @@ export class ChatHomeComponent implements OnInit {
   sendMessage(): void {
     this.sendsub = this.conversationService.addToConversation(this.current_conversation_id, this.reply_body).subscribe(
       (response) => {
-
+        this.reply_body = "";
+        this.loadMessages(this.current_conversation_id);
       },
       (error) => {
         this.warning = error.error;
@@ -59,6 +60,7 @@ export class ChatHomeComponent implements OnInit {
   }
 
   loadMessages(id): void {
+    this.current_conversation_id = id;
     this.repliesSub = this.conversationService.getMessagesWithUser(id).subscribe(
       (response) => {
         this.replies = response.messages;

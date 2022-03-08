@@ -18,6 +18,7 @@ module.exports.getConversations = async function(user_id) {
         let result = await Chat.find({participants: user_id});
         let conversation = [];
         let other_participant_id;
+        let username = "";
         for (i = 0; i < result.length; i++) {
             if (result[i].participants[0] === user_id) {
                 username = await User.findById(result[i].participants[1].trim());
@@ -33,6 +34,7 @@ module.exports.getConversations = async function(user_id) {
         }
         return {code: 200, message: conversation};
     } catch(error) {
+        console.log(error);
         return {code: 400, message: error};
     }
 }
@@ -46,7 +48,7 @@ module.exports.addToCoversation = async function(user_id, other_user_id, newMess
                 author: user_id,
                 body: newMessage.body
             }
-            let result = await Chat.updateOne({participants: user_id, participants: other_user_id}, {$push: {messages: message}});
+            let result = await Chat.updateOne({participants: {$all: [user_id, other_user_id]}}, {$push: {messages: message}});
             return {code: 201, message: "Message added"};
         } else {
             let newConversation = new Chat();
