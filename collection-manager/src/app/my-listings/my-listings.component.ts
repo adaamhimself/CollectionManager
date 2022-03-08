@@ -35,7 +35,6 @@ export class MyListingsComponent implements OnInit {
             console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
             return;
         }
-        console.log(this.postings);
         //for each market posting
         listings.forEach(listing => {
             //fix types that are stored with different names

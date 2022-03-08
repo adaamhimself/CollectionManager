@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { ListingDisplayInfo } from '../listing-display-info';
 import { ListingService } from '../listing.service';
@@ -26,6 +27,7 @@ export class MarketComponent implements OnInit {
     //changes the posting type that is shown
     //called by showSellingPostings, showWantedPostings, and showTradingPostings
     showPostings(listings: any, type: String): void {
+        console.log(listings);
         this.postings = [];//clear the displayed postings
         this.postType = type;//change type of postings being displayed
         //add class "type-selected" to selected posting type only (they all must also have class selector)
@@ -37,20 +39,27 @@ export class MarketComponent implements OnInit {
             console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
             return;
         }
-        console.log(this.postings);
         //for each market posting
         listings.forEach(listing => {
             //1. get the item instance it's linked to (using the field item_id)
-            this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
-                (item) => {
-                    //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
-                    if (item) this.postings.push(new ListingDisplayInfo(listing, item));
-                },
-                (error) => {
-                    console.log("Error retrieving item with ID:", listing.item_id);
-                    this.warning = error.error;
-                }
-            );
+            if (listing.item_id) {
+                this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
+                    (item) => {
+                        //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
+                        if (item) this.postings.push(new ListingDisplayInfo(listing, item));
+                    },
+                    (error) => {
+                        console.log("Error retrieving item with ID:", listing.item_id);
+                        this.warning = error.error;
+                    }
+                );
+            } else {
+                let temp = new Item;
+
+
+                this.postings.push(new ListingDisplayInfo(listing, temp));
+            }
+
         });
     }
 

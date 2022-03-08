@@ -18,10 +18,30 @@ export class Item {
     "date_last_updated": Date;
     "custom_fields": [{
         "key": Number,
+        "value": String,
         "_id": String
     }];
     "item_images": [{
         "item_image_path": String,
         "item_image_text": String,
-    }] 
+    }];
+
+    constructor() {
+        this._id = "";
+        this.containing_collection_id = "";
+        this.item_user_id = "";
+        this.item_title = "";
+        this.item_description = "";
+        this.template_object_id = "";
+        this.template_name = "";
+        this.condition = "";
+        this.condition_note = "";
+        this.storage_object_id = "";
+        this.storage_type = "";
+        this.storage_location = "";
+        this.date_created = new Date;
+        this.date_last_updated = new Date;
+        this.custom_fields = [{value: "0", key: 0, _id: ""}];
+        this.item_images = [{item_image_path: "", item_image_text: ""}];
+    }
 }
