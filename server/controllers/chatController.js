@@ -17,16 +17,19 @@ module.exports.getConversations = async function(user_id) {
     try {
         let result = await Chat.find({participants: user_id});
         let conversation = [];
+        let other_participant_id;
         for (i = 0; i < result.length; i++) {
             if (result[i].participants[0] === user_id) {
                 username = await User.findById(result[i].participants[1].trim());
+                other_participant_id = username._id;
                 username = username.username;
             } 
             else if (result[i].participants[1] === user_id) {
                 username = await User.findById(result[i].participants[0].trim());
+                other_participant_id = username._id;
                 username = username.username;
             }
-            conversation.push({username: username, _id: result[i]._id, messages: result[i].messages});
+            conversation.push({username: username, other_participant_id: other_participant_id, _id: result[i]._id, messages: result[i].messages});
         }
         return {code: 200, message: conversation};
     } catch(error) {

@@ -1,5 +1,6 @@
 export class Message {
-    "username": [String];
+    "username": String;
+    "other_participant_id": String;
     "messages": [
         {
             "author": String;

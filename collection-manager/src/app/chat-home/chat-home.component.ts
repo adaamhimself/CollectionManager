@@ -10,36 +10,33 @@ import { ConversationService } from '../conversation.service';
 })
 export class ChatHomeComponent implements OnInit {
 
-  message: Array<Message> = []
+  conversations: Array<Message> = [];
   public warning: string;
   private messageSub: any;
   userMessage: string;
+  messages: any;
+  author: any;
+  author_id: any;
+
 
   constructor(private routing: Router, private route: ActivatedRoute, private conversationService: ConversationService) { }
 
   ngOnInit(): void {
     this.messageSub = this.conversationService.getConversationList().subscribe(
       (response) => {
-        this.message = response;
+        this.conversations = response;
+        this.messages = this.conversations[0].messages;
+        this.author = this.conversations[0].username;
+        this.author_id = this.conversations[0].other_participant_id;
       },
       (error) => {
         this.warning = error.error;
       }
     );
+
   }
 
-  // onSubmit(): void {
-  //   this.messageSub = this.conversationService.addToConversation(, ).subscribe(
-  //     response => {
-  //         console.log(response);
-  //     }, error => {
-  //         this.warning = error.error;
-  //     }
-  // );
-  // this.routing.navigate(['/managecollections']);
-  // }
-
   onDelete(): void {
-
+    this.messageSub.unsubscribe();
   }
 }
