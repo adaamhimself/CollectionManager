@@ -29,7 +29,6 @@ export class MarketComponent implements OnInit {
         this.postings = [];//clear the displayed postings
         this.postType = type;//change type of postings being displayed
         //add class "type-selected" to selected posting type only (they all must also have class selector)
-        document.getElementById("option-mine").className = `selector ${(type == "mine") ? " type-selected" : ""}`;
         document.getElementById("option-selling").className = `selector ${(type == "selling") ? " type-selected" : ""}`;
         document.getElementById("option-wanted").className = `selector ${(type == "wanted") ? " type-selected" : ""}`;
         document.getElementById("option-trading").className = `selector ${(type == "trading") ? " type-selected" : ""}`;
@@ -45,26 +44,14 @@ export class MarketComponent implements OnInit {
             this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                 (item) => {
                     //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
-                    this.postings.push(new ListingDisplayInfo(listing, item));
+                    if (item) this.postings.push(new ListingDisplayInfo(listing, item));
                 },
                 (error) => {
+                    console.log("Error retrieving item with ID:", listing.item_id);
                     this.warning = error.error;
                 }
             );
         });
-    }
-
-    //called when the user clicks "Mine" (span element wih id option-mine)
-    showMyPostings(): void {
-        //retrieve all postings of the logged-in user
-        this.listingSub = this.listingService.getMyListings().subscribe(
-            (response) => {
-                this.showPostings(response, "mine");
-            },
-            (error) => {
-                this.warning = error.error;
-            }
-        )
     }
 
     //called when the user clicks "Selling" (span element with id option-selling)

@@ -1,35 +1,5 @@
 <mat-toolbar color="primary">
-  <span>Marketplace</span>
-  <!--options to show either selling, wanted, and trading listings-->
-  <span>
-    <span
-      class="selector type-selected"
-      id="option-selling"
-      (click)="showSellingPostings()"
-      >Selling</span
-    >
-    <span class="selector" id="option-wanted" (click)="showWantedPostings()"
-      >Wanted</span
-    >
-    <span class="selector" id="option-trading" (click)="showTradingPostings()"
-      >Trading</span
-    >
-  </span>
-</mat-toolbar>
-<!--options to create a new selling, wanted, or trading listing-->
-<mat-toolbar class="create-toolbar">
-  <span class="create-option" routerLink="/mylistings"
-    ><mat-icon>collections</mat-icon>My Listings</span
-  >
-  <span class="create-option" routerLink="/createsale"
-    ><mat-icon>add</mat-icon>New Sale</span
-  >
-  <span class="create-option" routerLink="/createwanted"
-    ><mat-icon>add</mat-icon>New Wanted</span
-  >
-  <span class="create-option" routerLink="/createtrade"
-    ><mat-icon>add</mat-icon>New Trade</span
-  >
+  <span>My Market Listings</span>
 </mat-toolbar>
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
@@ -51,7 +21,8 @@
           alt="{{ post.image_alt }}"
         />
         <!--Content for selling-->
-        <mat-card-content *ngIf="postType == 'selling'">
+        <mat-card-content *ngIf="post.type == 'selling'">
+          <p><strong>Type:</strong> {{ post.type }}</p>
           <p><strong>Description:</strong> {{ post.description }}</p>
           <p *ngIf="post.category != 'N/A'">
             <strong>Category:</strong> {{ post.category }}
@@ -63,7 +34,8 @@
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
         </mat-card-content>
         <!--Content for wanted-->
-        <mat-card-content *ngIf="postType == 'wanted'">
+        <mat-card-content *ngIf="post.type == 'wanted'">
+          <p><strong>Type:</strong> {{ post.type }}</p>
           <p><strong>Description:</strong> {{ post.description }}</p>
           <p *ngIf="post.category != 'N/A'">
             <strong>Category:</strong> {{ post.category }}
@@ -75,7 +47,8 @@
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
         </mat-card-content>
         <!--Content for trading-->
-        <mat-card-content *ngIf="postType == 'trading'">
+        <mat-card-content *ngIf="post.type == 'trading'">
+          <p><strong>Type:</strong> {{ post.type }}</p>
           <p><strong>Description:</strong> {{ post.description }}</p>
           <p *ngIf="post.category != 'N/A'">
             <strong>Category:</strong> {{ post.category }}
@@ -86,19 +59,7 @@
           <p><strong>Date posted:</strong> {{ post.post_date }}</p>
           <p><strong>Looking for:</strong> {{ post.wanted }}</p>
         </mat-card-content>
-        <!--view button-->
-        <mat-card-actions>
-          <button
-            mat-raised-button
-            color="primary"
-            id="viewButton"
-            routerLink="/viewposting/{{ post.listing_id }}"
-          >
-            View Details
-          </button>
-        </mat-card-actions>
       </mat-card>
     </div>
-    <h2 *ngIf="postings.length == 0">No postings of this type!</h2>
   </div>
 </div>

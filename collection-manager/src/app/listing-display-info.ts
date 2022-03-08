@@ -9,6 +9,7 @@ export class ListingDisplayInfo {
     listing_id: String;
     item_id: String;
     user_id: String;
+    type: String;
     name: String;
     description: String;
     wanted: String;
@@ -26,7 +27,7 @@ export class ListingDisplayInfo {
         this.user_id = listing.listing_user_id;
         this.item_id = item._id;
         //misc fields
-        this.wanted = listing.listing_wanted;
+        this.type = listing.listing_type;
         this.price = listing.listing_price;
         this.post_date = listing.listing_date;
         //name
@@ -60,6 +61,12 @@ export class ListingDisplayInfo {
             this.location = listing.listing_location;
         } else {
             this.location = "N/A";
+        }
+        //wanted
+        if (listing.listing_wanted && listing.listing_wanted != ""){
+            this.wanted = listing.listing_wanted;
+        } else {
+            this.wanted = "N/A";
         }
         //image
         if (Object.keys(item.item_images).length != 0) {

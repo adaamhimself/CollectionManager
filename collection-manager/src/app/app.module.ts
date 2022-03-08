@@ -49,6 +49,7 @@ import { CreateTradeComponent } from './create-trade/create-trade.component';
 import { CreateWantedComponent } from './create-wanted/create-wanted.component';
 import { ViewPostingComponent } from './view-posting/view-posting.component';
 import { ChatHomeComponent } from './chat-home/chat-home.component';
+import { MyListingsComponent } from './my-listings/my-listings.component';
 
 @NgModule({
   //components (pages)
@@ -76,6 +77,7 @@ import { ChatHomeComponent } from './chat-home/chat-home.component';
     CreateWantedComponent,
     ViewPostingComponent,
     ChatHomeComponent,
+    MyListingsComponent,
   ],
   //included modules
   imports: [

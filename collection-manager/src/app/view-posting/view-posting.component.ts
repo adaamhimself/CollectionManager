@@ -46,10 +46,11 @@ export class ViewPostingComponent implements OnInit {
             (item) => {
                 //clear the displayed posting
                 this.posting = null;
+                //fix types that are stored with different names
+                if (listing.listing_type == "sale") listing.listing_type = "selling";
+                if (listing.listing_type == "trade") listing.listing_type = "trading";
                 //change the displayed post type
                 this.postType = listing.listing_type;
-                //fix types that are stored with different names
-                if (this.postType == "trade") this.postType = "trading";
                 //convert the listing into PostingViewInfo (passing the listing and item) and set the shown posting
                 this.posting = new ListingDisplayInfo(listing, item);
             },
