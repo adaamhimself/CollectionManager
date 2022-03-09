@@ -10,6 +10,9 @@ import { AuthService } from './auth.service';
 export class AppComponent {
     title = 'Collection Manager';
     token: any | null = null;
+    role: string;
+    roleSub: any;
+
     constructor(private auth: AuthService, private router: Router) { }
     logout() {
         //clear the token
@@ -24,5 +27,11 @@ export class AppComponent {
                 this.token = this.auth.readToken();
             }
         });
+        this.roleSub = this.auth.isAdministrator().subscribe(
+            (response) => {
+                this.role = response;
+                console.log(this.role);
+            }
+        );
     }
 }

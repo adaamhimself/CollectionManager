@@ -16,6 +16,8 @@
     <a class="nav-item" *ngIf="token" [routerLink]="['/chat']"
       ><span>Chat</span></a
     >
+
+    <a class="nav-item" *ngIf="token && role=='administrator'"><span>Dev</span></a>
     
   </div>
 

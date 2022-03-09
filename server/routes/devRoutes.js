@@ -14,4 +14,8 @@ router.get('/getListOfUsers', validate.isAdmin, passport.authenticate('jwt', {se
     res.status(response.code).json(response.message);
 });
 
+router.get('/checkRole', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    res.status(200).json(req.user.role);
+});
+
 module.exports = router;

@@ -52,4 +52,8 @@ export class AuthService {
     localStorage.clear();
   }
 
+  isAdministrator(): Observable<any> {
+    return this.http.get<string>(environment.apiBaseUrl+"dev/checkRole");
+  }
+
 }
