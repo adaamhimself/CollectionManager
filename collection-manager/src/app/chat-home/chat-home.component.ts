@@ -26,6 +26,7 @@ export class ChatHomeComponent implements OnInit {
   author_id: any;
   current_conversation_id: any;
   reply_body: any;
+  other_participant_id: any;
 
 
   constructor(private routing: Router, private route: ActivatedRoute, private conversationService: ConversationService) { }
@@ -33,25 +34,27 @@ export class ChatHomeComponent implements OnInit {
   ngOnInit(): void {
     this.messageSub = this.conversationService.getConversationList().subscribe(
       (response) => {
+        console.log(this.conversations);
         this.conversations = response;
-        this.messages = this.conversations[0].messages;
         this.author = this.conversations[0].username;
         this.author_id = this.conversations[0].other_participant_id;
         this.current_conversation_id = this.conversations[0]._id;
-        this.loadMessages(this.conversations[0].other_participant_id);
+        this.other_participant_id = this.conversations[0].other_participant_id;
+        this.loadMessages(this.conversations[0]._id, this.author, this.other_participant_id);
       },
       (error) => {
         this.warning = error.error;
+        console.log(error);
       }
     );
 
   }
 
   sendMessage(): void {
-    this.sendsub = this.conversationService.addToConversation(this.current_conversation_id, this.reply_body).subscribe(
+    this.sendsub = this.conversationService.addToConversation(this.other_participant_id, this.reply_body).subscribe(
       (response) => {
         this.reply_body = "";
-        this.loadMessages(this.current_conversation_id);
+        this.loadMessages(this.current_conversation_id, this.author, this.other_participant_id);
       },
       (error) => {
         this.warning = error.error;
@@ -59,9 +62,10 @@ export class ChatHomeComponent implements OnInit {
     );
   }
 
-  loadMessages(id): void {
+  loadMessages(id, username, other_participant): void {
     this.current_conversation_id = id;
-    this.repliesSub = this.conversationService.getMessagesWithUser(id).subscribe(
+    this.author = username;
+    this.repliesSub = this.conversationService.getMessagesWithUser(other_participant).subscribe(
       (response) => {
         this.replies = response.messages;
       },

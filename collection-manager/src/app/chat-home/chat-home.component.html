@@ -24,7 +24,7 @@
                     <h2 class="ml-3">Users</h2>
 
                     <div *ngFor="let conversation of conversations" class="position-relative">
-                        <a class="list-group-item list-group-item-action border-0" (click)="loadMessages(conversation.other_participant_id)">
+                        <a class="list-group-item list-group-item-action border-0" (click)="loadMessages(conversation._id, conversation.username, conversation.other_participant_id)">
 						    <div class="d-flex align-items-start">
 							    <div >
 								    {{ conversation.username }}

@@ -57,6 +57,7 @@ module.exports.login = async function(data) {
     if (data.username && data.password) {
         data.username = String(data.username).toLowerCase();
         var found = await User.findOne({username : data.username});
+        if (found === null) { return {code: 400, message: "User not found"};}
         if (await bcrypt.compare(data.password, found.password)) {
             var payload = {
                 _id: found._id,

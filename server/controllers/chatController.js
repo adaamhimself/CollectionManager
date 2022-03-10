@@ -16,23 +16,38 @@ module.exports.getConversations = async function(user_id) {
     // returns a list of conversation ids and the name of the other participant
     try {
         let result = await Chat.find({participants: user_id});
-        let conversation = [];
-        let other_participant_id;
-        let username = "";
-        for (i = 0; i < result.length; i++) {
-            if (result[i].participants[0] === user_id) {
-                username = await User.findById(result[i].participants[1].trim());
-                other_participant_id = username._id;
-                username = username.username;
-            } 
-            else if (result[i].participants[1] === user_id) {
-                username = await User.findById(result[i].participants[0].trim());
-                other_participant_id = username._id;
-                username = username.username;
+        let conversations = [];
+        
+        // iterate through results array
+        for (i=0; i < result.length; i++) {
+            let conversation = {};
+            conversation._id = result[i]._id;
+            conversations.push(conversation);
+            if (result[0].participants[0] === user_id) {
+                let username = await User.findById(result[i].participants[1].trim());
+                conversation.username = username.username;
+                conversation.other_participant_id = username._id.toString();
+            } else if (result[0].participants[1] === user_id) {
+                let username = await User.findById(result[i].participants[0].trim());
+                conversation.username = username.username;
+                conversation.other_participant_id = username._id.toString();
             }
-            conversation.push({username: username, other_participant_id: other_participant_id, _id: result[i]._id});
         }
-        return {code: 200, message: conversation};
+        
+        // let conversation = {};
+        // ocnversation._id = result._id;
+        // if (result.participants[0] === user_id) {
+        //     username = await User.findById(result.participants[1].trim());
+        //     conversation.username = username.username;
+        //     conversation.other_participant_id = username._id.toString();
+        //     console.log(username);
+        // } else if (result.participants[1] === user_id) {
+        //     username = await User.findById(result.participants[0].trim());
+        //     conversation.username = username.username;
+        //     conversation.other_participant_id = username._id.toString();
+        //     console.log(conversation.username);
+        // }
+        return {code: 200, message: conversations};
     } catch(error) {
         console.log(error);
         return {code: 400, message: error};
