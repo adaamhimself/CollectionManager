@@ -3,20 +3,6 @@ const router = express.Router();
 const passport = require('passport');
 const collection = require('../controllers/collectionController');
 
-// Multer
-const path = require("path");
-const fs = require("fs");
-const multer = require('multer');
-const req = require('express/lib/request');
-// temporary storage of photos
-const storage = multer.diskStorage({
-    destination: "../public/photos",
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + path.extname(file.originalname));
-    }
-  });
-const upload = multer({ storage: storage });
-
 router.get('/getCollectionById/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.getCollectionById(req.params.id);
     res.status(response.code).json(response.message);
@@ -42,7 +28,7 @@ router.delete('/removeCollection/:id', passport.authenticate('jwt', {session: fa
     res.status(response.code).json(response.message);
 })
 
-router.post('/addImageToCollection', upload.single("photo"), passport.authenticate('jwt', {session: false}), async(req, res) => {
+router.post('/addImageToCollection', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await collection.addImageToCollection(req.body, req.file.filename);
     res.status(response.code).json(response.message);
 });

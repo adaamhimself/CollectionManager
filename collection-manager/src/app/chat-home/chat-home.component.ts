@@ -64,10 +64,12 @@ export class ChatHomeComponent implements OnInit {
 
   loadMessages(id, username, other_participant): void {
     this.current_conversation_id = id;
+    this.other_participant_id = other_participant;
     this.author = username;
-    this.repliesSub = this.conversationService.getMessagesWithUser(other_participant).subscribe(
+    this.repliesSub = this.conversationService.getMessagesWithUser(this.other_participant_id).subscribe(
       (response) => {
         this.replies = response.messages;
+        console.log(this.replies);
       },
       (error) => {
         this.warning = error.error;
