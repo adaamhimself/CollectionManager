@@ -1,0 +1,35 @@
+mat-toolbar {
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.card-container,
+.card-container:hover,
+.card-container:active,
+.card-container:visited{
+    color:black;
+    text-decoration: none;
+    width: 100%;
+}
+
+.card-container {
+    transition: .3s ease;
+}
+
+.card {
+    background-color: rgb(245, 245, 245);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

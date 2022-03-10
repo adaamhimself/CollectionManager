@@ -21,6 +21,7 @@ import { MarketComponent } from './market/market.component';
 import { ViewPostingComponent } from './view-posting/view-posting.component';
 import { ChatHomeComponent } from './chat-home/chat-home.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
+import { ArticleListComponent } from './article-list/article-list.component';
 
 const routes: Routes = [
   {
@@ -106,6 +107,10 @@ const routes: Routes = [
   {
     path: 'chat',
     component: ChatHomeComponent,
+  },
+  {
+    path: 'articles',
+    component: ArticleListComponent,
   },
   {
     path: '**',

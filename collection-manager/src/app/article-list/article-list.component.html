@@ -1,0 +1,29 @@
+<h1>Knowledge Hub</h1>
+<br />
+<p>
+    Welcome to the Knowledge Hub! A repository of articles, news, tips, questions, and answers to help
+    you increase your efficiency and productivity with organizing and communicating. Whether you're in
+    the workplace, at home, or even on the go, there's always something to learn just 1 search away!
+</p>
+<br />
+<hr>
+<div class="content">
+  <div *ngFor="let article of articles">
+    <a class="card-container" href="{{ article.article_url }}" target="_blank">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{ article.article_title }}</mat-card-title>
+        </mat-card-header>
+        <div class="card-info">
+          <span
+            >{{ article.article_category }} -
+            {{ article.article_summary }}</span
+          >
+          <span class="spacer"></span>
+          <span>Posted: {{ article.article_posted_date }}</span>
+        </div>
+      </mat-card>
+    </a>
+  </div>
+  <h2 *ngIf="articles.length == 0">Loading...</h2>
+</div>
