@@ -1,5 +1,10 @@
 body{margin-top:20px;}
 
+.card {
+    min-width: 1500px;
+    align-self: stretch;
+  }
+
 .chat-online {
     color: #34ce57
 }

@@ -21,6 +21,7 @@ import { MarketComponent } from './market/market.component';
 import { ViewPostingComponent } from './view-posting/view-posting.component';
 import { ChatHomeComponent } from './chat-home/chat-home.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes: Routes = [
   {
@@ -114,7 +115,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), Ng2SearchPipeModule ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -14,12 +14,23 @@
 					<div class="px-4 d-none d-md-block">
 						<div class="d-flex align-items-center">
 							<div class="flex-grow-1">
-								<input type="text" class="form-control my-3" placeholder="Search...">
+								<input type="text" [(ngModel)]="term" class="form-control my-3" placeholder="Search...">
 							</div>
 						</div>
 					</div>
 
                     <h2 class="ml-3">Groups</h2>
+					<!-- <div *ngFor="let conversation of conversations | filter : term" class="position-relative">
+                        <a class="list-group-item list-group-item-action border-0" (click)="loadMessages(conversation.other_participant_id)">
+						    <div class="d-flex align-items-start">
+							    <div >
+								    {{ conversation.username }}
+							    </div>
+						    </div>
+					    </a>
+
+                    </div> -->
+
 
                     <h2 class="ml-3">Users</h2>
 
