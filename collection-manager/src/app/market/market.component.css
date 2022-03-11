@@ -39,7 +39,6 @@ mat-toolbar {
 }
 
 .selector {
-  border-bottom: none;
   cursor: pointer;
   padding-left: 5px;
   padding-right: 5px;
@@ -63,7 +62,7 @@ mat-toolbar {
 }
 
 .type-selected {
-  border-bottom: 4px solid white;
+  border-bottom: 3px solid white;
 }
 
 mat-card-content {

@@ -10,13 +10,12 @@ import { AuthService } from '../auth.service';
 })
 export class ArticleListComponent implements OnInit {
     public articles: Array<Article> = [];
+    public categoryType = "All";//default all but can equal any of the categories
+    public categories: Array<String> = ["All"];
+    public articleCount = 0;
     public warning: string;
-    public searchError = "";
-    public loadMessage = "Loading...";
     public role = "";
-    public query = "";
     private articleSub: any = null;
-    private searchSub: any = null;
     private roleSub: any = null;
 
     constructor(private articleService: ArticleService, private auth: AuthService) { }
@@ -39,6 +38,7 @@ export class ArticleListComponent implements OnInit {
         this.articleSub = this.articleService.getListOfArticles().subscribe(
             (response) => {
                 this.articles = response;
+                this.saveUniqueCategories();
             },
             (error) => {
                 this.warning = error.error;
@@ -46,37 +46,53 @@ export class ArticleListComponent implements OnInit {
         );
     }
 
-    //called when user clicks the "search" button
-    search(): void {
-        if (this.query.length == 0){
-            this.showArticles();//no query; show all
+    //gets and saves all unique article categories
+    saveUniqueCategories(): void {
+        if (this.articles.length == 0){
+            return;
         }
-        else if (this.query.length <= 2){
-            this.searchError = "Search query is too small";
-        } else if (this.query.length > 50) {
-            this.searchError = "Search query is too long";
-        } else {
-            this.searchError = "";
-            this.loadMessage = "Loading..."
-            this.articles = [];
-            //retrieve only articles that match the search query (title, category, etc.)
-            /*this.searchSub = this.articleService.searchArticles(this.query).subscribe(
-                (response) => {
-                    if (response.lenth == 0) this.loadMessage = "No articles found with that query"
-                    else this.articles = response;
-                },
-                (error) => {
-                    this.warning = error.error;
+        //save all unique article categories
+        for (let i = 0; i < this.articles.length; i++){
+            let has: Boolean = false;
+            for (let j = 0; j < this.categories.length; j++){
+                if (this.articles[i].article_category.toLowerCase() == this.categories[j].toLowerCase()){
+                    has = true;
+                    break;
                 }
-            );*/
+            }
+            if (!has){
+                this.categories.push(this.articles[i].article_category);
+            }
         }
-        
+        this.changeCategory("All");//default
+    }
+
+    //called when a category option is clicked
+    changeCategory(category): void {
+        this.categoryType = category;
+        let options = document.getElementById("option-selector").children;
+        //set the class names to reflect the selected option
+        for (let i = 0; i < options.length; i++){
+            options.item(i).className = `option ${(options.item(i).id == `option-${category}`) ? "option-selected" : ""}`;
+        }
+        //update this.articleCount
+        if (this.categoryType == "All"){
+            //size of array if all
+            this.articleCount = this.articles.length;
+        } else {
+            //only count the selected category
+            this.articleCount = 0;
+            for (let i = 0; i < this.articles.length; i++){
+                if (this.articles[i].article_category == this.categoryType){
+                    this.articleCount++;
+                }
+            }
+        }
     }
 
     //unsubscribe upon being destroyed
     ngOnDestroy() {
         if (this.articleSub) this.articleSub.unsubscribe();
-        if (this.searchSub) this.articleSub.unsubscribe();
         if (this.roleSub) this.roleSub.unsubscribe();
     }
 }
