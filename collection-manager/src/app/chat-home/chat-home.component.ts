@@ -11,6 +11,7 @@ import { ConversationService } from '../conversation.service';
 })
 export class ChatHomeComponent implements OnInit {
 
+  filteredString: string = '';
   conversations: Array<Message> = [];
   replies: Array<Replies> = [];
   public warning: string;

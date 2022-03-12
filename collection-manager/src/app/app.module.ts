@@ -51,6 +51,7 @@ import { ViewPostingComponent } from './view-posting/view-posting.component';
 import { ChatHomeComponent } from './chat-home/chat-home.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
 import { ArticleListComponent } from './article-list/article-list.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   //components (pages)
@@ -80,6 +81,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
     ChatHomeComponent,
     MyListingsComponent,
     ArticleListComponent,
+    FilterPipe,
   ],
   //included modules
   imports: [
