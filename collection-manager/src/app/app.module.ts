@@ -52,6 +52,7 @@ import { ChatHomeComponent } from './chat-home/chat-home.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { FilterPipe } from './filter.pipe';
+import { CreateArticleComponent } from './create-article/create-article.component';
 
 @NgModule({
   //components (pages)
@@ -82,6 +83,7 @@ import { FilterPipe } from './filter.pipe';
     MyListingsComponent,
     ArticleListComponent,
     FilterPipe,
+    CreateArticleComponent,
   ],
   //included modules
   imports: [

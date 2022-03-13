@@ -29,7 +29,7 @@ mat-toolbar {
 }
 
 .option-selected {
-    border-bottom: 3px solid white;
+  border-bottom: 3px solid white;
 }
 
 .card-container,
@@ -46,6 +46,7 @@ mat-toolbar {
 }
 
 .card {
+  margin-bottom: 10px;
   background-color: rgb(245, 245, 245);
 }
 
