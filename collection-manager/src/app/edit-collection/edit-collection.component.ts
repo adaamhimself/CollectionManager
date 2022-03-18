@@ -19,7 +19,7 @@ export class EditCollectionComponent implements OnInit {
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
-        this.collectionSub = this.colService.getCollectionByUserId().subscribe(
+        this.collectionSub = this.colService.getMyCollections().subscribe(
             response => {
                 //get the correct collection from the array of user collections
                 response.every(col => {

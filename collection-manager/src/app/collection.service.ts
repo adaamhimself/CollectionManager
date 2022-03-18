@@ -18,7 +18,7 @@ export class CollectionService {
     );
   }
 
-  getCollectionByUserId(): Observable<any> {
+  getMyCollections(): Observable<any> {
     return this.http.get<Collection[]>(
       `${environment.apiBaseUrl}collection/getCollectionsByUserId/`
     );

@@ -8,8 +8,8 @@ router.get('/getCollectionById/:id', passport.authenticate('jwt', {session: fals
     res.status(response.code).json(response.message);
 });
 
-router.get('/getCollectionsByUserId/', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await collection.getCollectionsByUserId(req.user._id);
+router.get('/getMyCollections/', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await collection.getMyCollections(req.user._id);
     res.status(response.code).json(response.message);
 });
 

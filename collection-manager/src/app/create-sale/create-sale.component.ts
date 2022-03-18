@@ -50,7 +50,7 @@ export class CreateSaleComponent implements OnInit {
   // the dropdown box on the page
   ngOnInit(): void {
     let id: String = this.route.snapshot.params['id'];
-    this.collectionSub = this.collection.getCollectionByUserId().subscribe(
+    this.collectionSub = this.collection.getMyCollections().subscribe(
       (response) => {
         this.collections = response;
       },

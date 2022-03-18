@@ -23,7 +23,7 @@ export class ManageCollectionsComponent implements OnInit {
 
   ngOnInit(): void {
     //retrieve the collections of the logged in user
-    this.collectionSub = this.collection.getCollectionByUserId().subscribe(
+    this.collectionSub = this.collection.getMyCollections().subscribe(
       (response) => {
         this.collections = response;
       },

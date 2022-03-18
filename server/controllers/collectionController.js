@@ -20,7 +20,7 @@ module.exports.getCollectionById = async function(collection_id) {
     }
 }
 
-module.exports.getCollectionsByUserId = async function(userId) {
+module.exports.getMyCollections = async function(userId) {
     try {
         collections = await Collection.find({collection_user_id: userId});
         return {code: 200, message: collections};

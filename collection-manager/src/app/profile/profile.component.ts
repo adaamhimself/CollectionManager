@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
     //for logged in user only
     getCollections(): void {
         //get number of collections
-        this.collectionSub = this.collectionService.getCollectionByUserId().subscribe(
+        this.collectionSub = this.collectionService.getMyCollections().subscribe(
             (collections) => {
                 this.collectionAmount = collections.length;
             },
