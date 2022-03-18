@@ -20,7 +20,7 @@ export class CollectionService {
 
   getMyCollections(): Observable<any> {
     return this.http.get<Collection[]>(
-      `${environment.apiBaseUrl}collection/getCollectionsByUserId/`
+      `${environment.apiBaseUrl}collection/getMyCollections/`
     );
   }
 

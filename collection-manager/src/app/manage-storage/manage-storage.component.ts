@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CollectionService } from '../collection.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-import { Storage } from '../Storage';
+import { Storage } from '../Storage' 
 import { StorageService } from '../storage.service';
 
 @Component({

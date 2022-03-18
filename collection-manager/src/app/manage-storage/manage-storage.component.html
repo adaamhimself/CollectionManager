@@ -1,6 +1,18 @@
 <mat-toolbar color="primary">
   <span>Storage</span>
 </mat-toolbar>
+<mat-toolbar class="create-toolbar">
+  <span class="create-option" routerLink="/"
+    ><mat-icon>add</mat-icon>New Storage Location</span
+  >
+</mat-toolbar>
+<div *ngIf="storageList.length === 0">
+  <br><br>
+  <mat-card-title>
+    No storage locations found
+  </mat-card-title>
+</div>
+
 <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center" class="content">
   <div *ngFor="let storage of storageList" >
     <mat-card class="mat-elevation-z4">
