@@ -15,5 +15,9 @@ export class UserService {
     return this.http.get<UserDetails>(`${environment.apiBaseUrl}user/getuserDetails/${id}`);
   }
 
+  editUserDetails(id: String, update: UserDetails): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}user/editUserDetails/${id}`, update);
+  }
+
   
 }
