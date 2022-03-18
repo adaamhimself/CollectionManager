@@ -30,6 +30,7 @@ export class AppComponent {
         this.roleSub = this.auth.isAdministrator().subscribe(
             (response) => {
                 this.role = response;
+                console.log(this.role);
             }
         );
     }

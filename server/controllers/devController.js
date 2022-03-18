@@ -2,10 +2,17 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('../models/userModel');
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
+
+const User = require('../models/userModel');
+const Collection = require('../models/collectionModel');
+const Listing = require('../models/listingModel');
+const Item = require('../models/itemTemplate');
+const Storage = require('../models/storageModel');
+const Article = require('../models/articleModel');
+
 
 module.exports.removeUser = async function(targetEmail, requesterId) {
     // verify permissions
@@ -64,4 +71,30 @@ module.exports.getListOfUSers = async function(requesterId) {
     } else {
         return {code: 400, message: `Not authorized for this function`};
     }
+}
+
+module.exports.documentStats = async function() {
+    try {
+        let response = {};
+
+        let numUsers = await User.countDocuments();
+        let numCollections = await Collection.countDocuments();
+        let numItems = await Item.countDocuments();
+        let numListings = await Listing.countDocuments();
+        let numArticles = await Article.countDocuments();
+        let numStorage = await Storage.countDocuments();
+    
+        response.number_of_users = numUsers;
+        response.number_of_collections = numCollections;
+        response.number_of_items = numItems;
+        response.number_of_listings = numListings;
+        response.number_of_articles = numArticles;
+        response.number_of_storage = numStorage;
+    
+        return {code: 200, message: response};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+
+
 }

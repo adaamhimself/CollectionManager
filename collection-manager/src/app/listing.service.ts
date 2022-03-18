@@ -17,7 +17,7 @@ export class ListingService {
   }
 
   getMyListings(): Observable<any> {
-    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/myListings`);
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/myListings/`);
   }
 
   getTradingListingsByCategory(id: String): Observable<any> {
@@ -45,7 +45,7 @@ export class ListingService {
   }
 
   createListing(newListing: NewListing): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}listing/createListing`, newListing);
+    return this.http.post<any>(`${environment.apiBaseUrl}listing/createListing/`, newListing);
   }
 
   modifyListing(id: String, editedListing: Listing): Observable<any> {
@@ -54,6 +54,14 @@ export class ListingService {
 
   deleteListing(id: String): Observable<any> {
     return this.http.delete<any>(`${environment.apiBaseUrl}listing/deleteListing/${id}`);
+  }
+
+  promoteListing(id: String): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}listing/promoteListing/${id}`, null);
+  }
+
+  getAllPromotedListings(): Observable<any> {
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getAllPromotedListings/`);
   }
 
 }

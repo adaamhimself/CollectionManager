@@ -80,6 +80,7 @@ module.exports.createListing = async function(user_id, listing) {
     try {
         let newListing = new Listing(listing);
         newListing.listing_user_id = user_id;
+        newListing.promoted = false;
         let result = await newListing.save();
         return {code: 201, message: "Listing created"};
     } catch(error) {
@@ -103,4 +104,22 @@ module.exports.deleteListing = async function(id) {
     } catch(error) {
         return {code: 400, message: error};
     }  
+}
+
+module.exports.promoteListing = async function(id) {
+    try {
+        await Listing.findByIdAndUpdate(id, { promoted: true});
+        return {code: 200, message: `Listing: ${id} promoted`};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
+module.exports.getAllPromotedListings = async function() {
+    try {
+        let result = await Listing.find({promoted: true});
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
 }

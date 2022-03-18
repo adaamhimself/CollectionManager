@@ -58,4 +58,14 @@ router.delete('/deleteListing/:id', passport.authenticate('jwt', {session: false
     res.status(response.code).json(response.message);
 });
 
+router.get('/getAllPromotedListings', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.getAllPromotedListings();
+    res.status(response.code).json(response.message);
+});
+
+router.put('/promoteListing/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.promoteListing(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
 module.exports = router;

@@ -18,4 +18,9 @@ router.get('/checkRole', passport.authenticate('jwt', {session: false}), async(r
     res.status(200).json(req.user.role);
 });
 
+router.get('/documentStats', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await dev.documentStats();
+    res.status(response.code).json(response.message); 
+});
+
 module.exports = router;
