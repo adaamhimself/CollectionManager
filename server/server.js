@@ -33,6 +33,9 @@ app.use('/api/listing', listingRouter);
 const articleRouter = require('./routes/postedArticleRoutes');
 app.use('/api/article', articleRouter);
 
+const userRouter = require('./routes/userRoutes');
+app.use('/api/user', userRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database
