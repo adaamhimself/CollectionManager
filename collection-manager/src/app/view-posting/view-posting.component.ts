@@ -19,10 +19,11 @@ export class ViewPostingComponent implements OnInit {
     private listingSub: any = null;
     private itemSub: any = null;
 
-    constructor(private routing: Router, private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService) { }
+    constructor(private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService) { }
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
+        //retrieve the listing details using the id
         this.listingSub = this.listingService.getListingById(id).subscribe(
             (response) => {
                 this.showPosting(response);
@@ -30,7 +31,7 @@ export class ViewPostingComponent implements OnInit {
             (error) => {
                 this.warning = error.error;
             }
-        )
+        );
     }
 
     //handles showing the retrieved listing

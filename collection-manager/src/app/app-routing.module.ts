@@ -23,6 +23,7 @@ import { ChatHomeComponent } from './chat-home/chat-home.component';
 import { MyListingsComponent } from './my-listings/my-listings.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -116,6 +117,10 @@ const routes: Routes = [
   {
     path: 'createarticle',
     component: CreateArticleComponent,
+  },
+  {
+    path: 'profile/:id',
+    component: ProfileComponent,
   },
   {
     path: '**',

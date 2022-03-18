@@ -19,10 +19,10 @@ export class ManageCollectionsComponent implements OnInit {
   private collectionSub: any;
   private deleteCollectionSub: any;
 
-
   constructor(private collection: CollectionService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    //retrieve the collections of the logged in user
     this.collectionSub = this.collection.getCollectionByUserId().subscribe(
       (response) => {
         this.collections = response;
@@ -52,5 +52,11 @@ export class ManageCollectionsComponent implements OnInit {
     );
     }
     });
+  }
+
+  //unsubscribe upon being destroyed
+  ngOnDestroy() {
+    if (this.collectionSub) this.collectionSub.unsubscribe();
+    if (this.deleteCollectionSub) this.deleteCollectionSub.unsubscribe();
   }
 }

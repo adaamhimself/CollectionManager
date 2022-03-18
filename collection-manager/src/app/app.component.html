@@ -42,10 +42,14 @@
     yPosition="above"
     [overlapTrigger]="false"
   >
-    <a mat-menu-item (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Log out</span>
+    <a mat-menu-item routerLink="/profile/me">
+      <mat-icon>image_search</mat-icon>
+      <span style="color: black;">Profile</span>
     </a>
+    <a mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span style="color: black;">Log out</span>
+      </a>
   </mat-menu>
 </mat-toolbar>
 

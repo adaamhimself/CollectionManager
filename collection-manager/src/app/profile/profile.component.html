@@ -1,0 +1,32 @@
+<h1 *ngIf="!user">User doesn't exist</h1>
+<div *ngIf="user">
+  <h1>{{ user.username }}</h1>
+  <hr />
+  <!--user details-->
+  <div class="content">
+    <div fxLayout="row">
+      <div [fxFlex]="30">
+        <img
+          mat-card-image
+          style="width: 100%"
+          src="../../assets/images/bluelogo.png"
+          alt="profile image"
+        />
+      </div>
+      <div class="col">
+        <!--only show real name if viewing own account-->
+        <h2 *ngIf="viewingSelf"><strong>Name:</strong> {{ user.username }}</h2>
+        <h2><strong>Email:</strong> {{ user.email }}</h2>
+        <h2><strong>Date created:</strong> {{ user.date_created }}</h2>
+        <h2><strong>Role:</strong> {{ user.role }}</h2>
+        <!--number of collections-->
+        <h2 *ngIf="viewingSelf">
+          <strong>Number of collections: </strong>
+          <span *ngIf="collectionAmount == -1">Loading...</span>
+          <span *ngIf="collectionAmount == -2">Error!</span>
+          <span *ngIf="collectionAmount >= 0">{{ collectionAmount }}</span>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>

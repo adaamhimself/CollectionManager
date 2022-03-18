@@ -80,6 +80,18 @@ export class MyListingsComponent implements OnInit {
         );
     }
 
+    //promotes a listing
+    promote(id): void {
+        this.listingSub = this.listingService.promoteListing(id).subscribe(
+            (response) => {
+                console.log("successfully promoted");
+            },
+            (error) => {
+                this.warning = error.error;
+            }
+        );
+    }
+
     //unsubscribes upon being destroyed
     ngOnDestroy() {
         if (this.listingSub) this.listingSub.unsubscribe();

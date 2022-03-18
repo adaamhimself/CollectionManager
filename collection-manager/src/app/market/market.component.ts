@@ -27,7 +27,6 @@ export class MarketComponent implements OnInit {
     //changes the posting type that is shown
     //called by showSellingPostings, showWantedPostings, and showTradingPostings
     showPostings(listings: any, type: String): void {
-        console.log(listings);
         this.postings = [];//clear the displayed postings
         this.postType = type;//change type of postings being displayed
         //add class "type-selected" to selected posting type only (they all must also have class selector)
@@ -41,22 +40,20 @@ export class MarketComponent implements OnInit {
         }
         //for each market posting
         listings.forEach(listing => {
-            //1. get the item instance it's linked to (using the field item_id)
+            let listingItem = new Item;
+            //1. get the linked item if it exists
             if (listing.item_id) {
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                     (item) => {
-                        //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
-                        this.postings.push(new ListingDisplayInfo(listing, item));
+                        listingItem = item;
                     },
                     (error) => {
                         this.warning = error.error;
                     }
                 );
-            } else {
-                //if there's no linked image, send an empty image
-                let temp = new Item;
-                this.postings.push(new ListingDisplayInfo(listing, temp));
             }
+            //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
+            this.postings.push(new ListingDisplayInfo(listing, listingItem));
         });
     }
 

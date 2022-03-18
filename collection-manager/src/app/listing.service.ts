@@ -48,7 +48,7 @@ export class ListingService {
     return this.http.post<any>(`${environment.apiBaseUrl}listing/createListing/`, newListing);
   }
 
-  modifyListing(id: String, editedListing: Listing): Observable<any> {
+  modifyListing(editedListing: Listing): Observable<any> {
     return this.http.put<any>(`${environment.apiBaseUrl}item/editItem/${editedListing._id}`, editedListing);
   }
 

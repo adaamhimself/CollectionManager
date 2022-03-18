@@ -71,7 +71,8 @@
         <!--view and edit buttons-->
         <mat-card-actions>
             <button mat-raised-button color="primary" class="manage-button" routerLink="/viewposting/{{post.listing_id}}">View</button>
-            <button mat-button class="manage-button" routerLink="/editposting/{{post.listing_id}}" >Edit</button>
+            <button style="margin-right: 0;" mat-button class="manage-button" routerLink="/editposting/{{post.listing_id}}">Edit</button>
+            <button style="margin-right: 0;" mat-button class="manage-button" (click)="promote(post.listing_id)">Promote</button>
           </mat-card-actions>
       </mat-card>
     </div>
