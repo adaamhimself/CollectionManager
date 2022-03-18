@@ -7,7 +7,7 @@ const User = require('../models/userModel');
 
 module.exports.getUserDetails = async function(id) {
     try {
-        let result = await User.find({_id: id});
+        let result = await User.findOne({_id: id});
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
