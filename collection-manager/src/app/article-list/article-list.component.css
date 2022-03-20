@@ -1,17 +1,6 @@
 mat-toolbar {
   justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.search-font {
-  font-size: 15px;
-}
-
-#searchButton {
-  margin-left: 15px;
-  margin-right: 15px;
-  color: white;
-  background-color: rgb(25, 118, 210);
+  margin-bottom: 20px;
 }
 
 #addArticle {

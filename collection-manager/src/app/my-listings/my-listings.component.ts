@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { ListingDisplayInfo } from '../listing-display-info';
@@ -14,12 +13,13 @@ export class MyListingsComponent implements OnInit {
     public postings: Array<ListingDisplayInfo> = [];//currently shown postings
     public gridColumns = 3;
     public warning: string;
+    public listingCount = 0;
 
     private listingSub: any = null;
     private itemSub: any = null;
     private deleteSub: any = null;
 
-    constructor(private listingService: ListingService, private itemService: ItemService, private router: Router) { }
+    constructor(private listingService: ListingService, private itemService: ItemService) { }
 
     ngOnInit(): void {
         //retrieve all postings of the logged-in user
@@ -45,21 +45,18 @@ export class MyListingsComponent implements OnInit {
             //fix types that are stored with different names
             if (listing.listing_type == "sale") listing.listing_type = "selling";
             if (listing.listing_type == "trade") listing.listing_type = "trading";
-            //1. get the item instance it's linked to (using the field item_id)
+            //1. get the linked item if it exists
             if (listing.item_id){
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                     (item) => {
                         //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
                         this.postings.push(new ListingDisplayInfo(listing, item));
+                        this.listingCount++;//increase the count
                     },
                     (error) => {
                         this.warning = error.error;
                     }
                 );
-            } else {
-                //if there's no linked image, send an empty image
-                let temp = new Item;
-                this.postings.push(new ListingDisplayInfo(listing, temp));
             }
         });
     }
@@ -70,8 +67,7 @@ export class MyListingsComponent implements OnInit {
             (response) => {
                 console.log(response);
                 console.log("successfully deleted listing");
-                //navigate away from the page (only if successful)
-                this.router.navigate(["/market"]);
+                window.location.reload();//reload the page
             },
             (error) => {
                 console.log("failed deleting listing");
