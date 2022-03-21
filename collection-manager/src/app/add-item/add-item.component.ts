@@ -10,7 +10,7 @@ import { NewItem } from '../newItem';
 })
 export class AddItemComponent implements OnInit {
     public warning: string;
-    private editSub: any;
+    private itemSub: any = null;
     public itemModel: NewItem = new NewItem;//synced form model
     public collectionName:string;
 
@@ -23,12 +23,14 @@ export class AddItemComponent implements OnInit {
 
     onSubmit(): void {
         //fill out the rest of the NewItem attributes
+
         //this.itemModel.item_image.item_image_alt_text = `Image for ${this.itemModel.item_title}`;
+
         //send to createItem
-        let id: String = this.route.snapshot.params['id'];
+        let id: String = this.route.snapshot.params['id'];//parent collection id
         console.log("Sending:", this.itemModel);
         this.itemModel.containing_collection_id = id;
-        this.editSub = this.itemService.addItem(this.itemModel).subscribe(
+        this.itemSub = this.itemService.addItem(this.itemModel).subscribe(
             response => {
                 console.log(response);
             }, error => {
@@ -44,6 +46,6 @@ export class AddItemComponent implements OnInit {
 
     //unsubscribes upon being destroyed
     ngOnDestroy() {
-        if (this.editSub) this.editSub.unsubscribe();
+        if (this.itemSub) this.itemSub.unsubscribe();
     }
 }

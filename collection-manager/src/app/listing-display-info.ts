@@ -20,6 +20,7 @@ export class ListingDisplayInfo {
     location: String;
     image_path: String;
     image_alt: String;
+    error: String;
 
     constructor(listing: Listing, item: Item) {
         //ID fields
@@ -30,6 +31,7 @@ export class ListingDisplayInfo {
         this.type = listing.listing_type;
         this.price = listing.listing_price;
         this.post_date = listing.listing_date;
+        this.error = "";
         //name
         if (listing.listing_name && listing.listing_name != ""){
             this.name = listing.listing_name;

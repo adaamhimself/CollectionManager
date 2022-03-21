@@ -1,6 +1,7 @@
 mat-toolbar {
   justify-content: space-between;
   min-width: 800px;
+  margin-bottom: 20px;
 }
 
 .content {

@@ -19,8 +19,12 @@
     <a class="nav-item" *ngIf="token" [routerLink]="['/articles']"
       ><span>Knowledge Hub</span></a
     >
-    <a class="nav-item" *ngIf="token && role=='administrator'"><span>Dev</span></a>
-    
+    <a
+      class="nav-item"
+      *ngIf="token && role == 'administrator'"
+      [routerLink]="['/analytics']"
+      ><span>Dev</span></a
+    >
   </div>
 
   <div class="spacer"></div>
@@ -44,12 +48,12 @@
   >
     <a mat-menu-item routerLink="/profile/me">
       <mat-icon>image_search</mat-icon>
-      <span style="color: black;">Profile</span>
+      <span style="color: black">Profile</span>
     </a>
     <a mat-menu-item (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        <span style="color: black;">Log out</span>
-      </a>
+      <mat-icon>exit_to_app</mat-icon>
+      <span style="color: black">Log out</span>
+    </a>
   </mat-menu>
 </mat-toolbar>
 

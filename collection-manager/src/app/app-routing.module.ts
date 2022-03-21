@@ -24,6 +24,7 @@ import { MyListingsComponent } from './my-listings/my-listings.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
 
 const routes: Routes = [
   {
@@ -121,6 +122,10 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent,
+  },
+  {
+    path: 'analytics',
+    component: ViewAnalyticsComponent,
   },
   {
     path: '**',

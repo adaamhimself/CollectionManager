@@ -20,7 +20,7 @@ export class CreateStorageComponent implements OnInit {
   public loading: boolean = false;
   public success: boolean = false;
   public response: string;
-  private storageSub: any;
+  private storageSub: any = null;
 
   constructor(private storage: StorageService) {}
 
@@ -43,6 +43,6 @@ export class CreateStorageComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.storageSub.unsubscribe();
+    if (this.storageSub) this.storageSub.unsubscribe();
   }
 }

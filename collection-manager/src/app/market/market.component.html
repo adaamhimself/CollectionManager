@@ -1,5 +1,24 @@
 <mat-toolbar color="primary">
   <span>Marketplace</span>
+  <!--options to create a new selling, wanted, or trading listing-->
+  <span>
+    <span class="create-option" routerLink="/createsale"
+      ><mat-icon>add</mat-icon>New Sale</span
+    >
+    <span class="create-option" routerLink="/createwanted"
+      ><mat-icon>add</mat-icon>New Wanted</span
+    >
+    <span class="create-option" routerLink="/createtrade"
+      ><mat-icon>add</mat-icon>New Trade</span
+    >
+  </span>
+</mat-toolbar>
+
+<mat-toolbar class="another-toolbar">
+  <!--option to show the user's listings-->
+  <span class="create-option" routerLink="/mylistings" style="margin-left: 0;"
+    ><mat-icon>collections</mat-icon>Go To My Listings</span
+  >
   <!--options to show either selling, wanted, and trading listings-->
   <span>
     <span
@@ -16,21 +35,10 @@
     >
   </span>
 </mat-toolbar>
-<!--options to create a new selling, wanted, or trading listing-->
-<mat-toolbar class="create-toolbar">
-  <span class="create-option" routerLink="/mylistings"
-    ><mat-icon>collections</mat-icon>My Listings</span
-  >
-  <span class="create-option" routerLink="/createsale"
-    ><mat-icon>add</mat-icon>New Sale</span
-  >
-  <span class="create-option" routerLink="/createwanted"
-    ><mat-icon>add</mat-icon>New Wanted</span
-  >
-  <span class="create-option" routerLink="/createtrade"
-    ><mat-icon>add</mat-icon>New Trade</span
-  >
-</mat-toolbar>
+
+<span>Count: {{ listingCount }}</span>
+<hr style="margin-bottom: 1px" />
+
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
     <div

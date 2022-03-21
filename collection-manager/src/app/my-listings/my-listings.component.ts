@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { ListingDisplayInfo } from '../listing-display-info';
@@ -14,12 +13,13 @@ export class MyListingsComponent implements OnInit {
     public postings: Array<ListingDisplayInfo> = [];//currently shown postings
     public gridColumns = 3;
     public warning: string;
+    public listingCount = 0;
 
     private listingSub: any = null;
     private itemSub: any = null;
     private deleteSub: any = null;
 
-    constructor(private listingService: ListingService, private itemService: ItemService, private router: Router) { }
+    constructor(private listingService: ListingService, private itemService: ItemService) { }
 
     ngOnInit(): void {
         //retrieve all postings of the logged-in user
@@ -35,6 +35,7 @@ export class MyListingsComponent implements OnInit {
 
     showPostings(listings): void {
         this.postings = [];//clear the displayed postings
+        this.listingCount = listings.length;//update the count
         //if nothing was retrieved from the service
         if (!(listings && listings.length > 0)) {
             console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
@@ -45,7 +46,7 @@ export class MyListingsComponent implements OnInit {
             //fix types that are stored with different names
             if (listing.listing_type == "sale") listing.listing_type = "selling";
             if (listing.listing_type == "trade") listing.listing_type = "trading";
-            //1. get the item instance it's linked to (using the field item_id)
+            //1. get the linked item if it exists
             if (listing.item_id){
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                     (item) => {
@@ -54,12 +55,19 @@ export class MyListingsComponent implements OnInit {
                     },
                     (error) => {
                         this.warning = error.error;
+                        //if no item is linked, use a default item
+                        let newListing = new ListingDisplayInfo(listing, new Item);
+                        //give an error to display
+                        newListing.error = "Error retrieving linked item. Either the item was deleted or the server has issues.";
+                        this.postings.push(newListing);
                     }
                 );
             } else {
-                //if there's no linked image, send an empty image
-                let temp = new Item;
-                this.postings.push(new ListingDisplayInfo(listing, temp));
+                //if no item is linked, use a default item
+                let newListing = new ListingDisplayInfo(listing, new Item);
+                //give an error to display
+                newListing.error = "No item is linked. Delete the listing.";
+                this.postings.push(newListing);
             }
         });
     }
@@ -70,8 +78,7 @@ export class MyListingsComponent implements OnInit {
             (response) => {
                 console.log(response);
                 console.log("successfully deleted listing");
-                //navigate away from the page (only if successful)
-                this.router.navigate(["/market"]);
+                window.location.reload();//reload the page
             },
             (error) => {
                 console.log("failed deleting listing");

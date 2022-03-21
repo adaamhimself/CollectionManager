@@ -15,6 +15,8 @@ export class MarketComponent implements OnInit {
     public gridColumns = 3;
     public warning: string;
     public query: String = "watch";//search bar text
+    public listingCount = 0;
+
     private listingSub: any = null;
     private itemSub: any = null;
 
@@ -28,6 +30,7 @@ export class MarketComponent implements OnInit {
     //called by showSellingPostings, showWantedPostings, and showTradingPostings
     showPostings(listings: any, type: String): void {
         this.postings = [];//clear the displayed postings
+        this.listingCount = 0;//reset the count
         this.postType = type;//change type of postings being displayed
         //add class "type-selected" to selected posting type only (they all must also have class selector)
         document.getElementById("option-selling").className = `selector ${(type == "selling") ? " type-selected" : ""}`;
@@ -40,20 +43,20 @@ export class MarketComponent implements OnInit {
         }
         //for each market posting
         listings.forEach(listing => {
-            let listingItem = new Item;
+            //Note: listings with an invalid item linked won't be shown
             //1. get the linked item if it exists
             if (listing.item_id) {
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                     (item) => {
-                        listingItem = item;
+                        //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
+                        this.postings.push(new ListingDisplayInfo(listing, item));
+                        this.listingCount++;//increase the count
                     },
                     (error) => {
                         this.warning = error.error;
                     }
                 );
             }
-            //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
-            this.postings.push(new ListingDisplayInfo(listing, listingItem));
         });
     }
 
