@@ -1,8 +1,8 @@
-<!--Header-->
-<mat-toolbar color="primary">
-  <span>Analytics</span>
-</mat-toolbar>
-<form>
+<div class="contents">
+  <!--Header-->
+  <mat-toolbar color="primary">
+    <span>Analytics</span>
+  </mat-toolbar>
   <!--Image Section-->
   <mat-card class="my-card">
     <div class="content">
@@ -13,7 +13,7 @@
               <mat-card-title>Total Website Visits</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p>Website data here..</p>
+              <p class="paragraphData">Data to be added this week..</p>
             </mat-card-content>
           </mat-card>
         </div>
@@ -23,21 +23,59 @@
               <mat-card-title>Total Documents Created</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p>Total documents viewed..</p>
+              <p class="paragraphData">Data to be added this week..</p>
             </mat-card-content>
           </mat-card>
         </div>
-        <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%">
           <mat-card class="mat-elevation-z4">
             <mat-card-header>
               <mat-card-title>Website Activity Graph</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p>Future graph data here..</p>
+              <div style="display: block">
+                <canvas
+                  baseChart
+                  width="400"
+                  height="300"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  [plugins]="lineChartPlugins"
+                >
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%">
+          <mat-card class="mat-elevation-z4">
+            <mat-card-header>
+              <mat-card-title>Page Visits By Category</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="chart-wrapper">
+                <canvas
+                  baseChart
+                  width="400"
+                  height="300"
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [colors]="barChartColors"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType"
+                >
+                </canvas>
+              </div>
             </mat-card-content>
           </mat-card>
         </div>
       </div>
     </div>
   </mat-card>
-</form>
+</div>

@@ -61,6 +61,9 @@ import { CreateArticleComponent } from './create-article/create-article.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
 
+//charts
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   //components (pages)
   declarations: [
@@ -116,6 +119,7 @@ import { ViewAnalyticsComponent } from './view-analytics/view-analytics.componen
     MatSliderModule,
     MatDialogModule,
     MatGridListModule,
+    ChartsModule,
   ],
   providers: [
     {

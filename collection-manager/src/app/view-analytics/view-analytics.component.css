@@ -1,3 +1,10 @@
+.contents {
+  background-color: aqua;
+  max-width: 1500px;
+  width: 1400px;
+  min-width: 400px;
+}
+
 mat-toolbar {
   justify-content: space-between;
 }
@@ -19,13 +26,6 @@ mat-toolbar {
   min-height: 150px;
 }
 
-#divChart {
-  display: block;
-  width: 400px;
-  height: 400px;
-}
-
-#myChart {
-  width: 1000px;
-  height: 1000px;
+.paragraphData {
+  padding-left: 18px;
 }
