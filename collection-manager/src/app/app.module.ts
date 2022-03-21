@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 
 //import components
 import { AppComponent } from './app.component';
@@ -28,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -54,6 +59,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { FilterPipe } from './filter.pipe';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
 
 @NgModule({
   //components (pages)
@@ -86,6 +92,7 @@ import { ProfileComponent } from './profile/profile.component';
     FilterPipe,
     CreateArticleComponent,
     ProfileComponent,
+    ViewAnalyticsComponent,
   ],
   //included modules
   imports: [
@@ -107,7 +114,8 @@ import { ProfileComponent } from './profile/profile.component';
     NoopAnimationsModule,
     HttpClientModule,
     MatSliderModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule,
   ],
   providers: [
     {

@@ -1,0 +1,31 @@
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  margin-bottom: 16px;
+}
+
+.column-label {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.mat-elevation-z4 {
+  min-height: 150px;
+}
+
+#divChart {
+  display: block;
+  width: 400px;
+  height: 400px;
+}
+
+#myChart {
+  width: 1000px;
+  height: 1000px;
+}
