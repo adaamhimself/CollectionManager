@@ -23,7 +23,11 @@ const itemSchema = new Schema({
     "item_images": [{
         "item_image_path": String,
         "item_image_text": String,
-    }]
+    }],
+    "date_created": {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 module.exports = Mongoose.model('item', itemSchema);

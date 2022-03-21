@@ -5,7 +5,10 @@ const collectionSchema = new Schema({
     "collection_name": String,
     "collection_description": String,
     "collection_user_id": String,
-    "date_created": Date,
+    "date_created": {
+        type: Date,
+        default: Date.now()
+    },
     "date_last_updated": Date,
     "collection_image": {
         "collection_image_path": String,
