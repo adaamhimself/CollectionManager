@@ -34,11 +34,6 @@ mat-toolbar {
   background-color: rgb(25, 118, 210);
 }
 
-.buttonOption {
-  width: 50%;
-  margin-top: 20px;
-}
-
 .close-button {
   position: absolute;
   border-radius: 5px;
@@ -64,10 +59,6 @@ mat-toolbar {
 
 mat-card-actions {
   display: inline;
-}
-
-mat-card-content {
-  padding-top: 20px;
 }
 
 mat-icon {

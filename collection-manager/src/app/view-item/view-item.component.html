@@ -7,8 +7,8 @@
   </h1>
   <div style="padding-top: 50px; margin-right: 0; margin-left: auto">
     <button
-      (click)="onSubmit()"
       mat-raised-button
+      (click)="onEdit()"
       color="primary"
       type="submit"
       class="align-self-end ml-auto"
@@ -26,8 +26,8 @@
     </button>
     &nbsp;
     <button
-      (click)="onDelete()"
       mat-raised-button
+      (click)="deleteItem()"
       color="warn"
       type="submit"
       class="align-self-end ml-auto"
@@ -138,7 +138,7 @@
     <p class="header">Other</p>
 
     <div class="rounded border border-dark">
-      <div *ngIf="item.custom_fields[0].key != 0">
+      <div *ngIf="item.custom_fields.length > 0 && item.custom_fields[0].key != 0">
         <p class="label">Custom fields</p>
         <br />
         <div *ngFor="let item of item.custom_fields">

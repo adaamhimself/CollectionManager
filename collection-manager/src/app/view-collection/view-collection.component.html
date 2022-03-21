@@ -5,7 +5,6 @@
   <!--search-->
   <span>
     <input
-      matInput
       class="search-font"
       id="searchBar"
       placeholder="Search items"
@@ -30,25 +29,9 @@
 <span>Count: {{ itemCount }}</span>
 <hr style="margin-bottom: 1px;" />
 
-<div *ngIf="items.length == 0">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-content>
-      <span>Looks like you don't have any items in this collection yet</span>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button class="buttonOption" routerLink="/managecollections">
-        Back
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        class="buttonOption"
-        routerLink="/additem/{{ collectionDetails._id }}"
-      >
-        Add a new item
-      </button>
-    </mat-card-actions>
-  </mat-card>
+<div *ngIf="items.length == 0" style="margin-top:20px;">
+  <h1>No Items</h1>
+  <p>{{ message }}</p>
 </div>
 
 <!--text version to showcase grid items, use the below commented out one once
@@ -68,6 +51,7 @@
             class="close-button"
             aria-label="Close alert"
             type="button"
+            (click)="deleteItem(item._id)"
             data-close
           >
             <span aria-hidden="true">&times;</span>
@@ -79,8 +63,10 @@
           onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
           alt="Item image"
         />
-        <mat-card-content>
-          {{ item.item_description }}
+        <mat-card-content style="text-align:left;">
+          <p><strong>Description:</strong> {{ item.item_description }}</p>
+          <p *ngIf="item.template_name"><strong>Template:</strong> {{ item.template_name }}</p>
+          <p><strong>Date added:</strong> {{ item.date_created }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button

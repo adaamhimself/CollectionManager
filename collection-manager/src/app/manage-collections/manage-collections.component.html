@@ -5,7 +5,6 @@
   <!--search-->
   <span>
     <input
-      matInput
       class="search-font"
       id="searchBar"
       placeholder="Search collections"
@@ -29,6 +28,11 @@
 
 <span>Count: {{ collectionCount }}</span>
 <hr style="margin-bottom: 1px;" />
+
+<div *ngIf="collectionCount == 0" style="margin-top:20px;">
+  <h1>No Collections</h1>
+  <p>{{ message }}</p>
+</div>
 
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
@@ -58,8 +62,9 @@
           onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
           alt="{{ collection.collection_image.collection_image_alt_text }}"
         />
-        <mat-card-content>
-          {{ collection.collection_description }}
+        <mat-card-content style="text-align: left;">
+          <p><strong>Description:</strong> {{ collection.collection_description }}</p>
+          <p><strong>Date created:</strong> N/A</p>
         </mat-card-content>
         <!--view and edit buttons-->
         <mat-card-actions>

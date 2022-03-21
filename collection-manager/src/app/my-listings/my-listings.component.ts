@@ -35,6 +35,7 @@ export class MyListingsComponent implements OnInit {
 
     showPostings(listings): void {
         this.postings = [];//clear the displayed postings
+        this.listingCount = listings.length;//update the count
         //if nothing was retrieved from the service
         if (!(listings && listings.length > 0)) {
             console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
@@ -51,12 +52,22 @@ export class MyListingsComponent implements OnInit {
                     (item) => {
                         //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
                         this.postings.push(new ListingDisplayInfo(listing, item));
-                        this.listingCount++;//increase the count
                     },
                     (error) => {
                         this.warning = error.error;
+                        //if no item is linked, use a default item
+                        let newListing = new ListingDisplayInfo(listing, new Item);
+                        //give an error to display
+                        newListing.error = "Error retrieving linked item. Either the item was deleted or the server has issues.";
+                        this.postings.push(newListing);
                     }
                 );
+            } else {
+                //if no item is linked, use a default item
+                let newListing = new ListingDisplayInfo(listing, new Item);
+                //give an error to display
+                newListing.error = "No item is linked. Delete the listing.";
+                this.postings.push(newListing);
             }
         });
     }

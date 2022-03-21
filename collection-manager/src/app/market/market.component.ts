@@ -43,6 +43,7 @@ export class MarketComponent implements OnInit {
         }
         //for each market posting
         listings.forEach(listing => {
+            //Note: listings with an invalid item linked won't be shown
             //1. get the linked item if it exists
             if (listing.item_id) {
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
