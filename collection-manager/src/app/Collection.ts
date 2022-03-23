@@ -9,4 +9,5 @@ export class Collection {
     "collection_image_path": string;
     "collection_image_alt_text": string;
   };
+  "date_created": Date;
 }
