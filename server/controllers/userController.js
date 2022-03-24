@@ -5,6 +5,16 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
+
+module.exports.findUser = async function(queried_username) {
+    try {
+        let result = await User.findOne({username: queried_username})
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
 module.exports.getUserDetails = async function(id) {
     try {
         let result = await User.findOne({_id: id});
