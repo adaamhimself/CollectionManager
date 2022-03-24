@@ -52,9 +52,10 @@ export class ChatHomeComponent implements OnInit {
   }
 
   sendMessage(): void {
-    this.sendsub = this.conversationService.addToConversation(this.other_participant_id, this.reply_body).subscribe(
+    this.sendsub = this.conversationService.addToConversation(this.current_conversation_id, this.reply_body).subscribe(
       (response) => {
         this.reply_body = "";
+        console.log(this.current_conversation_id, this.reply_body);
         this.loadMessages(this.current_conversation_id, this.author, this.other_participant_id);
       },
       (error) => {

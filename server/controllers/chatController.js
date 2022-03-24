@@ -34,19 +34,6 @@ module.exports.getConversations = async function(user_id) {
             }
         }
         
-        // let conversation = {};
-        // ocnversation._id = result._id;
-        // if (result.participants[0] === user_id) {
-        //     username = await User.findById(result.participants[1].trim());
-        //     conversation.username = username.username;
-        //     conversation.other_participant_id = username._id.toString();
-        //     console.log(username);
-        // } else if (result.participants[1] === user_id) {
-        //     username = await User.findById(result.participants[0].trim());
-        //     conversation.username = username.username;
-        //     conversation.other_participant_id = username._id.toString();
-        //     console.log(conversation.username);
-        // }
         return {code: 200, message: conversations};
     } catch(error) {
         console.log(error);
@@ -55,27 +42,30 @@ module.exports.getConversations = async function(user_id) {
 }
 
 
-module.exports.addToCoversation = async function(user_id, other_user_id, newMessage) {
+module.exports.addToCoversation = async function(user_id, conversation_id, newMessage) {
     try {
-        let found = await Chat.find({participants: {$all: [user_id, other_user_id]}});
-        if (Object.keys(found).length != 0) {
-            let message = {
-                author: user_id,
-                body: newMessage.body
-            }
-            let result = await Chat.updateOne({participants: {$all: [user_id, other_user_id]}}, {$push: {messages: message}});
-            return {code: 201, message: "Message added"};
-        } else {
-            let newConversation = new Chat();
-            newConversation.participants = [user_id, other_user_id];
-            let message = {
-                author: user_id,
-                body: newMessage.body
-            }
-            newConversation.messages.push(message)
-            await newConversation.save();
-            return {code: 201, message: "Conversation created and message added"};
+        let message = {
+            author: user_id,
+            body: newMessage.body
         }
+        await Chat.updateOne({_id: conversation_id}, {$push: {messages: message}});
+        return {code: 201, message: "Message added"};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
+module.exports.createConversation = async function(user_id, other_user_id, newMessage) {
+    try {
+        let newConversation = new Chat();
+        newConversation.participants = [user_id, other_user_id];
+        let message = {
+            author: user_id,
+            body: newMessage.body
+        }
+        newConversation.messages.push(message);
+        await newConversation.save();
+        return {code: 201, message: "Conversation created and message added"};
     } catch(error) {
         return {code: 400, message: error};
     }

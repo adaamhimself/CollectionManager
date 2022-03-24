@@ -28,4 +28,8 @@ export class ConversationService {
     return this.http.delete<any>(`${environment.apiBaseUrl}message/deleteConversation/${id}`);
   }
 
+  createConversation(id: String, message: String): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}message/createConversation/${id}`, {body: message});
+  }
+
 }
