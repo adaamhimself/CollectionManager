@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
+import { DevService } from '../dev.service';
+import { DocumentData } from '../documentData';
 @Component({
   selector: 'app-view-analytics',
   templateUrl: './view-analytics.component.html',
@@ -59,7 +63,26 @@ export class ViewAnalyticsComponent implements OnInit {
   ];
   // total documents data
 
-  constructor() {}
+  public docData: DocumentData = new DocumentData();
+  private devSub: any;
+  public warning: string;
 
-  ngOnInit(): void {}
+  constructor(
+    private routing: Router,
+    private route: ActivatedRoute,
+    private devService: DevService,
+    public dialog: MatDialog
+  ) {}
+
+  ngOnInit(): void {
+    this.devSub = this.devService.documentStats().subscribe(
+      (response) => {
+        this.docData = response;
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
+    console.log(this.docData);
+  }
 }
