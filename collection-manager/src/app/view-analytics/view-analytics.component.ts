@@ -11,6 +11,31 @@ import { DocumentData } from '../documentData';
   styleUrls: ['./view-analytics.component.css'],
 })
 export class ViewAnalyticsComponent implements OnInit {
+  // total documents data
+  public docData: DocumentData = new DocumentData();
+  private devSub: any;
+  public warning: string;
+  public currentDate: Date = new Date();
+
+  constructor(
+    private routing: Router,
+    private route: ActivatedRoute,
+    private devService: DevService,
+    public dialog: MatDialog
+  ) {}
+
+  ngOnInit(): void {
+    this.devSub = this.devService.documentStats().subscribe(
+      (response) => {
+        this.docData = response;
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
+    console.log(this.docData);
+  }
+
   // activity data
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Website Visits' },
@@ -61,28 +86,4 @@ export class ViewAnalyticsComponent implements OnInit {
   public barChartData: ChartDataSets[] = [
     { data: [45, 37, 60, 70, 46, 33], label: 'Page Visits' },
   ];
-  // total documents data
-
-  public docData: DocumentData = new DocumentData();
-  private devSub: any;
-  public warning: string;
-
-  constructor(
-    private routing: Router,
-    private route: ActivatedRoute,
-    private devService: DevService,
-    public dialog: MatDialog
-  ) {}
-
-  ngOnInit(): void {
-    this.devSub = this.devService.documentStats().subscribe(
-      (response) => {
-        this.docData = response;
-      },
-      (error) => {
-        this.warning = error.error;
-      }
-    );
-    console.log(this.docData);
-  }
 }
