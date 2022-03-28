@@ -80,6 +80,16 @@ export class ChatHomeComponent implements OnInit {
   }
 
   onDelete(): void {
-    this.messageSub.unsubscribe();
+    this.messageSub = this.conversationService.deleteConversation(this.current_conversation_id).subscribe(
+      (response) => {
+          console.log(response);
+          console.log("successfully deleted conversation");
+          window.location.reload();//reload the page
+      },
+      (error) => {
+          console.log("failed deleting conversation");
+          this.warning = error.error;
+      }
+  );
   }
 }
