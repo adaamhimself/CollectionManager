@@ -5,6 +5,8 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { DevService } from '../dev.service';
 import { DocumentData } from '../documentData';
+
+
 @Component({
   selector: 'app-view-analytics',
   templateUrl: './view-analytics.component.html',
@@ -83,6 +85,5 @@ export class ViewAnalyticsComponent implements OnInit {
         this.warning = error.error;
       }
     );
-    console.log(this.docData);
   }
 }

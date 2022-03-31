@@ -9,6 +9,7 @@ module.exports.validateRequestBody = (req, res, next) => {
 };
 
 module.exports.isAdmin = (req, res, next) => {
+    console.log(req.user);
     if (req.user.role === "administrator") {
         next();
     } else {

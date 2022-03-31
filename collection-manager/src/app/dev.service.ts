@@ -12,8 +12,7 @@ export class DevService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   documentStats(): Observable<any> {
-    return this.http.get<DocumentData[]>(
-      `${environment.apiBaseUrl}dev/documentStats/`
+    return this.http.get<DocumentData[]>(`${environment.apiBaseUrl}dev/documentStats/`
     );
   }
 }
