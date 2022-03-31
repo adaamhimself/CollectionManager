@@ -1,7 +1,9 @@
 <div class="contents">
   <!--Header-->
   <mat-toolbar color="primary">
-    <span>Analytics</span>
+    <span
+      >Website Analytics - Last Updated {{ currentDate | date: "short" }}</span
+    >
   </mat-toolbar>
   <!--Image Section-->
   <mat-card class="my-card">
@@ -23,7 +25,24 @@
               <mat-card-title>Total Documents Created</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <p class="paragraphData">Data to be added this week..</p>
+              <p class="paragraphData">
+                Total Articles Created: {{ docData.number_of_articles }}
+              </p>
+              <p class="paragraphData">
+                Total Collections Created: {{ docData.number_of_collections }}
+              </p>
+              <p class="paragraphData">
+                Total Collection Items Created: {{ docData.number_of_items }}
+              </p>
+              <p class="paragraphData">
+                Total Listings Created: {{ docData.number_of_listings }}
+              </p>
+              <p class="paragraphData">
+                Total Storages Created: {{ docData.number_of_storage }}
+              </p>
+              <p class="paragraphData">
+                Total Users Created: {{ docData.number_of_users }}
+              </p>
             </mat-card-content>
           </mat-card>
         </div>
