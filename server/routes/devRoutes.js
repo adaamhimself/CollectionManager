@@ -10,7 +10,7 @@ router.post('/removeUser', passport.authenticate('jwt', {session: false}), async
 });
 
 router.get('/getListOfUsers', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await dev.getListOfUSers(req.user._id);
+    let response = await dev.getListOfUsers(req.user._id);
     res.status(response.code).json(response.message);
 });
 

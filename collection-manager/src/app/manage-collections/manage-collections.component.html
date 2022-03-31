@@ -64,7 +64,7 @@
         />
         <mat-card-content style="text-align: left;">
           <p><strong>Description:</strong> {{ collection.collection_description }}</p>
-          <p><strong>Date created:</strong> N/A</p>
+          <p *ngIf="collection.date_created"><strong>Date created:</strong> {{ collection.date_created }}</p>
         </mat-card-content>
         <!--view and edit buttons-->
         <mat-card-actions>
