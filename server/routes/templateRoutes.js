@@ -3,8 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const template = require('../controllers/templateController');
 
-router.get('/getTemplateDetails/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await template.getTemplateDetails(req.params.id, req.body.template_type);
+router.get('/getTemplateByItemId/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await template.getTemplateByItemId(req.params.id);
     res.status(response.code).json(response.message);
 });
 

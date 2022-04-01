@@ -36,10 +36,14 @@ module.exports.addTemplateToItem = async function(item_id, template_request) {
     }
 }
 
-module.exports.getTemplateDetails = async function(template_id, template_type) {
+module.exports.getTemplateByItemId = async function(item_id) {
     try {
+        let response = await item.findById(item_id);
+        let template_type = response.template_name;
+        let template_id = response.template_object_id;
         let template = mongoose.model(template_type);
-        let result = await template.findById({_id: template_id});
+        let result = await template.findById({_id: template_id}).lean();
+        result.template_type = template_type;
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
