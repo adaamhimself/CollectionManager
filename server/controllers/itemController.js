@@ -101,19 +101,19 @@ module.exports.getCustomFields = async function(itemId) {
     }
 }
 
-module.exports.modifyCustomFieldValue = async function(itemId, fieldEdit) {
+module.exports.modifyCustomFieldValue = async function(fieldEdit) {
     let field_id = fieldEdit._id;
     let field_change = fieldEdit.value;
     try {
         let result = await Item.findOneAndUpdate(
             { 
                 custom_fields: 
-                { 
-                    $elemMatch: 
-                        {
-                            _id: field_id 
-                        }
-                }
+                    { 
+                        $elemMatch: 
+                            {
+                                _id: field_id 
+                            }
+                    }
             },
             { $set:
                 { "custom_fields.$.value": field_change}

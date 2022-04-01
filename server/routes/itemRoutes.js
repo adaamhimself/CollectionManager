@@ -49,8 +49,8 @@ router.get('/getCustomFields/:id', passport.authenticate('jwt', {session: false}
     res.status(response.code).json(response.message);
 });
 
-router.put('/modifyCustomFieldValue/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await item.modifyCustomFieldValue(req.params.id, req.body);
+router.put('/modifyCustomFieldValue', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await item.modifyCustomFieldValue(req.body);
     res.status(response.code).json(response.message);
 });
 
