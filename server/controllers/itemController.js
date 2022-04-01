@@ -68,21 +68,84 @@ module.exports.deleteImageFromItem = async function() {
 
 }
 
-module.exports.addCustomField = async function(userId, itemId, customField) {
+module.exports.addCustomField = async function(itemId, customField) {
     console.log(customField);
     try {
         let result = await Item.findByIdAndUpdate(itemId, 
             {
                 $push: {custom_fields: customField}
             }
-        )
-        console.log(result);
+        );
         return {code: 201, message: `Custom field ${customField.key} added`};
     } catch(error) {
         return {code: 400, message: error};
     }
 }
 
-module.exports.removecustomField = async function() {
+module.exports.getCustomFields = async function(itemId) {
+    try {
+        let result = await Item.findById(itemId);
+        let customFieldsArray = [];
+        if (result.custom_fields) {
+            for (i=0; i< result.custom_fields.length; i++) {
+                customFieldsArray.push(result.custom_fields[i]);
+            }
+        }
+        if (customFieldsArray.length > 0) {
+            return {code: 200, message: customFieldsArray};
+        } else {
+            return {code: 400, message: "No custom fields found"};
+        }
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
 
+module.exports.modifyCustomFieldValue = async function(itemId, fieldEdit) {
+    let field_id = fieldEdit._id;
+    let field_change = fieldEdit.value;
+    try {
+        let result = await Item.findOneAndUpdate(
+            { 
+                custom_fields: 
+                { 
+                    $elemMatch: 
+                        {
+                            _id: field_id 
+                        }
+                }
+            },
+            { $set:
+                { "custom_fields.$.value": field_change}
+            }
+        );
+        return {code: 200, message: `Value for custom field ${field_id} updated`};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
+
+module.exports.removecustomField = async function(arrayId) {
+    try {
+        let result = await Item.findOneAndUpdate(
+            { 
+                custom_fields: 
+                { 
+                    $elemMatch: 
+                        {
+                            _id: arrayId
+                        }
+                }
+            },
+            {
+                $pull:
+                    {
+                        custom_fields: { _id: arrayId }
+                    }
+            }
+        );
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
 }
