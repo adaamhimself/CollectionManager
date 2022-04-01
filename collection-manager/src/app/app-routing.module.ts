@@ -25,6 +25,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -80,7 +81,7 @@ const routes: Routes = [
     component: CreateStorageComponent,
   },
   {
-    path: 'editstorage',
+    path: 'editstorage/:id',
     component: EditStorageComponent,
   },
   {
@@ -122,6 +123,10 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent,
+  },
+  {
+    path: 'users',
+    component: UserListComponent,
   },
   {
     path: 'analytics',

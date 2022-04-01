@@ -83,7 +83,7 @@ export class ManageCollectionsComponent implements OnInit {
         this.collectionCount = this.collections.length;
         //update message if no collections were found
         if (this.collectionCount == 0){
-            this.message = "No collections fit that search query. Check spelling and try a simpler query."
+            this.message = "No collections fit that search query. Check spelling or try a simpler query."
         }
     }
 

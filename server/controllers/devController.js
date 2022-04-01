@@ -52,7 +52,7 @@ module.exports.removeUser = async function(targetEmail, requesterId) {
     }
 }
 
-module.exports.getListOfUSers = async function(requesterId) {
+module.exports.getListOfUsers = async function(requesterId) {
     // verify permissions
     let requester = await User.findOne({_id: requesterId});
     if (requester.role === "administrator" || requester.role === "developer") {

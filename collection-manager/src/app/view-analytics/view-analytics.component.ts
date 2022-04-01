@@ -68,6 +68,7 @@ export class ViewAnalyticsComponent implements OnInit {
   public docData: DocumentData = new DocumentData();
   private devSub: any;
   public warning: string;
+  public currentDate = Date.now();
 
   constructor(
     private routing: Router,
