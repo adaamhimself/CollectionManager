@@ -50,7 +50,7 @@ export class ViewItemComponent implements OnInit {
         this.templateSub = this.templateService.getTemplateById(id).subscribe(
             (response) => {
                 this.template = response;
-                console.log(response);
+                this.template.template_type = this.template.template_type[0].toUpperCase() + this.template.template_type.substring(1).toLowerCase();
             },
             (error) => {
                 this.warning = error.error;
