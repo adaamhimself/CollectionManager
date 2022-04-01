@@ -68,4 +68,9 @@ router.put('/promoteListing/:id', passport.authenticate('jwt', {session: false})
     res.status(response.code).json(response.message);
 });
 
+router.get('/getListingsByUserId/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await listing.getListingsByUserId(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
 module.exports = router;

@@ -123,3 +123,12 @@ module.exports.getAllPromotedListings = async function() {
         return {code: 400, message: error};
     }
 }
+
+module.exports.getListingsByUserId = async function(id) {
+    try {
+        let result = await Listing.find({"isting_user_id": id});
+        return {code: 200, message: result};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}

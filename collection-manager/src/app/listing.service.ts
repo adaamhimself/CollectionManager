@@ -64,4 +64,8 @@ export class ListingService {
     return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getAllPromotedListings/`);
   }
 
+  getListingsByUserId(id: String): Observable<any> {
+    return this.http.get<Listing>(`${environment.apiBaseUrl}listing/getListingsByUserId/${id}`);
+  }
+
 }

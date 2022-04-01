@@ -9,7 +9,6 @@ const User = require('../models/userModel');
 module.exports.findUser = async function(queried_username) {
     try {
         let result = await User.find({username: { $regex: queried_username}});
-        console.log(result);
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
