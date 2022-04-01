@@ -33,6 +33,7 @@ export class MyListingsComponent implements OnInit {
         );
     }
 
+    //converts the listings into the correct format and adds them to the displayed list if they're valid
     showPostings(listings): void {
         this.postings = [];//clear the displayed postings
         this.listingCount = listings.length;//update the count
@@ -50,8 +51,9 @@ export class MyListingsComponent implements OnInit {
             if (listing.item_id){
                 this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
                     (item) => {
-                        //2. convert the listing into PostingCardInfo (passing the listing and item) and push it to the array
+                        //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
                         this.postings.push(new ListingDisplayInfo(listing, item));
+                        console.log(this.postings.length);
                     },
                     (error) => {
                         this.warning = error.error;

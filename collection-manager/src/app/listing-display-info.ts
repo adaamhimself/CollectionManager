@@ -23,15 +23,18 @@ export class ListingDisplayInfo {
     error: String;
 
     constructor(listing: Listing, item: Item) {
-        //ID fields
         this.listing_id = listing._id;
         this.user_id = listing.listing_user_id;
-        this.item_id = item._id;
-        //misc fields
         this.type = listing.listing_type;
         this.price = listing.listing_price;
         this.post_date = listing.listing_date;
         this.error = "";
+        //item
+        if (item && item._id && item._id != ""){
+            this.item_id = item._id;
+        } else {
+            this.item_id = null;
+        }
         //name
         if (listing.listing_name && listing.listing_name != ""){
             this.name = listing.listing_name;
@@ -53,7 +56,7 @@ export class ListingDisplayInfo {
             this.category = "N/A";
         }
         //condition
-        if (item.condition && item.condition != ""){
+        if (item && item.condition && item.condition != ""){
             this.condition = item.condition;
         } else {
             this.condition = "N/A";
@@ -71,7 +74,7 @@ export class ListingDisplayInfo {
             this.wanted = "N/A";
         }
         //image
-        if (Object.keys(item.item_images).length != 0) {
+        if (item && Object.keys(item.item_images).length != 0) {
             this.image_path = item.item_images[0].item_image_path;
             this.image_alt = item.item_images[0].item_image_text;
         } else {

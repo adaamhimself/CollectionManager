@@ -92,4 +92,11 @@ export class ChatHomeComponent implements OnInit {
       }
   );
   }
+
+  //unsubscribe upon being destroyed
+  ngOnDestroy() {
+    if (this.messageSub) this.messageSub.unsubscribe();
+    if (this.sendsub) this.sendsub.unsubscribe();
+    if (this.repliesSub) this.repliesSub.unsubscribe();
+  }
 }

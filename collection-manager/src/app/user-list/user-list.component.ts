@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DevService } from '../dev.service';
+import { UserService } from '../user.service';
 import { UserDetails } from '../UserDetails';
 
 @Component({
@@ -8,58 +8,58 @@ import { UserDetails } from '../UserDetails';
     styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-    public allUsers:Array<UserDetails> = [];//all
     public users:Array<UserDetails> = [];//currently showing
     public warning: string;
     public gridColumns = 4;
-    public message = "Looks like there are no users. This may be an error.";
+    public messageTitle = "";
+    public message = "";
     public query = "";
     public userCount = 0;
-    private devSub: any = null;
+    private userSub: any = null;
 
-    constructor(private devService:DevService) { }
+    constructor(private userService:UserService) { }
 
     ngOnInit(): void {
-        this.devSub = this.devService.getListOfUsers().subscribe(
-            (response) => {
-                console.log("Users:",response);
-                this.allUsers = response;
-                this.users = response;
-            },
-            (error) => {
-                this.warning = error.error;
-            }
-        );
+        //default message
+        this.messageTitle = "Search Users"
+        this.message = "Users that fit your query will appear below";
     }
 
     //update the shown users using the search query
     search(): void {
-        //default message
-        this.message = "Looks like there are no users. This may be an error.";
-        if (this.query == ""){
-            //show all users when there's no query
-            this.users = this.allUsers;
+        if (this.query.length == 0){
+            this.messageTitle = "Search Users"
+            this.message = "Please provide a query before searching";
             return;
         }
-        //clear the currently shown users
-        this.users = [];
+        this.messageTitle = "Searching..."
+        this.message = "Users that fit your query will appear below";
         //get all users that fit the query
-        for (let user of this.allUsers){
-            //add if the username includes the query (not case sensitive)
-            if (user.username.toLowerCase().includes(this.query.toLowerCase())){
-                this.users.push(user);
+        this.userSub = this.userService.findUser(this.query).subscribe(
+            (response) => {
+                this.users = response;
+                //update the count
+                this.userCount = this.users.length;
+                //update the message depending on whether there were any returned users
+                if (this.userCount == 0){
+                    this.messageTitle = "No Users";
+                    this.message = "No users fit that search query. Check spelling or try a simpler query."
+                } else {
+                    this.messageTitle = "Search Users";
+                    this.message = "Users that fit your query will appear below";
+                }
+            },
+            (error) => {
+                this.warning = error.error;
+                //update message when there's an error (back to default)
+                this.messageTitle = "Search Users";
+                this.message = "Users that fit your query will appear below";
             }
-        }
-        //update the count
-        this.userCount = this.users.length;
-        //update message if no users were found
-        if (this.userCount == 0){
-            this.message = "No users fit that search query. Check spelling or try a simpler query."
-        }
+        );
     }
 
     //unsubscribe upon being destroyed
     ngOnDestroy() {
-        if (this.devSub) this.devSub.unsubscribe();
+        if (this.userSub) this.userSub.unsubscribe();
     }
 }

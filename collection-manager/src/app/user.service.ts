@@ -26,6 +26,5 @@ export class UserService {
   findUser(name: String): Observable<any> {
     return this.http.get<UserDetails[]>(`${environment.apiBaseUrl}user/findUser/${name}`);
   }
-
   
 }
