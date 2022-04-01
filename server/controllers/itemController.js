@@ -68,8 +68,10 @@ module.exports.deleteImageFromItem = async function() {
 
 }
 
-module.exports.addCustomField = async function(itemId, customField) {
-    console.log(customField);
+module.exports.addCustomField = async function(itemId, newField) {
+    let customField = {};
+    customField.key = newField.key;
+    customField.value = newField.value;
     try {
         let result = await Item.findByIdAndUpdate(itemId, 
             {
