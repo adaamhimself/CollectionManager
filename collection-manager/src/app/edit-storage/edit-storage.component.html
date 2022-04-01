@@ -1,12 +1,12 @@
 <!--Edit Storage Location-->
-<h1>Storage > Edit Storage Location > Storage One</h1>
+<h1>Editing Storage {{ storageName}}</h1>
 <div class="card-wrapper">
     <div fxLayout="row">
       <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
         <mat-card-content fxLayout.gt-sm="row">
 
             <!--Column for text names-->
-        <div fxLayout.gt-sm="column" fxFlex.gt-sm="40%" class="textColumn">
+        <div fxLayout.gt-sm="column" fxFlex.gt-sm="60%" class="textColumn">
             <p>Storage Name</p>            
             <p>Code</p>
             <p>Type</p>
@@ -35,11 +35,33 @@
                 </div>  
               </div>          
         <div>
-          <a href="#" class="btn btn-primary">Save</a>      
+          <button
+          (click)="onSubmit()"
+          mat-raised-button
+          color="accent"
+          type="submit"
+          class="submitStorage"
+        >
+          <p
+            style="
+              display: inline-flex;
+              align-items: center;
+              margin-top: 10px;
+              font-size: larger;
+            "
+          >
+            Save
+          </p>
+        </button>
         </div>         
         </form>
     </mat-card-content>
+    <mat-card-footer>
+      <button
+        class="closeButton" mat-button (click)="onClose()" id="closeX">
+        X
+      </button>
+    </mat-card-footer>
     </mat-card>
     </div>
-</div>
-        
+</div>        

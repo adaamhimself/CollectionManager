@@ -81,7 +81,7 @@ const routes: Routes = [
     component: CreateStorageComponent,
   },
   {
-    path: 'editstorage',
+    path: 'editstorage/:id',
     component: EditStorageComponent,
   },
   {
