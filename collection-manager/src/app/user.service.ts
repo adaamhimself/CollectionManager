@@ -23,5 +23,9 @@ export class UserService {
     return this.http.put<any>(`${environment.apiBaseUrl}user/editUserDetails/${id}`, update);
   }
 
+  findUser(name: String): Observable<any> {
+    return this.http.get<UserDetails>(`${environment.apiBaseUrl}user/findUser/${name}`);
+  }
+
   
 }

@@ -8,7 +8,7 @@ const User = require('../models/userModel');
 
 module.exports.findUser = async function(queried_username) {
     try {
-        let result = await User.findOne({username: queried_username})
+        let result = await User.find({username: queried_username})
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};

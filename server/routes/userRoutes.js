@@ -3,8 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const user = require('../controllers/userController.js');
 
-router.get('/findUser', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await user.findUser(req.body);
+router.get('/findUser/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await user.findUser(req.params.id);
     res.status(response.code).json(response.message);
 });
 
