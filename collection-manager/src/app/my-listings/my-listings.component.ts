@@ -53,7 +53,6 @@ export class MyListingsComponent implements OnInit {
                     (item) => {
                         //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
                         this.postings.push(new ListingDisplayInfo(listing, item));
-                        console.log(this.postings.length);
                     },
                     (error) => {
                         this.warning = error.error;

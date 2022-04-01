@@ -97,7 +97,7 @@ export class ProfileComponent implements OnInit {
         this.postings = [];
         //if nothing was retrieved from the service
         if (!(listings && listings.length > 0)) {
-            console.log("Nothing returned from listing service. Likely nothing there but may be an error.");
+            console.log("No listing for this user");
             return;
         }
         //for each market listings
