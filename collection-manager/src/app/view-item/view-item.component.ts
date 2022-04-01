@@ -7,6 +7,8 @@ import { ItemService } from '../item.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomFieldDialogComponent } from '../custom-field-dialog/custom-field-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { TemplateService } from '../template.service';
+import { Template } from '../Template';
 
 @Component({
     selector: 'app-view-item',
@@ -21,8 +23,10 @@ export class ViewItemComponent implements OnInit {
     private collectionSub: any;
     private addFieldSub: any;
     private deleteSub: any;
+    private templateSub: any;
+    public template: Template = new Template;
 
-    constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog) { }
+    constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog, private templateService: TemplateService) { }
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
@@ -32,6 +36,7 @@ export class ViewItemComponent implements OnInit {
                 this.collectionSub = this.collection.getCollectionById(this.item.containing_collection_id).subscribe(
                     (response) => {
                         this.collectionDetails = response;
+                        
                     },
                     (error) => {
                         this.warning = error.error;
@@ -40,6 +45,16 @@ export class ViewItemComponent implements OnInit {
             },
             (error) => {
                 this.warning = error.error;
+            }
+        );
+        this.templateSub = this.templateService.getTemplateById(id).subscribe(
+            (response) => {
+                this.template = response;
+                console.log(response);
+            },
+            (error) => {
+                this.warning = error.error;
+                console.log(error);
             }
         );
     }
@@ -96,5 +111,6 @@ export class ViewItemComponent implements OnInit {
         if (this.collectionSub) this.collectionSub.unsubscribe();
         if (this.addFieldSub) this.addFieldSub.unsubscribe();
         if (this.deleteSub) this.deleteSub.unsubscribe();
+        if (this.templateSub) this.templateSub.unsubscribe();
     }
 }

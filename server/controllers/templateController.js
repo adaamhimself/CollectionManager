@@ -13,6 +13,7 @@ const card = require('../models/tradingCardTemplateModel');
 const watch = require('../models/watchTemplateModel');
 const item = require('../models/itemTemplate');
 const articleModel = require('../models/articleModel');
+const { findOneAndUpdate, findByIdAndUpdate } = require('../models/articleModel');
 
 // Methods
 module.exports.addTemplateToItem = async function(item_id, template_request) {
@@ -22,7 +23,7 @@ module.exports.addTemplateToItem = async function(item_id, template_request) {
         let template = mongoose.model(template_type);
         let newTemplate = new template(template_details)
         let result = await newTemplate.save();
-        await item.findOneAndUpdate(item_id, 
+        let response = await item.findByIdAndUpdate(item_id, 
             {
                 $set:
                     { 

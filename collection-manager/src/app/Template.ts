@@ -1,4 +1,4 @@
-export class BookTemplate {
+export class Template {
     "_id": String;
     "template_type": String;
     // Book fields
@@ -9,4 +9,8 @@ export class BookTemplate {
     "edition": String;
     "language": String;
     "pages": String;
+
+    constructor() {
+        this.template_type = "";
+    }
 }

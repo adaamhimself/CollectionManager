@@ -85,13 +85,41 @@
         <br />
       </div>
       <div class="col-lg-7">
-        <p class="bg-light">Template name</p>
+        <p class="bg-light">{{template.template_type}}</p>
         <br />
         <p class="bg-light">{{ item.item_title }}</p>
         <br />
       </div>
     </div>
-    <div class="header">Template name</div>
+    <div>
+      <div class="header">Template name</div>
+
+      <!-- Book template space-->
+      <div *ngIf="template.template_type==='book'">
+        Author: {{template.author}}
+        <br>
+        Date Published: {{template.date_published}}
+        <br>
+        Publisher: {{template.publisher}}
+        <br>
+        Format: {{template.format}}
+        <br>
+        Edition: {{template.edition}}
+        <br>
+        Language: {{template.language}}
+        <br>
+        Pages: {{template.pages}}
+      </div>
+
+      <!-- Article template space-->
+      <div *ngIf="template.template_type==='article'">
+          article
+      </div>
+
+    </div>
+    
+
+
     <br />
     <div class="rounded border border-dark">
       <div class="row">
