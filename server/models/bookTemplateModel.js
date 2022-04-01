@@ -2,7 +2,6 @@ const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
 const bookSchema = new Schema({
-    "template_object_id": String,
     "author": String,
     "date_published": String,
     "publisher": String,

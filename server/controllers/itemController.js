@@ -6,9 +6,7 @@ const User = require('../models/userModel');
 const Collection = require('../models/collectionModel');
 const express = require('express');
 const app = express();
-const jwt = require('jsonwebtoken');
 const Item = require('../models/itemTemplate');
-const fs = require("fs");
 
 module.exports.getItemById = async function(userId, itemId) {
     try {
