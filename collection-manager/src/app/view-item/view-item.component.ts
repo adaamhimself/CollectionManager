@@ -87,20 +87,11 @@ export class ViewItemComponent implements OnInit {
     }
 
     //handles the addition of custom fields
-    addCustomField(id: String): void {
+    addCustomField(newItem: Item): void {
         const dialogRef = this.dialog.open(CustomFieldDialogComponent);
         dialogRef.afterClosed().subscribe(result => {
-            if (result === "save") {
-                //this.deleteCollectionSub = this.collection.removeCollection(id).subscribe
-                // confused here
-                this.addFieldSub = this.collection.removeCollection(id).subscribe(
-                    (response) => {
-                        window.location.reload();
-                    },
-                    (error) => {
-                        this.warning = error.error;
-                    }
-                );
+            if(result.event == 'save'){
+                this.addCustomField(this.item);
             }
         });
     }

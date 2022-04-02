@@ -27,6 +27,11 @@ export class ItemService {
   editItem(editedItem: Item): Observable<any> { 
     return this.http.put<any>(`${environment.apiBaseUrl}item/editItem/${editedItem._id}`, editedItem);
   }
+
+  // could be wrong
+  addCustomField(editedItem: Item): Observable<any> { 
+    return this.http.put<any>(`${environment.apiBaseUrl}item/addCustomField/${editedItem._id}`, editedItem);
+  }
     
   removeItem(id: String): Observable<any> { 
     return this.http.delete<any>(`${environment.apiBaseUrl}item/removeItem/${id}`);

@@ -1,13 +1,17 @@
 <h1 mat-dialog-title>Add custom field</h1>
 <form>
     <div class="form-group">
+      <label for="key">Key</label>
+      <div class="input-group">
+        <input id="key" class="form-control" [(ngModel)]="local_data.key">
+      </div>
       <label for="value">Value</label>
       <div class="input-group">
-        <input id="value" class="form-control" #newField>
+        <input id="value" class="form-control" [(ngModel)]="local_data.key">
       </div>
     </div>
   </form>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]>Cancel</button>
-    <button mat-button (click)="onSaveClick(newField.value)">Save</button>
+    <button mat-button (click)="doAction()">Save</button>
 </div>
