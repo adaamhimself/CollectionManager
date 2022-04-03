@@ -2,26 +2,76 @@
     <div class="container p-0">
 
 		<div class="row">
-            <h1 class="h3 mb-3">Messages </h1> 
-            <a href="#" class="ml-3 mt-2">Add User Chat</a>
-            <a href="#" class="ml-3 mt-2">Create Group Chat</a>
+            <h1 class="h3 mb-3">Messages </h1>  
+
+			<mat-toolbar color="primary">
+				<span>Chat with Users</span>
+				<!--search-->
+				<span>
+				  <input
+					class="search-font"
+					id="searchBar"
+					placeholder="Search users"
+					type="text"
+					[(ngModel)]="query"
+				  />
+				  <button
+					mat-raised-button
+					class="search-font"
+					id="searchButton"
+					(click)="search()"
+				  >
+					Search
+				  </button>
+				</span>
+			  </mat-toolbar> 
+			  
+			  
+			  
+			  <div class="content">
+				<div fxLayout="row wrap" fxLayoutGap="16px grid" style="width:100%">
+				  <div
+					[fxFlex]="100 / gridColumns + '%'"
+					*ngFor="let user of users"
+					style="width:100%"
+				  >
+					<!--card for each collection-->
+					<mat-card class="mat-elevation-z4 card">
+					  <mat-card-header>
+						<mat-card-title>{{ user.username }}</mat-card-title>
+					  </mat-card-header>
+					  <hr style="margin-top: 1px; margin-bottom: 9px;">
+					  <!--chat button-->
+					  <mat-card-actions style="text-align:center">
+						<button
+						  mat-raised-button
+						  color="primary"
+						  class="manage-button"
+						  (click)="createConversation(user._id, 'Hello ' + user.username )"
+						  
+						>
+						  Chat
+						</button>
+					  </mat-card-actions>
+					</mat-card>
+				  </div>
+				</div>
+			  </div>			  
         </div>
         
 		<div class="card">
 			<div class="row g-0">
-				<div class="col-12 col-lg-5 col-xl-3 border-right chat-list">
+				<div class="col-12 col-lg-5 col-xl-3 border-right chat-list">		 
 
-					<div class="px-4 d-none d-md-block">
+                    <h2 class="ml-3 mb-0 mt-2">Users</h2>
+					
+					<div class="ml-1 px-2 d-none d-md-block">
 						<div class="d-flex align-items-center">
 							<div class="flex-grow-1">
 								<input type="text" class="form-control my-3" placeholder="Search..." [(ngModel)] = "filteredString">
 							</div>
 						</div>
 					</div>
-
-                    <h2 class="ml-3">Groups</h2>
-
-                    <h2 class="ml-3">Users</h2>
 
                     <div *ngFor="let conversation of conversations | filter:filteredString" class="position-relative">
                         <a class="list-group-item list-group-item-action border-0" (click)="loadMessages(conversation._id, conversation.username, conversation.other_participant_id)">
@@ -34,8 +84,10 @@
 								</button>
 						    </div>
 					    </a>
+						
 
                     </div>
+					
 
 					<hr class="d-block d-lg-none mt-1 mb-0">
 				</div>
@@ -49,6 +101,8 @@
 							</div>
 						</div>
 					</div>
+
+					
 
 					<div class="position-relative">
 						<div class="chat-messages p-4">
