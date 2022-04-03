@@ -36,4 +36,19 @@ export class ItemService {
   removeItem(id: String): Observable<any> { 
     return this.http.delete<any>(`${environment.apiBaseUrl}item/removeItem/${id}`);
   } 
+
+  addImageToItem(id: String, image: any): Observable<any> { 
+    return this.http.post<any>(`${environment.apiBaseUrl}image/addImageToItem/${id}`, image);
+  } 
+
+  getItemImages(id: String): Observable<any> { 
+    return this.http.get<Item>(`${environment.apiBaseUrl}image/getItemImages/${id}`);
+  }
+
+  deleteImageFromItem(file: String): Observable<any> { 
+    let bodyObj: any = {};
+    bodyObj.filename = file;
+    return this.http.delete<any>(`${environment.apiBaseUrl}item/removeItem`, {body: bodyObj});
+  } 
+
 }

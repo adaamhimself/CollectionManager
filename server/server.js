@@ -39,6 +39,9 @@ app.use('/api/user', userRouter);
 const templateRouter = require('./routes/templateRoutes');
 app.use('/api/template', templateRouter);
 
+const imageRouter = require('./routes/imageRoutes');
+app.use('/api/image', imageRouter);
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 // Start server and connect to database

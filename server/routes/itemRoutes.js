@@ -29,15 +29,6 @@ router.delete('/removeItem/:id', passport.authenticate('jwt', {session: false}),
     res.status(response.code).json(response.message);
 });
 
-router.post('/addImageToItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await item.addImageToItem(req.user._id, req.body);
-    res.status(response.code).json(response.message);
-});
-
-router.delete('/deleteImageFromItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await item.deleteImageFromItem(req.user._id, req.body);
-    res.status(response.code).json(response.message);
-});
 
 router.post('/addCustomField/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
     let response = await item.addCustomField(req.params.id, req.body);
