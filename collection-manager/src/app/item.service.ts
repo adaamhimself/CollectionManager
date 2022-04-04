@@ -29,13 +29,8 @@ export class ItemService {
     return this.http.put<any>(`${environment.apiBaseUrl}item/editItem/${editedItem._id}`, editedItem);
   }
 
-  // could be wrong
-  // addCustomField(id: String, customField: CustomField): Observable<any> { 
-  //   return this.http.put<any>(`${environment.apiBaseUrl}item/addCustomField/${id}`, customField);
-  // }
-
-  addCustomField(customField: CustomField): Observable<any> { 
-    return this.http.post<any>(`${environment.apiBaseUrl}item/addCustomField/${customField._id}`, customField);
+  addCustomField(id: String, customField: CustomField): Observable<any> { 
+    return this.http.post<any>(`${environment.apiBaseUrl}item/addCustomField/${id}`, customField);
   }
 
   getCustomFields(id: String): Observable<any> { 

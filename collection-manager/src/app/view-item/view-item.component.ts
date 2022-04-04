@@ -11,6 +11,11 @@ import { TemplateService } from '../template.service';
 import { Template } from '../Template';
 import { CustomField } from '../CustomField';
 
+export interface DialogData{
+    key: String;
+    value: String;
+}
+
 @Component({
     selector: 'app-view-item',
     templateUrl: './view-item.component.html',
@@ -27,6 +32,8 @@ export class ViewItemComponent implements OnInit {
     private templateSub: any;
     public template: Template = new Template;
     public customField: CustomField = new CustomField;
+    key: String;
+    value: String;
 
     constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog, private templateService: TemplateService) { }
 
@@ -59,16 +66,6 @@ export class ViewItemComponent implements OnInit {
                 console.log(error);
             }
         );
-
-        this.addFieldSub = this.itemService.getCustomFields(id).subscribe(
-            (response) => {
-                this.customField = response;
-            },
-            (error) => {
-                this.warning = error.error;
-                console.log(error);
-            }
-        )
     }
 
     onEdit(): void {
@@ -98,43 +95,23 @@ export class ViewItemComponent implements OnInit {
         });
     }
 
-    // addCustomField(id: String): void {
-    //     const dialogRef = this.dialog.open(CustomFieldDialogComponent);
-    //     dialogRef.afterClosed().subscribe(result => {
-    //         if (result === "save") {
-    //             // confused here
-    //             this.addFieldSub = this.itemService.addCustomField(id, this.customField).subscribe(
-    //                 (response) => {
-    //                     console.log(response);
-    //                     window.location.reload();
-    //                 },
-    //                 (error) => {
-    //                     this.warning = error.error;
-    //                 }
-    //             );
-    //         }
-
-    //         console.log("Dialog output:", result)
-    //     });
-    // }
-
     //handles the addition of custom fields
     addCustomField(id: String): void {
-        const dialogRef = this.dialog.open(CustomFieldDialogComponent);
+        const dialogRef = this.dialog.open(CustomFieldDialogComponent, {
+            width: '250px',
+            data: {key: this.key, value: this.value}
+        });
         dialogRef.afterClosed().subscribe(result => {
-            if (result === "save") {
-                // confused here
-                this.addFieldSub = this.itemService.addCustomField(this.customField).subscribe(
-                    (response) => {
-                        console.log(response);
-                        window.location.reload();
-                    },
-                    (error) => {
-                        this.warning = error.error;
-                    }
-                );
-            }
-            console.log("Dialog output:", result)
+            this.customField = result;
+            this.addFieldSub = this.itemService.addCustomField(id, this.customField).subscribe(
+                (response) => {
+                    console.log(response);
+                    window.location.reload();
+                },
+                (error) => {
+                    this.warning = error.error;
+                }
+            );
         });
     }
 
