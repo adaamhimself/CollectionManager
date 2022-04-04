@@ -35,7 +35,7 @@ export class ItemService {
   // }
 
   addCustomField(customField: CustomField): Observable<any> { 
-    return this.http.put<any>(`${environment.apiBaseUrl}item/addCustomField/${customField._id}`, customField);
+    return this.http.post<any>(`${environment.apiBaseUrl}item/addCustomField/${customField._id}`, customField);
   }
 
   getCustomFields(id: String): Observable<any> { 
