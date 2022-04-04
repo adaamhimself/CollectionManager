@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Item } from './Item';
 import { NewItem } from './newItem';
+import { CustomField } from './CustomField';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,16 @@ export class ItemService {
   }
 
   // could be wrong
-  addCustomField(editedItem: Item): Observable<any> { 
-    return this.http.put<any>(`${environment.apiBaseUrl}item/addCustomField/${editedItem._id}`, editedItem);
+  // addCustomField(id: String, customField: CustomField): Observable<any> { 
+  //   return this.http.put<any>(`${environment.apiBaseUrl}item/addCustomField/${id}`, customField);
+  // }
+
+  addCustomField(customField: CustomField): Observable<any> { 
+    return this.http.put<any>(`${environment.apiBaseUrl}item/addCustomField/${customField._id}`, customField);
+  }
+
+  getCustomFields(id: String): Observable<any> { 
+    return this.http.get<any>(`${environment.apiBaseUrl}item/getCustomFields/${id}`);
   }
     
   removeItem(id: String): Observable<any> { 

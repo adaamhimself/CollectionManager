@@ -9,6 +9,7 @@ import { CustomFieldDialogComponent } from '../custom-field-dialog/custom-field-
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { TemplateService } from '../template.service';
 import { Template } from '../Template';
+import { CustomField } from '../CustomField';
 
 @Component({
     selector: 'app-view-item',
@@ -25,6 +26,7 @@ export class ViewItemComponent implements OnInit {
     private deleteSub: any;
     private templateSub: any;
     public template: Template = new Template;
+    public customField: CustomField = new CustomField;
 
     constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog, private templateService: TemplateService) { }
 
@@ -57,6 +59,16 @@ export class ViewItemComponent implements OnInit {
                 console.log(error);
             }
         );
+
+        this.addFieldSub = this.itemService.getCustomFields(id).subscribe(
+            (response) => {
+                this.customField = response;
+            },
+            (error) => {
+                this.warning = error.error;
+                console.log(error);
+            }
+        )
     }
 
     onEdit(): void {
@@ -86,13 +98,43 @@ export class ViewItemComponent implements OnInit {
         });
     }
 
+    // addCustomField(id: String): void {
+    //     const dialogRef = this.dialog.open(CustomFieldDialogComponent);
+    //     dialogRef.afterClosed().subscribe(result => {
+    //         if (result === "save") {
+    //             // confused here
+    //             this.addFieldSub = this.itemService.addCustomField(id, this.customField).subscribe(
+    //                 (response) => {
+    //                     console.log(response);
+    //                     window.location.reload();
+    //                 },
+    //                 (error) => {
+    //                     this.warning = error.error;
+    //                 }
+    //             );
+    //         }
+
+    //         console.log("Dialog output:", result)
+    //     });
+    // }
+
     //handles the addition of custom fields
-    addCustomField(newItem: Item): void {
+    addCustomField(id: String): void {
         const dialogRef = this.dialog.open(CustomFieldDialogComponent);
         dialogRef.afterClosed().subscribe(result => {
-            if(result.event == 'save'){
-                this.addCustomField(this.item);
+            if (result === "save") {
+                // confused here
+                this.addFieldSub = this.itemService.addCustomField(this.customField).subscribe(
+                    (response) => {
+                        console.log(response);
+                        window.location.reload();
+                    },
+                    (error) => {
+                        this.warning = error.error;
+                    }
+                );
             }
+            console.log("Dialog output:", result)
         });
     }
 
@@ -103,5 +145,6 @@ export class ViewItemComponent implements OnInit {
         if (this.addFieldSub) this.addFieldSub.unsubscribe();
         if (this.deleteSub) this.deleteSub.unsubscribe();
         if (this.templateSub) this.templateSub.unsubscribe();
+        if (this.addFieldSub) this.addFieldSub.unsubscribe();
     }
 }

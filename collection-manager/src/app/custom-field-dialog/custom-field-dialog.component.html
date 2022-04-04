@@ -3,15 +3,15 @@
     <div class="form-group">
       <label for="key">Key</label>
       <div class="input-group">
-        <input id="key" class="form-control" [(ngModel)]="local_data.key">
+        <input id="key" class="form-control">
       </div>
       <label for="value">Value</label>
       <div class="input-group">
-        <input id="value" class="form-control" [(ngModel)]="local_data.key">
+        <input id="value" class="form-control">
       </div>
     </div>
   </form>
 <div mat-dialog-actions>
     <button mat-button [mat-dialog-close]>Cancel</button>
-    <button mat-button (click)="doAction()">Save</button>
+    <button mat-button (click)="onSaveClick()">Save</button>
 </div>
