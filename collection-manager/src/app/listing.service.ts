@@ -49,7 +49,7 @@ export class ListingService {
   }
 
   modifyListing(editedListing: Listing): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}item/editItem/${editedListing._id}`, editedListing);
+    return this.http.put<any>(`${environment.apiBaseUrl}listing/modifyListing/${editedListing._id}`, editedListing);
   }
 
   deleteListing(id: String): Observable<any> {

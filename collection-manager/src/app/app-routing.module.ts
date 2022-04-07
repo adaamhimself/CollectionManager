@@ -17,6 +17,7 @@ import { EditStorageComponent } from './edit-storage/edit-storage.component';
 import { CreateTradeComponent } from './create-trade/create-trade.component';
 import { CreateSaleComponent } from './create-sale/create-sale.component';
 import { CreateWantedComponent } from './create-wanted/create-wanted.component';
+import { EditListingComponent } from './edit-listing/edit-listing.component';
 import { MarketComponent } from './market/market.component';
 import { ViewPostingComponent } from './view-posting/view-posting.component';
 import { ChatHomeComponent } from './chat-home/chat-home.component';
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'mylistings',
     component: MyListingsComponent,
+  },
+  {
+    path: 'editlisting/:id',
+    component: EditListingComponent,
   },
   {
     path: 'viewposting/:id',
