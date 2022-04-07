@@ -14,8 +14,8 @@ export class EditStorageComponent implements OnInit {
   public response: string;   
   private editSub: any = null;
 
-  public storageModel: Storage = new Storage;//synced form model
-  public storageName: string = "";//displays at top of page
+  public storageModel: Storage = new Storage; // synced form model
+  public storageName: string = ""; // displays at top of page
 
   constructor(private routing: Router, private route: ActivatedRoute, private stoService: StorageService) { }
 
@@ -25,8 +25,7 @@ export class EditStorageComponent implements OnInit {
       (response) => {
         this.storageModel = response;         
         if (this.storageModel) this.storageName = `${this.storageModel.storage_name}`;
-          //console.log("item:", this.storageModel);
-      }, (error) => {
+       }, (error) => {
           this.warning = error.error;
     }
     )
@@ -44,11 +43,21 @@ export class EditStorageComponent implements OnInit {
       this.routing.navigate(['/managestorage']);    
   }
 
+  // validation for labeling code
+  onKeyPress(event: any) {
+    const regexpNumber = /[0-9\ ]/;
+    let inputCharacter = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !regexpNumber.test(inputCharacter)) {
+      event.preventDefault();
+    }
+  }
+  
+  // closes edit form 
   onClose(): void {
       this.routing.navigate(['/managestorage']);
   }
 
-  //unsubscribes upon being destroyed
+  // unsubscribes upon being destroyed
   ngOnDestroy() {
       if (this.editSub) this.editSub.unsubscribe();
     }

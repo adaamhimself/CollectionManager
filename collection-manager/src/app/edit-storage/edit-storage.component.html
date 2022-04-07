@@ -1,10 +1,18 @@
 <!--Edit Storage Location-->
-
 <div class="content">
   <mat-card>
     <mat-card-content>
       <form (ngSubmit)="onSubmit()">        
       <h1>Editing Storage {{ storageName }}</h1>
+      <button
+          class="close-button"
+          aria-label="Close alert"
+          type="button"
+          (click)="onClose()"
+          data-close
+        >
+        <span aria-hidden="true">&times;</span>
+        </button>
         <br />
         <!--storage name-->
         <mat-card 
@@ -67,6 +75,7 @@
           </mat-form-field>
         </mat-card>
         <br>
+        <!--labeling code-->
         <mat-card
           fxLayout="row"
           fxLayoutGap="15px"
@@ -79,15 +88,16 @@
             matInput
             placeholder="Give this box a code... e.g. 001"
             name="code"  
-            required      
+            required     
+            (keypress)="onKeyPress($event)"  
             [(ngModel)]="storageModel.storage_assigned_code"
           />
           <mat-error>Must assign a code to this storage box</mat-error>
         </mat-form-field>
         </mat-card>
-
         <br />
-        <br />
+        <br />        
+        <!--submit button-->
         <button
           mat-raised-button
           color="primary"

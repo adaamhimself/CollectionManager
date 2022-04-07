@@ -15,6 +15,17 @@ mat-form-field {
   vertical-align: middle;
 }
 
+.close-button {
+  position: absolute;
+  border-radius: 5px;
+  right: 5px;
+  border: none;
+  font-size: x-large;
+  top: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
 .card-wrapper {
     top: 8%;
     left: 15%;
