@@ -71,7 +71,7 @@ export class CreateSaleComponent implements OnInit {
       }
     );
     console.log(this.tradeModel);
-    this.routing.navigate(['/managecollections']);
+    this.routing.navigate(['/mylistings']);
   }
 
   // when a collection is chosen from the dropdown box, call this method and populate the item

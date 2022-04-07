@@ -48,27 +48,32 @@ export class MyListingsComponent implements OnInit {
             if (listing.listing_type == "sale") listing.listing_type = "selling";
             if (listing.listing_type == "trade") listing.listing_type = "trading";
             //1. get the linked item if it exists
-            if (listing.item_id){
-                this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
-                    (item) => {
-                        //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
-                        this.postings.push(new ListingDisplayInfo(listing, item));
-                    },
-                    (error) => {
-                        this.warning = error.error;
-                        //if no item is linked, use a default item
-                        let newListing = new ListingDisplayInfo(listing, new Item);
-                        //give an error to display
-                        newListing.error = "Error retrieving linked item. Either the item was deleted or the server has issues.";
-                        this.postings.push(newListing);
-                    }
-                );
-            } else {
-                //if no item is linked, use a default item
-                let newListing = new ListingDisplayInfo(listing, new Item);
-                //give an error to display
-                newListing.error = "No item is linked. Delete the listing.";
-                this.postings.push(newListing);
+            if(listing.listing_type == "wanted") {
+                this.postings.push(new ListingDisplayInfo(listing));
+            }
+            else {
+                if (listing.item_id){
+                    this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
+                        (item) => {
+                            //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
+                            this.postings.push(new ListingDisplayInfo(listing, item));
+                        },
+                        (error) => {
+                            this.warning = error.error;
+                            //if no item is linked, use a default item
+                            let newListing = new ListingDisplayInfo(listing, new Item);
+                            //give an error to display
+                            newListing.error = "Error retrieving linked item. Either the item was deleted or the server has issues.";
+                            this.postings.push(newListing);
+                        }
+                    );
+                } else {
+                    //if no item is linked, use a default item
+                    let newListing = new ListingDisplayInfo(listing, new Item);
+                    //give an error to display
+                    newListing.error = "No item is linked. Delete the listing.";
+                    this.postings.push(newListing);
+                }
             }
         });
     }
