@@ -49,6 +49,6 @@ export class CreateWantedComponent implements OnInit {
       }
     );
     console.log(this.tradeModel);
-    this.routing.navigate(['/managecollections']);
+    this.routing.navigate(['/mylistings']);
   }
 }

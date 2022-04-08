@@ -22,7 +22,7 @@ export class ListingDisplayInfo {
     image_alt: String;
     error: String;
 
-    constructor(listing: Listing, item: Item) {
+    constructor(listing: Listing, item?: Item) {
         this.listing_id = listing._id;
         this.user_id = listing.listing_user_id;
         this.type = listing.listing_type;

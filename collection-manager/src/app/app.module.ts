@@ -64,6 +64,7 @@ import { ViewAnalyticsComponent } from './view-analytics/view-analytics.componen
 //charts
 import { ChartsModule } from 'ng2-charts';
 import { UserListComponent } from './user-list/user-list.component';
+import { EditListingComponent } from './edit-listing/edit-listing.component';
 
 @NgModule({
   //components (pages)
@@ -98,6 +99,7 @@ import { UserListComponent } from './user-list/user-list.component';
     ProfileComponent,
     ViewAnalyticsComponent,
     UserListComponent,
+    EditListingComponent,
   ],
   //included modules
   imports: [

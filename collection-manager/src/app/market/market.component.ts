@@ -45,17 +45,23 @@ export class MarketComponent implements OnInit {
         listings.forEach(listing => {
             //Note: listings with an invalid item linked won't be shown
             //1. get the linked item if it exists
-            if (listing.item_id) {
-                this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
-                    (item) => {
-                        //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
-                        this.postings.push(new ListingDisplayInfo(listing, item));
-                        this.listingCount++;//increase the count
-                    },
-                    (error) => {
-                        this.warning = error.error;
-                    }
-                );
+            if (listing.listing_type == "wanted") {
+                this.postings.push(new ListingDisplayInfo(listing));
+                this.listingCount++;
+            }
+            else {
+                if (listing.item_id) {
+                    this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
+                        (item) => {
+                            //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
+                            this.postings.push(new ListingDisplayInfo(listing, item));
+                            this.listingCount++;//increase the count
+                        },
+                        (error) => {
+                            this.warning = error.error;
+                        }
+                    );
+                }
             }
         });
     }

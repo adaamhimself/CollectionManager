@@ -1,10 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface CustomFieldData {
-  key: string;
-  value: string;
-}
+import { DialogData } from '../view-item/view-item.component';
 
 @Component({
   selector: 'app-custom-field-dialog',
@@ -16,16 +12,13 @@ export class CustomFieldDialogComponent implements OnInit {
   key : String;
   value: String;
 
-  constructor(private matDialogRef: MatDialogRef<CustomFieldDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: CustomFieldData) { 
-    // breaks the form
-    // this.key = data.key;
-    // this.value = data.value;
+  constructor(private matDialogRef: MatDialogRef<CustomFieldDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { 
   }
 
   ngOnInit(): void {
   }
 
-  onSaveClick() {
-    this.matDialogRef.close("save");
+  onNoClick() {
+    this.matDialogRef.close();
   }
 }
