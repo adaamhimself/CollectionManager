@@ -19,7 +19,7 @@ router.post('/addToConversation/:id', passport.authenticate('jwt', {session: fal
 });
 
 router.post('/createConversation/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    let response = await chat.createConversation(req.user._id, req.params.id, req.body);
+    let response = await chat.createConversation(req.user._id, req.params.id);
     res.status(response.code).json(response.message);
 });
 

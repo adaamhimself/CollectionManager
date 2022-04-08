@@ -55,17 +55,12 @@ module.exports.addToCoversation = async function(user_id, conversation_id, newMe
     }
 }
 
-module.exports.createConversation = async function(user_id, other_user_id, newMessage) {
+module.exports.createConversation = async function(user_id, other_user_id) {
     try {
         let newConversation = new Chat();
         newConversation.participants = [user_id, other_user_id];
-        let message = {
-            author: user_id,
-            body: newMessage.body
-        }
-        newConversation.messages.push(message);
         await newConversation.save();
-        return {code: 201, message: "Conversation created and message added"};
+        return {code: 201, message: "Conversation created"};
     } catch(error) {
         return {code: 400, message: error};
     }
