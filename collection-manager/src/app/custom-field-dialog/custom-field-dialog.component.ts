@@ -19,6 +19,6 @@ export class CustomFieldDialogComponent implements OnInit {
   }
 
   onNoClick() {
-    this.matDialogRef.close();
+    this.matDialogRef.close("close");
   }
 }

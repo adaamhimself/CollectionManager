@@ -102,8 +102,9 @@ export class ViewItemComponent implements OnInit {
             data: {key: this.key, value: this.value}
         });
         dialogRef.afterClosed().subscribe(result => {
-            this.customField = result;
-            this.addFieldSub = this.itemService.addCustomField(id, this.customField).subscribe(
+            if (result != "close") {
+                this.customField = result;
+                this.addFieldSub = this.itemService.addCustomField(id, this.customField).subscribe(
                 (response) => {
                     console.log(response);
                     window.location.reload();
@@ -112,6 +113,7 @@ export class ViewItemComponent implements OnInit {
                     this.warning = error.error;
                 }
             );
+            }
         });
     }
 
