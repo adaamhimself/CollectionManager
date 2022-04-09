@@ -28,4 +28,9 @@ router.delete('/deleteConversation/:id', passport.authenticate('jwt', {session: 
     res.status(response.code).json(response.message);
 });
 
+router.delete('/clearConversation/:id', passport.authenticate('jwt', {session: false}), async(req, res) => {
+    let response = await chat.clearConversation(req.params.id);
+    res.status(response.code).json(response.message);
+});
+
 module.exports = router;

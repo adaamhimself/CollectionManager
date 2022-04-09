@@ -75,3 +75,19 @@ module.exports.deleteConversation = async function(conversation_id) {
         return {code: 400, message: error};
     }
 }
+
+module.exports.clearConversation = async function(conversation_id) {
+    try {
+        await Chat.findByIdAndUpdate(conversation_id,
+            {
+                $unset: 
+                {
+                    messages: ""
+                }
+            }
+        ); 
+        return {code: 200, message: `Conversation ${conversation_id} cleared`};
+    } catch(error) {
+        return {code: 400, message: error};
+    }
+}
