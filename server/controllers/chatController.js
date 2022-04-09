@@ -17,14 +17,13 @@ module.exports.getConversations = async function(user_id) {
     try {
         let result = await Chat.find({participants: user_id});
         let conversations = [];
-        
         // iterate through results array
         for (i=0; i < result.length; i++) {
             let conversation = {};
             conversation._id = result[i]._id;
             conversations.push(conversation);
             if (result[0].participants[0] === user_id) {
-                let username = await User.findById(result[i].participants[1].trim());
+                let username = await User.findOne({ _id: result[i].participants[1].trim()});
                 conversation.username = username.username;
                 conversation.other_participant_id = username._id.toString();
             } else if (result[0].participants[1] === user_id) {
@@ -43,7 +42,7 @@ module.exports.getConversations = async function(user_id) {
 
 
 module.exports.addToCoversation = async function(user_id, conversation_id, newMessage) {
-    try {
+    try {        
         let message = {
             author: user_id,
             body: newMessage.body
@@ -57,9 +56,39 @@ module.exports.addToCoversation = async function(user_id, conversation_id, newMe
 
 module.exports.createConversation = async function(user_id, other_user_id) {
     try {
-        let newConversation = new Chat();
-        newConversation.participants = [user_id, other_user_id];
-        await newConversation.save();
+        // Ensure that both users are valid
+        let response = await User.find({
+            $or: 
+            [
+                {
+                    _id: user_id,
+                },
+                {
+                    _id: other_user_id
+                }
+            ]
+        });
+        if (response.length < 2) { return {code: 400, message: "Bad request. User(s) does not exist."}};
+        // Ensure that conversation doesn't already exist
+        let result = await Chat.find({
+            $and: 
+            [
+                {
+                    participants: user_id,
+                },
+                {
+                    participants: other_user_id
+                }
+            ]
+        });
+        if (result.length > 0) { 
+            return {code: 400, message: "Conversation already exists"}
+        }
+        else {
+            let newConversation = new Chat();
+            newConversation.participants = [user_id, other_user_id];
+            await newConversation.save();
+        }
         return {code: 201, message: "Conversation created"};
     } catch(error) {
         return {code: 400, message: error};
