@@ -46,7 +46,7 @@
   </div>
   <!--button to open chat with the user who posted the listing-->
   <div style="margin-right: auto; text-align: right">
-    <button mat-raised-button color="primary" routerLink="{{ chatRoute }}">
+    <button mat-raised-button color="primary" (click)="notifyUser(posting.user_id)" routerLink="{{ chatRoute }}">
       Notify User
     </button>
   </div>

@@ -1,11 +1,11 @@
-<div class="row">
-  <h1>
+<div class="row title" style="position: relative;">
+  <h1 class="pageheader">
     <a routerLink="/viewcollection/{{ collectionDetails._id }}">{{
       collectionDetails.collection_name
     }}</a>
     > View Item > {{ item.item_title }}
   </h1>
-  <div style="padding-top: 50px; margin-right: 0; margin-left: auto">
+  <div class="buttons">
     <button
       mat-raised-button
       (click)="onEdit()"
@@ -86,6 +86,7 @@
       </div>
       <div class="col-lg-7">
         <p class="bg-light">{{template.template_type}}</p>
+        <br />
         <br />
         <p class="bg-light">{{ item.item_title }}</p>
         <br />

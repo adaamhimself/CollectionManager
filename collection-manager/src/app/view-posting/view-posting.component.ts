@@ -4,6 +4,7 @@ import { Item } from '../Item';
 import { ItemService } from '../item.service';
 import { ListingDisplayInfo } from '../listing-display-info';
 import { ListingService } from '../listing.service';
+import { ConversationService } from '../conversation.service';
 
 @Component({
     selector: 'app-view-posting',
@@ -18,8 +19,9 @@ export class ViewPostingComponent implements OnInit {
 
     private listingSub: any = null;
     private itemSub: any = null;
+    private conversationSub: any = null;
 
-    constructor(private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService) { }
+    constructor(private route: ActivatedRoute, private listingService: ListingService, private itemService: ItemService, private conversationService: ConversationService) { }
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
@@ -64,6 +66,17 @@ export class ViewPostingComponent implements OnInit {
             let temp = new Item;
             this.posting = new ListingDisplayInfo(listing, temp);
         }
+    }
+
+    notifyUser(id: String) {
+        this.conversationSub = this.conversationService.createConversation(id).subscribe(
+            (response) => {
+                // console.log(response);
+            },
+            (error) => {
+              this.warning = error.error;
+            }
+          );
     }
 
     //unsubscribes upon being destroyed
