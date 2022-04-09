@@ -3,7 +3,6 @@
 
 		<div class="row">
             <h1 class="h3 mb-3">Messages </h1>  
-
 			<mat-toolbar color="primary">
 				<span>Chat with Users</span>
 				<!--search-->
@@ -24,9 +23,7 @@
 					Search
 				  </button>
 				</span>
-			  </mat-toolbar> 
-			  
-			  
+			  </mat-toolbar> 		  
 			  
 			  <div class="content">
 				<div fxLayout="row wrap" fxLayoutGap="16px grid" style="width:100%">
@@ -47,8 +44,7 @@
 						  mat-raised-button
 						  color="primary"
 						  class="manage-button"
-						  (click)="createConversation(user._id, 'Hello ' + user.username )"
-						  
+						  (click)="createConversation(user._id)"	
 						>
 						  Chat
 						</button>
@@ -61,10 +57,8 @@
         
 		<div class="card">
 			<div class="row g-0">
-				<div class="col-12 col-lg-5 col-xl-3 border-right chat-list">		 
-
-                    <h2 class="ml-3 mb-0 mt-2">Users</h2>
-					
+				<div class="col-12 col-lg-5 col-xl-3 border-right chat-list">		
+                    <h2 class="ml-3 mb-0 mt-2">Users</h2>					
 					<div class="ml-1 px-2 d-none d-md-block">
 						<div class="d-flex align-items-center">
 							<div class="flex-grow-1">
@@ -79,17 +73,14 @@
 							    <div >
 								    {{ conversation.username }}
 							    </div>
-								<button class="close" style="position: absolute; right: 0;" (click)="onDelete()">
+								<button class="close" style="position: absolute; right: 0;" (click)="onDelete(conversation._id)">
 									<mat-icon>close</mat-icon> 
 								</button>
 						    </div>
 					    </a>
-						
+					</div>					
 
-                    </div>
-					
-
-					<hr class="d-block d-lg-none mt-1 mb-0">
+				<hr class="d-block d-lg-none mt-1 mb-0">
 				</div>
 				<div class="col-12 col-lg-7 col-xl-9">
 					<div class="py-2 px-4 border-bottom d-none d-lg-block">
@@ -100,16 +91,13 @@
 								<strong>{{ author }}</strong>
 							</div>
 						</div>
-					</div>
-
-					
+					</div>				
 
 					<div class="position-relative">
 						<div class="chat-messages p-4">
                             
 							<div *ngFor="let reply of replies">
-								<!-- if the author of this message is not the user, display this-->
-								
+								<!-- if the author of this message is not the user, display this-->								
 								<div *ngIf="reply.author == author_id">
 									<div class="text-muted small text-nowrap mt-2">{{ reply.timestamp.toString() | date: 'MMM dd, h:mm a' }}</div>
 									<div class="chat-message-left pb-4">
@@ -120,8 +108,7 @@
 										</div>
 									</div>
 								</div>
-								<!-- if the author of this message is the user, display this-->
-								
+								<!-- if the author of this message is the user, display this-->								
 								<div *ngIf="reply.author != author_id">
 									<div class="text-muted small text-nowrap mt-2 chat-message-right">{{ reply.timestamp.toString() | date: 'MMM dd, h:mm a' }}</div>
 									<div class="chat-message-right pb-4">
@@ -130,12 +117,10 @@
 											{{ reply.body }}
 										</div>
 									</div>
-								</div>
-								
+								</div>								
 							</div>
-
 						</div>
-							</div>
+					</div>
 					<div class="flex-grow-0 py-3 px-4 border-top">
 						<div class="input-group">
 							<input type="text" class="form-control" id="reply_message" name="reply_message" [(ngModel)]="reply_body" placeholder="Type your message" >
@@ -154,7 +139,6 @@
 							</button>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
