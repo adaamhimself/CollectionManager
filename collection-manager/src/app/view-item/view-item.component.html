@@ -6,7 +6,7 @@
         <form #addItemForm="ngForm" >
           <!--image selection-->
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
-            <div *ngIf="this.images">
+            <div *ngIf="this.images.length > 0">
                 <img
                 mat-card-image
                 [src]="this.images[0].item_image_path"
