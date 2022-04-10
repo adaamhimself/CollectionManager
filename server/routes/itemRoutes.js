@@ -14,7 +14,6 @@ router.get('/getItemsByCollectionId/:id', passport.authenticate('jwt', {session:
 });
 
 router.post('/addItem', passport.authenticate('jwt', {session: false}), async(req, res) => {
-    console.log(req.body);
     let response = await item.addItem(req.user._id, req.body);
     res.status(response.code).json(response.message);
 });
