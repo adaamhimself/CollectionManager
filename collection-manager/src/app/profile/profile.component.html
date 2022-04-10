@@ -1,11 +1,24 @@
 <h1 *ngIf="!user">User doesn't exist</h1>
 <div *ngIf="user" class="content">
-  <h1>{{ user.username }}</h1>
+  <mat-toolbar color="primary">
+    <span>Profile: {{ user.username }}</span>
+    <!--search-->
+    <span>
+      <button
+        mat-raised-button
+        color="primary"
+        id="chatButton"
+        routerLink="/chat"
+      >
+        Go To Chat
+      </button>
+    </span>
+  </mat-toolbar>
   <hr style="margin-bottom: 30px" />
   <!--user details-->
   <div class="content">
     <div fxLayout="row">
-      <div [fxFlex]="30">
+      <div [fxFlex]="30" style="padding-left: 18px">
         <img
           mat-card-image
           style="width: 100%"
@@ -35,7 +48,7 @@
     <span>Count: {{ postings.length }}</span>
     <hr />
     <div *ngIf="postings.length == 0">
-        <h1>This user has no market listings</h1>
+      <h1>This user has no market listings</h1>
     </div>
     <div *ngIf="postings.length > 0">
       <div

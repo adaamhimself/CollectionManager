@@ -65,6 +65,8 @@ import { ViewAnalyticsComponent } from './view-analytics/view-analytics.componen
 import { ChartsModule } from 'ng2-charts';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditListingComponent } from './edit-listing/edit-listing.component';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { EmailSignupComponent } from './email-signup/email-signup.component';
 
 @NgModule({
   //components (pages)
@@ -100,6 +102,8 @@ import { EditListingComponent } from './edit-listing/edit-listing.component';
     ViewAnalyticsComponent,
     UserListComponent,
     EditListingComponent,
+    GettingStartedComponent,
+    EmailSignupComponent,
   ],
   //included modules
   imports: [
