@@ -5,12 +5,22 @@
     <!--search-->
     <span>
       <button
+        *ngIf="!viewingSelf"
         mat-raised-button
         color="primary"
-        id="chatButton"
+        class="nav-button"
         routerLink="/chat"
       >
         Go To Chat
+      </button>
+      <button
+        *ngIf="viewingSelf"
+        mat-raised-button
+        color="primary"
+        class="nav-button"
+        routerLink="/settings"
+      >
+        Settings
       </button>
     </span>
   </mat-toolbar>
@@ -28,7 +38,7 @@
       </div>
       <div class="col">
         <!--only show real name if viewing own account-->
-        <h2 *ngIf="viewingSelf"><strong>Name:</strong> {{ user.username }}</h2>
+        <h2 *ngIf="viewingSelf"><strong>Username:</strong> {{ user.username }}</h2>
         <h2 *ngIf="viewingSelf"><strong>Email:</strong> {{ user.email }}</h2>
         <h2><strong>Date created:</strong> {{ user.date_created }}</h2>
         <h2><strong>Role:</strong> {{ user.role }}</h2>

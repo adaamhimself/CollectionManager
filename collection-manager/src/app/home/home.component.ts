@@ -60,14 +60,14 @@ export class HomeComponent implements OnInit {
       this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
         (item) => {
           listingItem = item;
+          //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
+          this.promotedPostings.push(new ListingDisplayInfo(listing, listingItem));
         },
         (error) => {
           this.warning = error.error;
         }
       );
     }
-    //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
-    this.promotedPostings.push(new ListingDisplayInfo(listing, listingItem));
   }
 
   //unsubscribe upon being destroyed

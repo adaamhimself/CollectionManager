@@ -28,6 +28,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -129,6 +130,10 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: ProfileComponent,
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
   },
   {
     path: 'users',
