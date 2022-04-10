@@ -31,13 +31,14 @@ export class ViewItemComponent implements OnInit {
     private addFieldSub: any;
     private deleteSub: any;
     private templateSub: any;
-    public template: any;
+    public template = new Template;
     public customField: CustomField = new CustomField;
     key: String;
     value: String;
     images: any = [];
 
-    constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog, private templateService: TemplateService) { }
+    constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog, private templateService: TemplateService) {
+     }
 
     ngOnInit(): void {
         let id: String = this.route.snapshot.params['id'];
