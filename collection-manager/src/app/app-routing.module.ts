@@ -27,6 +27,8 @@ import { CreateArticleComponent } from './create-article/create-article.componen
 import { ProfileComponent } from './profile/profile.component';
 import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -130,6 +132,10 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
+    path: 'settings',
+    component: SettingsComponent,
+  },
+  {
     path: 'users',
     component: UserListComponent,
   },
@@ -138,15 +144,21 @@ const routes: Routes = [
     component: ViewAnalyticsComponent,
   },
   {
+    path: 'gettingstarted',
+    component: GettingStartedComponent,
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    onSameUrlNavigation: 'reload'
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

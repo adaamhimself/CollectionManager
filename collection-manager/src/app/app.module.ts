@@ -66,6 +66,9 @@ import { ChartsModule } from 'ng2-charts';
 import { UserListComponent } from './user-list/user-list.component';
 import { EditListingComponent } from './edit-listing/edit-listing.component';
 import { AddItemImageDialogComponent } from './add-item-image-dialog/add-item-image-dialog.component';
+import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { EmailSignupComponent } from './email-signup/email-signup.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   //components (pages)
@@ -102,6 +105,9 @@ import { AddItemImageDialogComponent } from './add-item-image-dialog/add-item-im
     UserListComponent,
     EditListingComponent,
     AddItemImageDialogComponent,
+    GettingStartedComponent,
+    EmailSignupComponent,
+    SettingsComponent,
   ],
   //included modules
   imports: [

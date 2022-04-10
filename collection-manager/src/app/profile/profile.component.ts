@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
             //get the logged-in user details
             this.userSub = this.userService.getMyDetails().subscribe(
                 (response) => {
-                    console.log(response);
                     this.user = response;
                     this.viewingSelf = true;
                     this.getCollections();
@@ -55,6 +54,7 @@ export class ProfileComponent implements OnInit {
             this.userSub = this.userService.getUserDetails(id).subscribe(
                 (response) => {
                     this.user = response;
+                    this.viewingSelf = false;
                     this.getListings();
                 },
                 (error) => {
