@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Template } from '../Template';
 import { TemplateService } from '../template.service';
 import { Book } from '../Book';
+import { Comic } from '../Comic';
+
 
 @Component({
   selector: 'app-add-template-dialog',
@@ -18,9 +20,17 @@ export class AddTemplateDialogComponent implements OnInit {
   itemId: any;
   adding: any;
   selected: any;
-  book: Book;
-  bookSub: any;
   warning: any;
+  char: any;
+  chars: [];
+
+  // subscriptions
+  bookSub: any;
+  articleSub: any;
+
+  // classes
+  book: Book;
+  comic: Comic;
 
   ngOnInit(): void {
     this.book = new Book;
@@ -30,8 +40,8 @@ export class AddTemplateDialogComponent implements OnInit {
     this.dialog.close();
   }
 
-  add(): void {
-    this.adding = true;
+  addChar(): void {
+
     
   }
 
@@ -39,7 +49,19 @@ export class AddTemplateDialogComponent implements OnInit {
     this.book.template_type = "book";
     this.bookSub = this.templateService.addBookTemplate(this.itemId, this.book).subscribe(
       response => {
-          console.log(response);
+
+      }, error => {
+          this.warning = error.error;
+      }
+    );
+    this.dialog.close();
+  }
+
+  submitComicTemplate(): void {
+    this.comic.template_type = "comic";
+    this.articleSub = this.templateService.addComicTemplate(this.itemId, this.comic).subscribe(
+      response => {
+
       }, error => {
           this.warning = error.error;
       }

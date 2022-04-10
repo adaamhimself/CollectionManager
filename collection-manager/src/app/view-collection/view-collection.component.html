@@ -57,13 +57,21 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </mat-card-header>
-        <img
-          class="images"
+        <div *ngIf="item.item_images.length > 0">
+          <img
           mat-card-image
-          src="{{item.item_images[0].item_image_path}}"
-          onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
+          [src]="item.item_images[0].item_image_path"
           alt="Item image"
+          />
+      </div>
+      <div *ngIf="item.item_images.length < 1">
+        <img
+        class="images"
+        mat-card-image
+        src="./assets/images/bluelogo.png"
+        alt="Item image"
         />
+      </div>
         <mat-card-content style="text-align:left;">
           <p><strong>Description:</strong> {{ item.item_description }}</p>
           <p *ngIf="item.template_name"><strong>Template:</strong> {{ item.template_name }}</p>
