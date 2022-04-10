@@ -19,7 +19,6 @@ const { findOneAndUpdate, findByIdAndUpdate } = require('../models/articleModel'
 module.exports.addTemplateToItem = async function(item_id, template_request) {
     let template_type = template_request.template_type;
     let template_details = template_request;
-    console.log(template_request);
     try {
         let template = mongoose.model(template_type);
         let newTemplate = new template(template_details)

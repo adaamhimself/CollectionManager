@@ -31,6 +31,7 @@ export class ManageCollectionsComponent implements OnInit {
                 this.allCollections = response;//all
                 this.collections = response;//currently shown
                 this.collectionCount = this.collections.length;
+                console.log(this.collections);
             },
             (error) => {
                 this.warning = error.error;
