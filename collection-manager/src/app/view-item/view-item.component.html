@@ -36,12 +36,32 @@
             <!--template info-->
             <div class="bordered-section min-height">
               <!--name field-->
-              <strong>Template</strong>
+              <h2>{{this.template.template_type}}</h2>
               <div *ngIf="!this.template">
                 <br><button (click)="addTemplate()">Add template</button>
               </div>
-              <div *ngIf="this.template">
+              <div *ngIf="this.template.template_type==='Book'">
+                
+                <strong>Author</strong><br>
+                <span>{{this.template.author}}</span><br><br>
 
+                <strong>Publishing Date:</strong><br>
+                <span>{{this.template.date_published}}</span><br><br>
+
+                <strong>Publisher</strong><br>
+                <span>{{this.template.publisher}}</span><br><br>
+
+                <strong>Format</strong><br>
+                <span>{{this.template.format}}</span><br><br>
+
+                <strong>Edition</strong><br>
+                <span>{{this.template.edition}}</span><br><br>
+
+                <strong>Language</strong><br>
+                <span>{{this.template.language}}</span><br><br>
+
+                <strong>Pages</strong><br>
+                <span>{{this.template.pages}}</span><br><br>
               </div>
             </div>
           </div>

@@ -18,7 +18,8 @@ const { findOneAndUpdate, findByIdAndUpdate } = require('../models/articleModel'
 // Methods
 module.exports.addTemplateToItem = async function(item_id, template_request) {
     let template_type = template_request.template_type;
-    let template_details = template_request.template_values;
+    let template_details = template_request;
+    console.log(template_request);
     try {
         let template = mongoose.model(template_type);
         let newTemplate = new template(template_details)
@@ -44,7 +45,9 @@ module.exports.getTemplateByItemId = async function(item_id) {
         let template_id = response.template_object_id;
         let template = mongoose.model(template_type);
         let result = await template.findById({_id: template_id}).lean();
+        console.log(result);
         result.template_type = template_type;
+        console.log(result);
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};

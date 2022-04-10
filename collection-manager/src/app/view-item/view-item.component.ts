@@ -63,6 +63,7 @@ export class ViewItemComponent implements OnInit {
         );
         this.templateSub = this.templateService.getTemplateById(id).subscribe(
             (response) => {
+                console.log(response);
                 this.template = response;
                 this.template.template_type = this.template.template_type[0].toUpperCase() + this.template.template_type.substring(1).toLowerCase();
             },
@@ -139,6 +140,7 @@ export class ViewItemComponent implements OnInit {
         dialogConfig.data = {
             itemId: this.item._id
         };
+        dialogConfig.width = '25%';
         this.dialog.open(AddTemplateDialogComponent, dialogConfig);
     }
 }

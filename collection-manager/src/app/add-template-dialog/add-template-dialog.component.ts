@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Template } from '../Template';
+import { TemplateService } from '../template.service';
+import { Book } from '../Book';
 
 @Component({
   selector: 'app-add-template-dialog',
@@ -9,15 +11,19 @@ import { Template } from '../Template';
 })
 export class AddTemplateDialogComponent implements OnInit {
 
-  constructor(private dialog: MatDialogRef<AddTemplateDialogComponent>, @Inject(MAT_DIALOG_DATA) data) { 
+  constructor(private templateService: TemplateService, private dialog: MatDialogRef<AddTemplateDialogComponent>, @Inject(MAT_DIALOG_DATA) data) { 
     this.itemId = data.itemId
   }
 
   itemId: any;
   adding: any;
   selected: any;
+  book: Book;
+  bookSub: any;
+  warning: any;
 
   ngOnInit(): void {
+    this.book = new Book;
   }
 
   close(): void {
@@ -27,6 +33,18 @@ export class AddTemplateDialogComponent implements OnInit {
   add(): void {
     this.adding = true;
     
+  }
+
+  submitBookTemplate(): void {
+    this.book.template_type = "book";
+    this.bookSub = this.templateService.addBookTemplate(this.itemId, this.book).subscribe(
+      response => {
+          console.log(response);
+      }, error => {
+          this.warning = error.error;
+      }
+    );
+    this.dialog.close();
   }
 
 }

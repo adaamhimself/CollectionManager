@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -134,6 +135,7 @@ import { AddTemplateDialogComponent } from './add-template-dialog/add-template-d
     MatDialogModule,
     MatGridListModule,
     ChartsModule,
+    MatSelectModule
   ],
   providers: [
     {
