@@ -17,7 +17,7 @@ module.exports.getConversations = async function(user_id) {
     try {
         let result = await Chat.find({participants: user_id});
         let conversations = [];
-        // iterate through results array
+        // iterate through results array, pull out the username and id of the other participant and add it to the conversations array
         for (i=0; i < result.length; i++) {
             let conversation = {};
             conversation._id = result[i]._id;
@@ -32,7 +32,6 @@ module.exports.getConversations = async function(user_id) {
                 conversation.other_participant_id = username._id.toString();
             }
         }
-        
         return {code: 200, message: conversations};
     } catch(error) {
         console.log(error);
@@ -84,11 +83,9 @@ module.exports.createConversation = async function(user_id, other_user_id) {
         if (result.length > 0) { 
             return {code: 400, message: "Conversation already exists"}
         }
-        else {
-            let newConversation = new Chat();
-            newConversation.participants = [user_id, other_user_id];
-            await newConversation.save();
-        }
+        let newConversation = new Chat();
+        newConversation.participants = [user_id, other_user_id];
+        await newConversation.save();
         return {code: 201, message: "Conversation created"};
     } catch(error) {
         return {code: 400, message: error};

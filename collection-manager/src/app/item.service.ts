@@ -42,6 +42,7 @@ export class ItemService {
   } 
 
   addImageToItem(id: String, image: any): Observable<any> { 
+    console.log(image);
     return this.http.post<any>(`${environment.apiBaseUrl}image/addImageToItem/${id}`, image);
   } 
 

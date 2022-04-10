@@ -7,7 +7,7 @@ const path = require("path");
 const fs = require("fs");
 const multer = require('multer');
 const storage = multer.diskStorage({
-    destination: "./public/photos",
+    destination: "../collection-manager/src/assets/uploads",
     filename: function (req, file, cb) {
       cb(null, Date.now() + path.extname(file.originalname));
     }
@@ -17,7 +17,7 @@ const upload = multer({ storage: storage });
 module.exports.addImageToItem = async function(id, fileDetails, user) {
     try {
         let imageObj = {};
-        imageObj.item_image_path = "./public/photos/" + fileDetails.filename;
+        imageObj.item_image_path = "./assets/uploads/" + fileDetails.filename;
         imageObj.item_image_text = user + "." + fileDetails.filename;
         let result = await Item.findByIdAndUpdate(id, 
         {

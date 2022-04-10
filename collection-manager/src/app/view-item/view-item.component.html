@@ -1,199 +1,87 @@
-<div class="row title" style="position: relative;">
-  <h1 class="pageheader">
-    <a routerLink="/viewcollection/{{ collectionDetails._id }}">{{
-      collectionDetails.collection_name
-    }}</a>
-    > View Item > {{ item.item_title }}
-  </h1>
-  <div class="buttons">
-    <button
-      mat-raised-button
-      (click)="onEdit()"
-      color="primary"
-      type="submit"
-      class="align-self-end ml-auto"
-    >
-      <p
-        style="
-          display: in-line;
-          margin-top: 10px;
-          line-height: 18px;
-          font-size: medium;
-        "
-      >
-        Edit
-      </p>
-    </button>
-    &nbsp;
-    <button
-      mat-raised-button
-      (click)="deleteItem()"
-      color="warn"
-      type="submit"
-      class="align-self-end ml-auto"
-    >
-      <p
-        style="
-          display: in-line;
-          margin-top: 10px;
-          line-height: 18px;
-          font-size: medium;
-        "
-      >
-        Delete
-      </p>
-    </button>
-  </div>
-</div>
-<br />
-<div class="row rounded border border-dark box">
-  <div class="col-md-4">
-    <div class="image">
-      <img
-        mat-card-image
-        src="../../assets/images/bluelogo.png"
-        onerror="if (this.src != '../../assets/images/bluelogo.png') this.src = '../../assets/images/bluelogo.png';"
-        alt="text"
-        class="img-thumbnail"
-      />
-      <a routerLink="/manageimages/{{ item._id }}">Manage Images</a>
-    </div>
-    <br />
-    <div class="header">Basic</div>
-    <br />
-    <div class="rounded border border-dark">
-      <p class="label">Description</p>
-      <p class="bg-light">{{ item.item_description }}</p>
-      <br />
-      <p class="label">Reference Number</p>
-      <p class="bg-light">{{ item._id }}</p>
-      <br />
-      <p class="label">Created:</p>
-      <p class="bg-light">{{ item.date_created }}</p>
-      <br />
-      <p class="label">Last updated:</p>
-      <p class="bg-light">{{ item.date_last_updated }}</p>
-      <br />
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
-      <div class="col-lg-5 label">
-        <p>Template</p>
-        <br />
-        <p>Title</p>
-        <br />
-      </div>
-      <div class="col-lg-7">
-        <p class="bg-light">{{template.template_type}}</p>
-        <br />
-        <br />
-        <p class="bg-light">{{ item.item_title }}</p>
-        <br />
-      </div>
-    </div>
-    <div>
-      <div class="header">Template name</div>
+<div class="card-wrapper">
+  <div fxLayout="row">
+    <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
+      <mat-card-content fxLayout.gt-sm="row">
+        <!--form for new item details-->
+        <form #addItemForm="ngForm" >
+          <!--image selection-->
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
+            <div *ngIf="this.images">
+                <img
+                mat-card-image
+                [src]="this.images[0].item_image_path"
+                alt="Item image"
+                />
+            </div>
+            <div *ngIf="!images">
+              <img
+              mat-card-image
+              src="../../assets/images/bluelogo.png"
+              alt="Item image"
+            />
+            </div>
 
-      <!-- Book template space-->
-      <div *ngIf="template.template_type==='Book'">
-        Author: {{template.author}}
-        <br>
-        Date Published: {{template.date_published}}
-        <br>
-        Publisher: {{template.publisher}}
-        <br>
-        Format: {{template.format}}
-        <br>
-        Edition: {{template.edition}}
-        <br>
-        Language: {{template.language}}
-        <br>
-        Pages: {{template.pages}}
-      </div>
+            <!--Replace with proper image editing support-->
+            <button >Add Images</button>
+          </div>
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="45%">
+            <div class="bordered-section">
+              <!--name field-->
+              <strong>Name</strong>
+              <span> {{item.item_title}}</span><br>
+              <!--description field-->
+              <strong>Description</strong>
+              <span>{{item.item_description}}</span><br>
+            </div>
+            <!--template info-->
+            <div class="bordered-section min-height">
+              <!--name field-->
+              <strong>Template</strong>
+              <div *ngIf="!this.template">
+                <br><button>Add template</button>
+              </div>
+              <div *ngIf="this.template">
 
-      <!-- Article template space-->
-      <div *ngIf="template.template_type==='Article'">
-          article
-      </div>
-
-    </div>
-    
-
-
-    <br />
-    <div class="rounded border border-dark">
-      <div class="row">
-        <div class="col-lg-6 label">
-          <p>Condition</p>
-          <br />
-          <p>Condition Note</p>
-        </div>
-        <div class="col-lg-6">
-          <p class="bg-light">{{ item.condition }}</p>
-          <br />
-          <p class="bg-light">{{ item.condition_note }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="header">Storage</div>
-    <br />
-    <div class="rounded border border-dark">
-      <div class="row">
-        <div class="col-lg-5 label">
-          <p>Storage Type</p>
-          <br />
-          <p>Storage Code</p>
-          <br />
-          <p>Storage Location</p>
-        </div>
-        <div class="col-lg-7">
-          <p class="bg-light">{{ item.storage_type }}</p>
-          <br />
-          <p class="bg-light">{{ item.storage_object_id }}</p>
-          <br />
-          <p class="bg-light">{{ item.storage_location }}</p>
-          <br />
-        </div>
-      </div>
-      <br />
-      <p class="label">Note</p>
-      <p class="bg-light">{{ item.storage_note }}</p>
-      <br />
-    </div>
-    <br />
-    <p class="header">Other</p>
-
-    <div class="rounded border border-dark">
-      <div *ngIf="item.custom_fields.length > 0 && item.custom_fields[0].key != 0">
-        <p class="label">Custom fields</p>
-        <br />
-        <div *ngFor="let item of item.custom_fields">
-          <p class="label">{{ item.key }}</p>
-          <p class="bg-light">{{ item.value }}</p>
-          <br />
-        </div>
-      </div>
-      <button
-        (click)="addCustomField(item._id)"
-        mat-raised-button
-        color="accent"
-        type="submit"
-        class="align-self-end ml-auto"
-      >
-        <p
-          style="
-            display: inline-flex;
-            margin-top: 10px;
-            line-height: 18px;
-            font-size: larger;
-          "
-        >
-          Add custom field
-        </p>
-      </button>
-    </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%">
+            <!--Storage Fields-->
+            <div class="bordered-section">
+              <!--storage type field-->
+              <strong>Storage Type</strong>
+              <span>{{item.storage_type}}</span><br>
+              <!--storage code field-->
+              <strong>Storage Code</strong>
+              <span>code</span><br>
+              <!--storage location field-->
+              <strong>Storage Location</strong>
+              <span>location</span><br>
+              <!--storage note field-->
+              <strong>Storage Notes</strong>
+              <span>notes</span><br>
+            </div>
+            <!--Add button-->
+            <button
+              mat-raised-button
+              color="accent"
+              type="submit"
+              class="submitButton"
+            >
+              <p
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  margin-top: 10px;
+                  font-size: larger;
+                "
+              >
+                Edit Item
+              </p>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

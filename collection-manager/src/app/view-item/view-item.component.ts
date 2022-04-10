@@ -30,10 +30,11 @@ export class ViewItemComponent implements OnInit {
     private addFieldSub: any;
     private deleteSub: any;
     private templateSub: any;
-    public template: Template = new Template;
+    public template: any;
     public customField: CustomField = new CustomField;
     key: String;
     value: String;
+    images: any = [];
 
     constructor(private routing: Router, private route: ActivatedRoute, private itemService: ItemService, private collection: CollectionService, public dialog: MatDialog, private templateService: TemplateService) { }
 
@@ -42,10 +43,13 @@ export class ViewItemComponent implements OnInit {
         this.itemSub = this.itemService.getItemById(id).subscribe(
             (response) => {
                 this.item = response;
+                for (let i:any = 0; i < response.item_images.length; i++) {
+                    this.images.push(response.item_images[i]);
+                }
+                console.log(this.item);
                 this.collectionSub = this.collection.getCollectionById(this.item.containing_collection_id).subscribe(
                     (response) => {
                         this.collectionDetails = response;
-                        
                     },
                     (error) => {
                         this.warning = error.error;

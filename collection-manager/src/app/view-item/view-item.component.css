@@ -1,43 +1,49 @@
-.image {
-    padding: 10px;
-}
-
-.border {
-    padding: 10px;
-}
-
-.header {
-    font-size: medium;
-    font-weight: bold;
-}
-
-.label {
-    font-weight: bold;
-}
-
-.box {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    margin-bottom: 50px;
-}
-
-.title {
-    padding-bottom: 40px;
-}
-
-.buttons {
-    position: absolute; 
-    right: 0; 
-    top: 0; 
-    text-align: right; 
-    max-width: 50%; 
-    overflow: hidden;
-}
-
-.pageheader {
-    position: absolute;
-    left: 0; 
-    top: 0; 
-    max-width: 50%; 
-    overflow: hidden;
-}
+.card-wrapper {
+    position: fixed;
+    top: 8%;
+    left: 15%;
+    right: 15%;
+  }
+  
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .space-top {
+    margin-top: 5%;
+  }
+  
+  .imageColumn {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .imageColumn img {
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .imageColumn a {
+    text-align: center;
+  }
+  
+  .submitButton {
+    margin-top: 20%;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
+  .bordered-section {
+    margin: 3px;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .min-height {
+    min-height: 200px;
+  }
+  

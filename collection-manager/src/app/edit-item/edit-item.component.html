@@ -7,13 +7,23 @@
         <form #addItemForm="ngForm" (ngSubmit)="onSubmit()">
           <!--image selection-->
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
-            <img
+            <div *ngIf="this.images">
+                <img
+                mat-card-image
+                [src]="this.images[0].item_image_path"
+                alt="Item image"
+                />
+            </div>
+            <div *ngIf="!images">
+              <img
               mat-card-image
               src="../../assets/images/bluelogo.png"
               alt="Item image"
             />
+            </div>
+
             <!--Replace with proper image editing support-->
-            <a href="">Add/Edit Images</a>
+            <button (click)="addImage()">Add Images</button>
           </div>
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="45%">
             <div class="bordered-section">
