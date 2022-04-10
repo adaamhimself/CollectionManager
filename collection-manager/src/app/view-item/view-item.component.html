@@ -38,7 +38,7 @@
               <!--name field-->
               <strong>Template</strong>
               <div *ngIf="!this.template">
-                <br><button>Add template</button>
+                <br><button (click)="addTemplate()">Add template</button>
               </div>
               <div *ngIf="this.template">
 

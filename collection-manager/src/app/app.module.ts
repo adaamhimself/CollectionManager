@@ -69,6 +69,7 @@ import { AddItemImageDialogComponent } from './add-item-image-dialog/add-item-im
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { EmailSignupComponent } from './email-signup/email-signup.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AddTemplateDialogComponent } from './add-template-dialog/add-template-dialog.component';
 
 @NgModule({
   //components (pages)
@@ -108,6 +109,7 @@ import { SettingsComponent } from './settings/settings.component';
     GettingStartedComponent,
     EmailSignupComponent,
     SettingsComponent,
+    AddTemplateDialogComponent,
   ],
   //included modules
   imports: [

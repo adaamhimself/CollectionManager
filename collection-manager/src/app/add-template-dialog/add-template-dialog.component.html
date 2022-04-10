@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Add Template</h2>
+
+<mat-dialog-content>
+
+<p> Select Template to Upload </p>
+
+<select name="template" [(ngModel)]="selected">
+    <option value="article">Article</option>
+    <option value="book">Book</option>
+    <option value="comic">Comic Book</option>
+    <option value="doll">Doll</option>
+    <option value="movie">Movie</option>
+    <option value="record">Record</option>
+    <option value="stamp">Stamp</option>
+    <option value="Card">Trading Card</option>
+    <option value="watch">Watch</option>
+</select>
+<button class="mat-raised-button" (click)="add()">Add</button>
+
+<div *ngIf="this.selected=='book'">
+
+</div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Cancel</button>
+    <button class="mat-raised-button" (click)="close()">Ok</button>
+</mat-dialog-actions>

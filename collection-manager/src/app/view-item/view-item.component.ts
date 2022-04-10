@@ -4,12 +4,13 @@ import { Collection } from '../Collection';
 import { CollectionService } from '../collection.service';
 import { Item } from '../Item';
 import { ItemService } from '../item.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomFieldDialogComponent } from '../custom-field-dialog/custom-field-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { TemplateService } from '../template.service';
 import { Template } from '../Template';
 import { CustomField } from '../CustomField';
+import { AddTemplateDialogComponent } from '../add-template-dialog/add-template-dialog.component';
 
 export interface DialogData{
     key: String;
@@ -129,5 +130,15 @@ export class ViewItemComponent implements OnInit {
         if (this.deleteSub) this.deleteSub.unsubscribe();
         if (this.templateSub) this.templateSub.unsubscribe();
         if (this.addFieldSub) this.addFieldSub.unsubscribe();
+    }
+
+    addTemplate() {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = {
+            itemId: this.item._id
+        };
+        this.dialog.open(AddTemplateDialogComponent, dialogConfig);
     }
 }
