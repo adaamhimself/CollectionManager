@@ -62,7 +62,7 @@ export class ViewItemComponent implements OnInit {
                 this.warning = error.error;
             }
         );
-        if (this.item.template_object_id) {
+        if (this.item.template_object_id != null) {
             this.templateSub = this.templateService.getTemplateById(id).subscribe(
                 (response) => {
                     console.log(response);

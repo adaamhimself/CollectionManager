@@ -68,7 +68,7 @@ export class AddTemplateDialogComponent implements OnInit {
   }
 
   submitComicTemplate(): void {
-    this.comic.template_type = "comic";
+    this.comic.template_type = "comicBook";
     this.chars.forEach((element) => {
       this.chars.push(element);
     });

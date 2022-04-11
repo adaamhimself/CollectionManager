@@ -33,11 +33,11 @@
               <strong>Description</strong>
               <span>{{item.item_description}}</span><br>
             </div>
-            <!--template info-->
+            <!--book template info-->
             <div class="bordered-section min-height">
               <!--name field-->
               <h2>{{this.template.template_type}}</h2>
-              <div *ngIf="!this.item.template_object_id">
+              <div *ngIf="this.item.template_name=='book'">
                 <br><button (click)="addTemplate()">Add template</button>
               </div>
               <div *ngIf="this.template.template_type==='Book'">
@@ -63,7 +63,24 @@
                 <strong>Pages</strong><br>
                 <span>{{this.template.pages}}</span><br><br>
               </div>
+
+              <!-- Comic book template-->
+              <div *ngIf="this.item.template_name=='comicBook'">
+                
+                <strong>Publisher</strong><br>
+                <span>{{this.template.publisher}}</span><br><br>
+
+                <strong>Year</strong><br>
+                <span>{{this.template.year}}</span><br><br>
+
+                <strong>Characters</strong><br>
+                <span *ngFor="let character in this.template.characters">{{character}}</span>
+
+              </div>
+
             </div>
+
+
           </div>
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%" class="bordered-section min-height">
 

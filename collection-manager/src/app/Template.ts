@@ -9,6 +9,9 @@ export class Template {
     "edition": String;
     "language": String;
     "pages": String;
+    // Comic fields
+    "year": String;
+    "characters": [String];
 
     constructor() {
         this.template_type = "";

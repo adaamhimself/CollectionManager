@@ -33,6 +33,7 @@ module.exports.addTemplateToItem = async function(item_id, template_request) {
         );
         return {code: 201, message: `Template type ${template_type} added to ${item_id}`};
     } catch(error) {
+        console.log(error);
         return {code: 400, message: error};
     }
 }
@@ -44,9 +45,7 @@ module.exports.getTemplateByItemId = async function(item_id) {
         let template_id = response.template_object_id;
         let template = mongoose.model(template_type);
         let result = await template.findById({_id: template_id}).lean();
-        console.log(result);
         result.template_type = template_type;
-        console.log(result);
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
