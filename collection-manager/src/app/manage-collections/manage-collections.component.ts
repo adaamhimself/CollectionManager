@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CollectionService } from '../collection.service';
 import { Collection } from '../Collection';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { Item } from '../Item';
+import { ItemService } from '../item.service';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class ManageCollectionsComponent implements OnInit {
     private collectionSub: any = null;
     private deleteCollectionSub: any = null;
 
-    constructor(private collection: CollectionService, public dialog: MatDialog) { }
+    constructor(private collection: CollectionService, public dialog: MatDialog, private itemService: ItemService) { }
 
     ngOnInit(): void {
         //retrieve the collections of the logged in user
