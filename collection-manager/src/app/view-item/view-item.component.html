@@ -2,8 +2,6 @@
   <div fxLayout="row">
     <mat-card fxLayout="row" fxFlex="80%" class="center space-top">
       <mat-card-content fxLayout.gt-sm="row">
-        <!--form for new item details-->
-        <form #addItemForm="ngForm" >
           <!--image selection-->
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="30%" class="imageColumn">
             <div *ngIf="this.images.length > 0">
@@ -65,7 +63,7 @@
               </div>
             </div>
           </div>
-          <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%">
+          <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%" class="bordered-section min-height">
 
             <div *ngIf="!this.item.storage_object_id">
               <button>Add to Storage</button>
@@ -88,28 +86,18 @@
               <span>notes</span><br>
               </div>
             </div>
-
-            <!--Add button-->
-            <button
-              mat-raised-button
-              color="accent"
-              type="submit"
-              class="submitButton"
-            >
-              <p
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  margin-top: 10px;
-                  font-size: larger;
-                "
-              >
-                Edit Item
-              </p>
-            </button>
           </div>
-        </form>
+        
       </mat-card-content>
+      <mat-card-actions>
+                    <!--Add button-->
+                    <button
+                    mat-raised-button
+                    color="accent"
+                    type="submit"
+                    class="submitButton"
+                  >Edit item</button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>
