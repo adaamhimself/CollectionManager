@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Collection } from '../Collection';
-import { Item } from '../Item';
 import { ListingService } from '../listing.service';
 import { NewListing } from '../newListing';
 
@@ -26,9 +24,7 @@ export class CreateWantedComponent implements OnInit {
     listing_date: new Date(),
   };
 
-  collections: Array<Collection> = [];
   public warning: string;
-  public items: Array<Item> = [];
   private newSub: any;
 
   constructor(
@@ -50,5 +46,10 @@ export class CreateWantedComponent implements OnInit {
     );
     console.log(this.tradeModel);
     this.routing.navigate(['/mylistings']);
+  }
+
+  //unsubscribes upon being destroyed
+  ngOnDestroy() {
+    if (this.newSub) this.newSub.unsubscribe();
   }
 }

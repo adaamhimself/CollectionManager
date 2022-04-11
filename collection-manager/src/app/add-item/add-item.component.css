@@ -34,15 +34,15 @@
   margin-right: 20%;
 }
 
-.bordered-section{
-    margin: 3px;
-    padding: 5px 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
+.bordered-section {
+  margin: 3px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
-.min-height{
-    min-height: 200px;
+.min-height {
+  min-height: 200px;
 }

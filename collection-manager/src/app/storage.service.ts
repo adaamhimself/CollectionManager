@@ -12,7 +12,7 @@ export class StorageService {
 
   constructor(private http: HttpClient) { }
 
-  getStorageById(id: string): Observable<any> {
+  getStorageById(id: String): Observable<any> {
     return this.http.get<Storage>(`${environment.apiBaseUrl}storage/getStorageDetails/${id}`);
   }
 
@@ -32,10 +32,10 @@ export class StorageService {
     return this.http.put<any>(`${environment.apiBaseUrl}storage/editStorageDetails`, storageEdit);
   }
 
-  addItemToStorage(storageId: string, itemId: string): Observable<any> {
+  addItemToStorage(storageId: String, itemId: String): Observable<any> {
     let request = {
       "storage_object_id": storageId,
-      "req.body.item_id": itemId
+      "item_id": itemId
     }
     return this.http.post<any>(`${environment.apiBaseUrl}storage/addItemToStorage`, request);
   }

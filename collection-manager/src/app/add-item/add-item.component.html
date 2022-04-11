@@ -50,7 +50,6 @@
                 <input
                   matInput
                   name="template"
-                  
                   autofocus
                   [(ngModel)]="itemModel.item_template"
                 />
@@ -61,49 +60,12 @@
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%">
             <!--Storage Fields-->
             <div class="bordered-section">
-              <!--storage type field-->
-              <strong>Storage Type</strong>
-              <mat-form-field class="full-width-input">
-                <input
-                  matInput
-                  name="storage-type"
-                  
-                  autofocus
-                  [(ngModel)]="itemModel.item_storageType"
-                />
-                <mat-error>Storage type cannot be empty.</mat-error>
-              </mat-form-field>
-              <!--storage code field-->
-              <strong>Storage Code</strong>
-              <mat-form-field class="full-width-input">
-                <input
-                  matInput
-                  name="storage-code"
-                  
-                  autofocus
-                  [(ngModel)]="itemModel.item_storageCode"
-                />
-                <mat-error>Storage code cannot be empty.</mat-error>
-              </mat-form-field>
-              <!--storage location field-->
-              <strong>Storage Location</strong>
-              <mat-form-field class="full-width-input">
-                <input
-                  matInput
-                  name="storage-location"
-                  
-                  autofocus
-                  [(ngModel)]="itemModel.item_storageLocation"
-                />
-                <mat-error>Storage location cannot be empty.</mat-error>
-              </mat-form-field>
               <!--storage note field-->
               <strong>Storage Notes</strong>
               <mat-form-field class="full-width-input">
                 <textarea
                   matInput
                   name="storage-note"
-                  
                   autofocus
                   [(ngModel)]="itemModel.item_storageNote"
                 ></textarea>

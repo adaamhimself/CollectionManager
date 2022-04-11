@@ -28,11 +28,11 @@ export class CreateSaleComponent implements OnInit {
     listing_date: new Date(),
   };
 
-  collections: Array<Collection> = [];
+  public collections: Array<Collection> = [];
+  public items: Array<Item> = [];
   public warning: string;
   private itemSub: any;
   private collectionSub: any;
-  public items: Array<Item> = [];
   private newSub: any;
 
   selectedCollection: Collection;
@@ -96,5 +96,10 @@ export class CreateSaleComponent implements OnInit {
     this.tradeModel.item_id = this.selectedItem._id;
   }
 
-  
+  //unsubscribes upon being destroyed
+  ngOnDestroy() {
+    if (this.itemSub) this.itemSub.unsubscribe();
+    if (this.collectionSub) this.collectionSub.unsubscribe();
+    if (this.newSub) this.newSub.unsubscribe();
+  }
 }
