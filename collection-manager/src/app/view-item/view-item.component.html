@@ -74,8 +74,10 @@
                 <span>{{this.template.year}}</span><br><br>
 
                 <strong>Characters</strong><br>
-                <span *ngFor="let character in this.template.characters">{{character}}</span>
-
+                <div *ngFor="let character in this.template.characters">
+                  <span>{{character}}</span>
+                </div>
+                
               </div>
 
             </div>
