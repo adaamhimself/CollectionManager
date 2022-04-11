@@ -4,6 +4,7 @@ import { Template } from '../Template';
 import { TemplateService } from '../template.service';
 import { Book } from '../Book';
 import { Comic } from '../Comic';
+import { Storage } from '../Storage';
 
 
 @Component({
@@ -21,8 +22,8 @@ export class AddTemplateDialogComponent implements OnInit {
   adding: any;
   selected: any;
   warning: any;
-  char: any;
-  chars: [];
+  char: String;
+  chars = new Array();
 
   // subscriptions
   bookSub: any;
@@ -34,6 +35,7 @@ export class AddTemplateDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.book = new Book;
+    this.comic = new Comic;
   }
 
   close(): void {
@@ -41,8 +43,16 @@ export class AddTemplateDialogComponent implements OnInit {
   }
 
   addChar(): void {
+    this.chars.push(this.char);
 
-    
+  }
+
+  getChars(): String {
+    let charString: String = "";
+    this.chars.forEach((element) => {
+      charString += " " + element
+    }); 
+    return charString;
   }
 
   submitBookTemplate(): void {
@@ -59,6 +69,9 @@ export class AddTemplateDialogComponent implements OnInit {
 
   submitComicTemplate(): void {
     this.comic.template_type = "comic";
+    this.chars.forEach((element) => {
+      this.chars.push(element);
+    });
     this.articleSub = this.templateService.addComicTemplate(this.itemId, this.comic).subscribe(
       response => {
 

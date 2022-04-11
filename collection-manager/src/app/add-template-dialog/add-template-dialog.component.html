@@ -65,11 +65,16 @@
     </form>
 </div>
 
-<!-- Article template options-->
-<div *ngIf="this.selected=='article'" >
+<!-- Comio template options-->
+<div *ngIf="this.selected=='comic'" >
+    <br>
+    <form>
+        <input name="chars" [(ngModel)]="char"/>
+        <button (click)="addChar()">Add character</button>
+    </form>
 
-    <input name="chars" [(ngModel)]="char"/>
-    <button (click)="addChar()">Add character</button>
+    <br>
+    Characters: {{getChars()}}
     <br>
 
     <form #addItemForm="ngForm" (ngSubmit)="submitComicTemplate()">
