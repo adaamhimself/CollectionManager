@@ -13,6 +13,22 @@ mat-toolbar {
   margin-bottom: 16px;
 }
 
+.mat-card {
+  min-width: 200px;
+  min-height: 400px;
+}
+
+.mat-card mat-card-title {
+  margin-bottom: 50px;
+}
+
+.mat-card-img {
+  position: absolute;
+  left: 0;
+  width: 1000px;
+  min-width: 1000px;
+}
+
 .column-label {
   margin-right: 8px;
   font-size: 1rem;
@@ -68,4 +84,8 @@ mat-icon {
 
 .images {
   padding: 10%;
+}
+
+.img {
+  background-color: aqua;
 }

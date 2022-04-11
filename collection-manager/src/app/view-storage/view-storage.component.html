@@ -1,7 +1,7 @@
 <h1>Storage Items</h1>
 
 <mat-toolbar color="primary">
-  <span>List of Items Belonging To This Storage Box: </span>
+  <span>Storage Box Items: </span>
   <!--search-->
   <span>
     <input
@@ -15,7 +15,7 @@
       mat-raised-button
       class="search-font"
       id="searchButton"
-      (click)="search()"
+      (click)="loadItems()"
     >
       Search
     </button>
@@ -47,7 +47,6 @@
             class="close-button"
             aria-label="Close alert"
             type="button"
-            (click)="deleteItem(item._id)"
             data-close
           >
             <span aria-hidden="true">&times;</span>

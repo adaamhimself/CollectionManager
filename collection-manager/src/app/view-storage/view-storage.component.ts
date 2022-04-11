@@ -23,9 +23,12 @@ export class ViewStorageComponent implements OnInit {
   public message = 'Looks like this storage box has no items.';
   public query = ''; //synced with the search bar
   public itemCount = 0; //to display
+  public allCollections: Array<Collection> = []; //all of the user's collections
+  public collections: Array<Collection> = []; //only ones shown (affected by search)
 
   public storageModel: Storage = new Storage(); // synced form model
   public storageName: string = ''; // displays at top of page
+  public storageCode: string = '';
   private itemSub: any = null;
   private storageSub: any = null;
   private collectionSub: any = null;
@@ -37,73 +40,80 @@ export class ViewStorageComponent implements OnInit {
     private storageService: StorageService,
     private collectionService: CollectionService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private collection: CollectionService
   ) {}
 
   ngOnInit(): void {
+    // get the storage information
     let id: string = this.route.snapshot.params['id'];
-    //retrieve all the items that match the storage id
-    this.storageSub = this.storageService.getItemsInStorageByCode(id).subscribe(
+    this.editSub = this.storageService.getStorageById(id).subscribe(
       (response) => {
-        this.allItems = response;
-        this.items = response;
-        this.itemCount = this.items.length;
+        this.storageModel = response;
+        if (this.storageModel)
+          this.storageName = `${this.storageModel.storage_name}`;
       },
       (error) => {
         this.warning = error.error;
       }
     );
+    this.storageCode = this.storageModel.storage_assigned_code;
+    console.log('storage code:' + this.storageCode);
+
+    // get collections
+    //retrieve the collections of the logged in user
+    this.collectionSub = this.collection.getMyCollections().subscribe(
+      (response) => {
+        this.allCollections = response; //all
+        this.collections = response; //currently shown
+        console.log(this.collections);
+      },
+      (error) => {
+        this.warning = error.error;
+      }
+    );
+    console.log('asd');
+
+    /*
+    //retrieve all the items that match the storage id
+    this.storageSub = this.storageService
+      .getItemsInStorageByCode(this.storageModel.storage_assigned_code)
+      .subscribe(
+        (response) => {
+          this.allItems = response;
+          this.items = response;
+          this.itemCount = this.items.length;
+        },
+        (error) => {
+          this.warning = error.error;
+        }
+      );
+      */
   }
 
-  //handles item deletion
-  deleteItem(itemID: String): void {
-    //open a dialog box, passing what's being deleted so it displays correctly
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: {
-        deletingObject: 'Item',
-      },
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      //delete the item if they chose yes
-      if (result === 'yes') {
-        this.deleteItemSub = this.itemService.removeItem(itemID).subscribe(
+  loadItems(): void {
+    console.log(this.storageModel.storage_assigned_code);
+    this.allCollections.forEach((collection) => {
+      console.log('asdasd');
+      let currCollectionId = collection.collection_user_id;
+      console.log('hello');
+      //retrieve all the items in the collection
+      this.itemSub = this.itemService
+        .getAllItemsByCollectionId(currCollectionId)
+        .subscribe(
           (response) => {
-            window.location.reload(); //reload the page
+            console.log('tyes');
+            let currItems: Array<Item>;
+            currItems = response; //all
+            currItems.forEach((item) => {
+              console.log(item.storage_object_id);
+            });
+            console.log(currItems);
           },
           (error) => {
             this.warning = error.error;
           }
         );
-      }
     });
-  }
-
-  //update the shown items using the search query
-  search(): void {
-    //default message
-    this.message =
-      'Looks like this collection has no items. Click "+ Item" to add your first one.';
-    if (this.query == '') {
-      //show all items when there's no query
-      this.items = this.allItems;
-      return;
-    }
-    //clear the currently shown items
-    this.items = [];
-    //get all items that fit the query
-    for (let item of this.allItems) {
-      //add if the name includes the query (not case sensitive)
-      if (item.item_title.toLowerCase().includes(this.query.toLowerCase())) {
-        this.items.push(item);
-      }
-    }
-    //update the count
-    this.itemCount = this.items.length;
-    //update message if no items were found
-    if (this.itemCount == 0) {
-      this.message =
-        'No items fit that search query. Check spelling and try a simpler query.';
-    }
-    console.log(this.items);
   }
 }
