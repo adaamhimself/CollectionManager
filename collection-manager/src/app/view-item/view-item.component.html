@@ -13,10 +13,10 @@
                 alt="Item image"
                 />
             </div>
-            <div *ngIf="!images">
+            <div *ngIf="this.images.length < 1">
               <img
               mat-card-image
-              src="../../assets/images/bluelogo.png"
+              src="./assets/images/bluelogo.png"
               alt="Item image"
             />
             </div>
@@ -37,7 +37,7 @@
             <div class="bordered-section min-height">
               <!--name field-->
               <h2>{{this.template.template_type}}</h2>
-              <div *ngIf="!this.template">
+              <div *ngIf="!this.item.template_object_id">
                 <br><button (click)="addTemplate()">Add template</button>
               </div>
               <div *ngIf="this.template.template_type==='Book'">
@@ -66,8 +66,14 @@
             </div>
           </div>
           <div fxLayout.gt-sm="column" fxFlex.gt-sm="25%">
-            <!--Storage Fields-->
-            <div class="bordered-section">
+
+            <div *ngIf="!this.item.storage_object_id">
+              <button>Add to Storage</button>
+            </div>
+            
+            <div *ngIf="this.item.storage_object_id">
+              <!--Storage Fields-->
+              <div class="bordered-section">
               <!--storage type field-->
               <strong>Storage Type</strong>
               <span>{{item.storage_type}}</span><br>
@@ -80,7 +86,9 @@
               <!--storage note field-->
               <strong>Storage Notes</strong>
               <span>notes</span><br>
+              </div>
             </div>
+
             <!--Add button-->
             <button
               mat-raised-button

@@ -62,17 +62,19 @@ export class ViewItemComponent implements OnInit {
                 this.warning = error.error;
             }
         );
-        this.templateSub = this.templateService.getTemplateById(id).subscribe(
-            (response) => {
-                console.log(response);
-                this.template = response;
-                this.template.template_type = this.template.template_type[0].toUpperCase() + this.template.template_type.substring(1).toLowerCase();
-            },
-            (error) => {
-                this.warning = error.error;
-                console.log(error);
-            }
-        );
+        if (this.item.template_object_id) {
+            this.templateSub = this.templateService.getTemplateById(id).subscribe(
+                (response) => {
+                    console.log(response);
+                    this.template = response;
+                    this.template.template_type = this.template.template_type[0].toUpperCase() + this.template.template_type.substring(1).toLowerCase();
+                },
+                (error) => {
+                    this.warning = error.error;
+                    console.log(error);
+                }
+            );
+        }
     }
 
     onEdit(): void {
