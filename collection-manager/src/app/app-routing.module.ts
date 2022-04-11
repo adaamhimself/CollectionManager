@@ -29,6 +29,7 @@ import { ViewAnalyticsComponent } from './view-analytics/view-analytics.componen
 import { UserListComponent } from './user-list/user-list.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ViewStorageComponent } from './view-storage/view-storage.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
   {
     path: 'viewcollection/:id',
     component: ViewCollectionComponent,
+  },
+  {
+    path: 'viewstorage/:id',
+    component: ViewStorageComponent,
   },
   {
     path: 'additem/:id',

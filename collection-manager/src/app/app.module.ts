@@ -71,6 +71,7 @@ import { GettingStartedComponent } from './getting-started/getting-started.compo
 import { EmailSignupComponent } from './email-signup/email-signup.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddTemplateDialogComponent } from './add-template-dialog/add-template-dialog.component';
+import { ViewStorageComponent } from './view-storage/view-storage.component';
 
 @NgModule({
   //components (pages)
@@ -111,6 +112,7 @@ import { AddTemplateDialogComponent } from './add-template-dialog/add-template-d
     EmailSignupComponent,
     SettingsComponent,
     AddTemplateDialogComponent,
+    ViewStorageComponent,
   ],
   //included modules
   imports: [

@@ -1,0 +1,43 @@
+.image {
+  padding: 10px;
+}
+
+.border {
+  padding: 10px;
+}
+
+.header {
+  font-size: medium;
+  font-weight: bold;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.box {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-bottom: 50px;
+}
+
+.title {
+  padding-bottom: 40px;
+}
+
+.buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+  max-width: 50%;
+  overflow: hidden;
+}
+
+.pageheader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 50%;
+  overflow: hidden;
+}
