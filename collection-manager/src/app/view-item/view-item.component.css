@@ -46,4 +46,7 @@
   .min-height {
     min-height: 200px;
   }
-  
+ 
+  button {
+    margin-bottom: 3%;
+  }
