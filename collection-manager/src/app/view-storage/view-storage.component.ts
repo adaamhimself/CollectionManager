@@ -58,11 +58,11 @@ export class ViewStorageComponent implements OnInit {
       }
     );
     this.storageCode = this.storageModel.storage_assigned_code;
-    console.log('storage code:' + this.storageCode);
+    console.log('storage code: ' + this.storageCode);
 
-    // get collections
+    //get collections
     //retrieve the collections of the logged in user
-    this.collectionSub = this.collection.getMyCollections().subscribe(
+    /*this.collectionSub = this.collection.getMyCollections().subscribe(
       (response) => {
         this.allCollections = response; //all
         this.collections = response; //currently shown
@@ -72,9 +72,9 @@ export class ViewStorageComponent implements OnInit {
         this.warning = error.error;
       }
     );
-    console.log('asd');
+    console.log('asd');*/
 
-    /*
+    
     //retrieve all the items that match the storage id
     this.storageSub = this.storageService
       .getItemsInStorageByCode(this.storageModel.storage_assigned_code)
@@ -88,7 +88,6 @@ export class ViewStorageComponent implements OnInit {
           this.warning = error.error;
         }
       );
-      */
   }
 
   loadItems(): void {
@@ -115,5 +114,14 @@ export class ViewStorageComponent implements OnInit {
           }
         );
     });
+  }
+
+  //unsubscribes upon being destroyed
+  ngOnDestroy() {
+    if (this.itemSub) this.itemSub.unsubscribe();
+    if (this.storageSub) this.storageSub.unsubscribe();
+    if (this.collectionSub) this.collectionSub.unsubscribe();
+    if (this.deleteItemSub) this.deleteItemSub.unsubscribe();
+    if (this.editSub) this.editSub.unsubscribe();
   }
 }
