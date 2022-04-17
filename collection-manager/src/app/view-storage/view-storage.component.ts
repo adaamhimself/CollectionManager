@@ -47,22 +47,19 @@ export class ViewStorageComponent implements OnInit {
   ngOnInit(): void {
     // get the storage information
     let id: string = this.route.snapshot.params['id'];
-    this.editSub = this.storageService.getStorageById(id).subscribe(
+    this.editSub = this.storageService.getItemsInStorageByCode(id).subscribe(
       (response) => {
-        this.storageModel = response;
-        if (this.storageModel)
-          this.storageName = `${this.storageModel.storage_name}`;
+        this.items = response;
       },
       (error) => {
         this.warning = error.error;
       }
     );
-    this.storageCode = this.storageModel.storage_assigned_code;
-    console.log('storage code: ' + this.storageCode);
 
-    //get collections
+    /* was testing other way can ignore
+    // get collections
     //retrieve the collections of the logged in user
-    /*this.collectionSub = this.collection.getMyCollections().subscribe(
+    this.collectionSub = this.collection.getMyCollections().subscribe(
       (response) => {
         this.allCollections = response; //all
         this.collections = response; //currently shown
@@ -72,7 +69,7 @@ export class ViewStorageComponent implements OnInit {
         this.warning = error.error;
       }
     );
-    console.log('asd');*/
+    console.log('asd');
 
     
     //retrieve all the items that match the storage id
@@ -88,8 +85,10 @@ export class ViewStorageComponent implements OnInit {
           this.warning = error.error;
         }
       );
+      */
   }
 
+  /* testing stuff can ignore
   loadItems(): void {
     console.log(this.storageModel.storage_assigned_code);
     this.allCollections.forEach((collection) => {
@@ -115,13 +114,5 @@ export class ViewStorageComponent implements OnInit {
         );
     });
   }
-
-  //unsubscribes upon being destroyed
-  ngOnDestroy() {
-    if (this.itemSub) this.itemSub.unsubscribe();
-    if (this.storageSub) this.storageSub.unsubscribe();
-    if (this.collectionSub) this.collectionSub.unsubscribe();
-    if (this.deleteItemSub) this.deleteItemSub.unsubscribe();
-    if (this.editSub) this.editSub.unsubscribe();
-  }
+  */
 }

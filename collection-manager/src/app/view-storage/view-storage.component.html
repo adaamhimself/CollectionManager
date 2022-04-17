@@ -1,7 +1,7 @@
 <h1>Storage Items</h1>
 
 <mat-toolbar color="primary">
-  <span>{{ storageModel.storage_name }}</span>
+  <span>Storage Box Items: </span>
   <!--search-->
   <span>
     <input
@@ -11,12 +11,7 @@
       type="text"
       [(ngModel)]="query"
     />
-    <button
-      mat-raised-button
-      class="search-font"
-      id="searchButton"
-      (click)="loadItems()"
-    >
+    <button mat-raised-button class="search-font" id="searchButton">
       Search
     </button>
   </span>
@@ -29,9 +24,6 @@
   <h1>No Items</h1>
   <p>{{ message }}</p>
 </div>
-
-<!--text version to showcase grid items, use the below commented out one once
-  the data service and ts file are done since it has {{data from the array}}.-->
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid" style="text-align: center">
     <div
