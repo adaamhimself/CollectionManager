@@ -67,3 +67,25 @@
   <!--the current page is displayed by this router-outlet-->
   <router-outlet></router-outlet>
 </div>
+
+<!--If the current page is not the home page, do not load the default footer and use custom home one-->
+<footer *ngIf="isHome">
+  <ul>
+    <li>
+      <a href="#"><i class="fa fa-twitter-square"></i></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-facebook-square"></i></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-snapchat-square"></i></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-pinterest-square"></i></a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-github-square"></i></a>
+    </li>
+  </ul>
+  <p>Made by Team 9 for Seneca College Course PRJ666 - Winter 2022.</p>
+</footer>

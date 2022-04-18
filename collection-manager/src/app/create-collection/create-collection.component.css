@@ -1,55 +1,100 @@
-.card-wrapper {
-  position: fixed;
-  top: 8%;
-  left: 15%;
-  right: 15%;
+/*wanted*/
+.my-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding-left: 15px;
+  color: black;
+  padding-top: 15px;
+}
+.full-width {
+  width: 100%;
 }
 
-.center {
-  margin-left: auto;
-  margin-right: auto;
+.my-card {
+  /*  not needed styles to reflect it */
+  padding: 20px;
+  color: white;
+  width: 100%;
+  /* needed styles below */
+  display: flex;
+  justify-content: space-between;
 }
 
-.space-top {
-  margin-top: 5%;
+#userImage {
+  padding-top: 10px;
+  width: 50%;
+  min-width: 250px;
+  justify-content: center;
 }
 
-.imageColumn {
-  margin-left: 20px;
+.imageContent {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  min-width: 400px;
 }
 
-.imageColumn img {
-  border-radius: 5px;
-  margin-top: 50px;
+.imageContent a {
+  padding-top: 15px;
 }
 
-.imageColumn a {
-  text-align: center;
+.labels {
+  padding-left: -200px;
 }
 
-.textColumn {
-  margin-left: 5%;
-  margin-top: 5%;
-  min-width: 20%;
+.labelContent {
+  min-width: 130px;
+  padding-top: 30px;
 }
 
-.textColumn p {
-  font-size: large;
-  margin-bottom: 50px;
+.labelContent label {
+  color: black;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  font-weight: bold;
 }
 
-.textColumn2 {
-  margin-left: 10%;
-  margin-top: 7%;
-  margin-right: 5%;
+#itemName {
+  padding-top: 28px;
 }
 
-.fieldsColumn {
-  margin-left: 5%;
-  margin-top: 3%;
+#description {
+  padding-top: 30px;
 }
 
-.submitCollection {
-  margin-top: 60%;
-  margin-right: 15%;
+#condition {
+  padding-top: 28px;
+}
+
+.p {
+  color: black;
+}
+
+#price {
+  padding-top: 29px;
+}
+
+#createButton {
+  justify-content: right;
+}
+
+.mat-card-actions {
+  float: right;
+  margin-top: 120px;
+}
+
+.img-with-text {
+  text-align: justify;
+}
+
+.img-with-text img {
+  display: block;
+  margin: 0 auto;
+}
+
+.textLabel {
+  margin-bottom: 100px;
 }
