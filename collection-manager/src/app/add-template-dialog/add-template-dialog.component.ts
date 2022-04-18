@@ -4,7 +4,6 @@ import { Template } from '../Template';
 import { TemplateService } from '../template.service';
 import { Book } from '../Book';
 import { Comic } from '../Comic';
-import { Storage } from '../Storage';
 
 
 @Component({

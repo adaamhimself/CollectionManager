@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: "http://localhost:8080/api/"
+  apiBaseUrl: "https://blooming-mountain-93936.herokuapp.com/api/"
 };
