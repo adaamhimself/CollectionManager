@@ -11,7 +11,7 @@ const Item = require('../models/itemTemplate');
 module.exports.getItemsInStorageByCode = async function(storageId) {
     // Find all items where storage_object_id matches storageId
     try {
-        let result = Item.find({"storage_object_id": storageId});
+        let result = await Item.find({"storage_object_id": storageId});
         return {code: 200, message: result};
     } catch(error) {
         return {code: 400, message: error};
