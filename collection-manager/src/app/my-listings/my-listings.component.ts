@@ -25,6 +25,7 @@ export class MyListingsComponent implements OnInit {
         //retrieve all postings of the logged-in user
         this.listingSub = this.listingService.getMyListings().subscribe(
             (response) => {
+                console.log(response);
                 this.showPostings(response);
             },
             (error) => {
@@ -97,7 +98,7 @@ export class MyListingsComponent implements OnInit {
     promote(id): void {
         this.listingSub = this.listingService.promoteListing(id).subscribe(
             (response) => {
-                console.log("successfully promoted");
+                console.log(response);
             },
             (error) => {
                 this.warning = error.error;

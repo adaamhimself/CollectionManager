@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     //retrieve all selling postings
     this.listingSub = this.listingService.getAllPromotedListings().subscribe(
       (response) => {
+        console.log(response);
         response.forEach((listing) => {
           this.addPosting(listing);
         });
@@ -51,22 +52,24 @@ export class HomeComponent implements OnInit {
   }
 
   addPosting(listing: Listing): void {
-    let listingItem = new Item();
     //fix types that are stored with different names
     if (listing.listing_type == 'sale') listing.listing_type = 'selling';
     if (listing.listing_type == 'trade') listing.listing_type = 'trading';
-    //1. get the linked item if it exists
-    if (listing.item_id) {
+    //selling and trading have an item_id but wanted doesn't so it will be added in the else
+    if (listing.item_id && listing.item_id != "") {
       this.itemSub = this.itemService.getItemById(listing.item_id).subscribe(
         (item) => {
-          listingItem = item;
           //2. convert the listing into ListingDisplayInfo (passing the listing and item) and push it to the array
-          this.promotedPostings.push(new ListingDisplayInfo(listing, listingItem));
+          this.promotedPostings.push(new ListingDisplayInfo(listing, item));
         },
         (error) => {
           this.warning = error.error;
         }
       );
+    } else if (listing.listing_type == "wanted") {
+        //add a wanted listing
+        let item:Item = new Item();
+        this.promotedPostings.push(new ListingDisplayInfo(listing, item));
     }
   }
 

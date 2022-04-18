@@ -30,15 +30,15 @@ export class ListingDisplayInfo {
         this.post_date = listing.listing_date;
         this.error = "";
         //item
-        if (item && item._id && item._id != ""){
-            this.item_id = item._id;
+        if (listing.item_id && listing.item_id != ""){
+            this.item_id = listing.item_id;
         } else {
             this.item_id = null;
         }
         //name
         if (listing.listing_name && listing.listing_name != ""){
             this.name = listing.listing_name;
-        } else if (item.item_title && item.item_title != ""){
+        } else if (item && item.item_title && item.item_title != ""){
             this.name = item.item_title;
         } else {
             this.name = "No Name";
