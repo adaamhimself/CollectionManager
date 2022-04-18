@@ -35,7 +35,7 @@ export class AppComponent {
         // event is an instance of NavigationEnd, get url!
         this.url = event.urlAfterRedirects;
         // check if the current page is the home page
-        if (this.url === '/') {
+        if (this.url === '/' || this.url === '/home') {
           this.isHome = false;
         } else {
           this.isHome = true;
